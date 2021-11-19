@@ -1,0 +1,21 @@
+﻿/** 
+ *@title SelfAspNet / SampleAsp / NT03_ServerControl / ValidSample_Style.css
+  @target ValidSample.aspx 
+ *@content definition of style for ErrorMessage or else.
+ *@author shika
+ *@date 2021-11-19
+*/
+body {
+    background-color:mistyrose;
+    font-family:'MS Mincho';
+    font-weight:bold;
+}
+.validSample {
+    color: red;
+    font-weight:bold;
+}
+.BtnSubmit {
+    font-weight:bold;
+    font-style:italic;
+}
+
