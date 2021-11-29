@@ -7,9 +7,12 @@
  *@subject GridViewの一部を TemplateFieldに変更
  *         分類: DropDownListを追加、選択できるようにする。
  *                 DetaSource: SelfAspDB_ListEditCat
- *         コメント:   編集時のTextBox.Columnsを拡大
+ *         コメント:   編集時のTextBox.Columns="60"を追加
  *         最終更新日: 編集時に Date型検証 -> 更新時にアラート
+ *                    <EditItemTemplate>内に CompareValidtorを追加
  *         削除ボタン: クリック時に Client側 confirm() 確認メッセージを出す。
+ *                    <ItemTemplete>内の BtnDeleteに
+ *                      OnClientClick="retrun cofirm('')" を追加
  *
  *@see GridViewSample.aspx
  *@see SampleSql / Alubum_tb.sql
