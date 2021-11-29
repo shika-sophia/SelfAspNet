@@ -4,14 +4,16 @@
  *@target SelfAspDB / Album
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content GridViewControl with TemplateField / p160 - 171 /
- *@subject GridViewに TemplateFieldを追加
+ *@subject GridViewの一部を TemplateFieldに変更
+ *         分類: DropDownListを追加、選択できるようにする。
+ *                 DetaSource: SelfAspDB_ListEditCat
+ *         コメント:   編集時のTextBox.Columnsを拡大
+ *         最終更新日: 編集時に Date型検証 -> 更新時にアラート
+ *         削除ボタン: クリック時に Client側 confirm() 確認メッセージを出す。
  *
- *@prepare SelfAspNet/Image 
- *         配布SampleCodeからコピー、アプリroot直下に配置。
- *         
  *@see GridViewSample.aspx
  *@see SampleSql / Alubum_tb.sql
- *@see ResultFile / 
+ *@see ResultFile / GridWithTemplate.jpg
  *@author shika
  *@date 2021-11-30
  */
