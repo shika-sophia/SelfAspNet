@@ -24,13 +24,13 @@ namespace SelfAspNet.SampleAsp.NT04_DataBindControl
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// GridView1 コントロール。
+        /// grid コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView grid;
 
         /// <summary>
         /// SelfAspDB コントロール。

@@ -30,7 +30,7 @@ namespace SelfAspNet.SampleAsp.NT04_DataBindControl
 
         }
 
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void grid_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
