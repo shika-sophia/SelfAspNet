@@ -108,9 +108,9 @@
                 <RowStyle BackColor="#EFF3FB" />
                 <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
                 <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                <SortedAscendingHeaderStyle BackColor="#6D95E1" CssClass="asc"/>
+                <SortedDescendingCellStyle BackColor="#E9EBEF"/>
+                <SortedDescendingHeaderStyle BackColor="#4870BE" CssClass="desc"/>
             </asp:GridView>
             <br />
             <asp:ValidationSummary runat="server"
