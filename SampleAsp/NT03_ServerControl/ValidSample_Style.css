@@ -19,3 +19,15 @@ body {
     font-style: italic;
 }
 
+.asc {
+    background: url(../../Image/asc.png) right no-repeat;
+}
+
+.desc {
+    background: url(../../Image/desc.png) right no-repeat;
+}
+
+.asc a, desc a {
+    padding: 10px;
+}
+
