@@ -5,6 +5,8 @@
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content 第４章 DB / p124-142 / Matrix 4-4, 4-6, List 4-1, 4-2
  *@subject ◆[Book_tb]の新規作成、更新、修正
+ *         [Serverエクスプローラ]　-> [テーブル] -> [Book]右クリック
+ *         -> [テーブルデータの表示] -> 表示 / 追加 / 編集 / 削除
  *
  *@author shika
  *@date 2021-11-21
@@ -20,14 +22,14 @@ CREATE TABLE [dbo].[Book]
     [cdrom] BIT NULL, 
 )
 */
- SELECT * FROM Book;
+-- SELECT * FROM Book;
 
 /*
 INSERT INTO Book 
-  VALUES ('978-4-8026-1226', N'SQLデータ分析 活用入門', 
+  VALUES ('978-4-8026-1226-5', N'SQLデータ分析 活用入門', 
     2600, N'ソシム', '2019-09-12', 0);
 INSERT INTO Book 
-  VALUES ('978-4-7981-5322', N'Docker教科書', 
+  VALUES ('978-4-7981-5322-3', N'Docker教科書', 
     3000, N'翔泳社', '2018-04-11', 0);
 INSERT INTO Book (isbn, title, price, cdrom)
   VALUES ('978-4-7981-6365-9', N'独習 ASP.NET 第６版', 3800, 0);
