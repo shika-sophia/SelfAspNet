@@ -4,7 +4,7 @@
  *@source SelfAspDB_ListView / Book_tb
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content 4.5 ListView / p185 / List 4-19, 4-20
- *@subject
+ *@subject [>]タスク -> ListViewの構成 -> レイアウトの選択 [フロー]
  *
  *@see ResultFile / ListViewSample.jpg
  *@author shika
