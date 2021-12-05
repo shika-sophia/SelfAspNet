@@ -12,7 +12,7 @@
 /*
 CREATE TABLE [dbo].[Album]
 (
-	[Id] CHAR(5) NOT NULL PRIMARY KEY, 
+	[id] CHAR(5) NOT NULL PRIMARY KEY, 
     [category] NVARCHAR(20) NOT NULL, 
     [comment] NVARCHAR(100) NULL, 
     [update] DATE NOT NULL DEFAULT GETDATE(), 
@@ -56,9 +56,10 @@ INSERT INTO Album
   VALUES ('T0002', 'Other', 
     N'クマとネズミのぬいぐるみ。いつも一緒で仲良しです。',
     '2020/03/26', 1);
+*/
 
 -- (9 行処理されました)
-*/
+
 
 -- SELECT * FROM Album;
 /*
