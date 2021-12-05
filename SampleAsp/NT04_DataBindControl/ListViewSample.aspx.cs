@@ -38,4 +38,5 @@ namespace SelfAspNet.SampleAsp.NT04_DataBindControl
 そもそも、ここは編集していない。
 ここより上の自己編集した部分にタイプミスがあるのだろうか
 
+〔ListViewGroup〕の欄外も参照。
  */
