@@ -38,7 +38,7 @@ INSERT INTO Photo(type, data) VALUES (@type, @data)
 */
 /*
 (SampleAsp / NT05_DataSourceControl / PhotoUpload.aspx を実行、
- 1 画像ファイル ResultFile/ Scan γ4φ480.jpg (88.5KB)を選択、upload。
+ 1 画像ファイル ResultFile/ SaveMyEarth480.jpg (88.5KB)を選択、upload。
  2 Photo_tb.sqlをアップ )
 */
 
