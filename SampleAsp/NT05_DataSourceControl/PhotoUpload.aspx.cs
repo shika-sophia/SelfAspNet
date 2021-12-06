@@ -20,7 +20,7 @@
  *         int affected        sds.Insert();  INSERT実行
  *         
  *@see SampleSql / Photo_tb.sql
- *@see ResultFile/ Scan γ4φ480.jpg
+ *@see ResultFile/ SaveMyEarth480.jpg
  *@author shika
  *@date 2021-12-07
  */
