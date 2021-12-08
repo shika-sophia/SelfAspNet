@@ -21,7 +21,7 @@
 <asp:TemplateField>
     <%-- inner ItemTemplate --%>
     <ItemTemplate>
-        <asp:HiddenField ID="hdnCaterory" runat="server"
+        <asp:HiddenField ID="hdnCategory" runat="server"
             Value='<%# Eval("category") %>' />
     <asp:GridView ID="gridSqlPlaceHolder" runat="server" 
         AutoGenerateColumns="False"
@@ -54,7 +54,7 @@
             FROM [Album] WHERE ([category] = @category)">
     <SelectParameters>
         <asp:ControlParameter
-            ControlID="hdnCaterory" 
+            ControlID="hdnCategory" 
             Name="category"
             PropertyName="Value"
             Type="String" />

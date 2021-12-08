@@ -13,13 +13,13 @@
  *         HiddenFieldの categoryの値を代入することで絞り込み。
  *         
  *         <ItemField>
- *           <HiddenField> ID="hdnCaterory" Value="<%# Eval("category') %>
+ *           <HiddenField> ID="hdnCategory" Value="<%# Eval("category') %>
  *           <GridView> 5.1.1 SqlPlaceHolderと同様(コピー)
  *           <DataSourceControl>
  *             SELECT * FROM Album WHERE (category=@category);
  *           <SelectParameters>
  *             <asp:ControlParameter
- *                  ControlID="hdnCaterory" 
+ *                  ControlID="hdnCategory" 
  *                  Name="category"
  *                  PropertyName="Value"
  *                  Type="String" />
