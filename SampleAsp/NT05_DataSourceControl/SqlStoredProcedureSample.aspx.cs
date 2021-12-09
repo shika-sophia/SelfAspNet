@@ -7,6 +7,7 @@
  *@content 5.1.6 ストアドプロシージャ / p224
  *@subject RadioListButton (No Selected)時にも
  *         AlbumFilterProcedure を起動し、Grid表を表示。
+ *         GridViewは 5.1.1 SqlPlaceHolderと同様 (コピー)
  *         
  *         <%-- GridView SqlDataSource --%>
  *         <asp:SqlDataSource ID="SelfAspDB_SplPlaceHolderGrid" runat="server"
@@ -22,6 +23,7 @@
  *                  Type="String" />
  *              <asp:Parameter Direction="Output" Name="recordNUM" Type="Int32" />
  *          </SelectParameters>
+ *          
  *@subject 検索結果の件数をラベル表示 
  *         Selectedイベントハンドラー: SqlDataSourceが SELECT実行後にイベント発生
  *         SqlDataSourceStatusEventArgs e
