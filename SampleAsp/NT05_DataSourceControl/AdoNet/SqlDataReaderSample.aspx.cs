@@ -34,7 +34,7 @@
  *         
  *         SqlDataReader splCmd.ExecuteReader() SELECT文を実行
  *         int affected  sqlCmd.ExecuteNonQuery() INSERT, UPDATE, DELETE文を実行
- *         object        sqlCmd ExecuteScalar() SELECT文の結果が単一の値の場合に実行
+ *         object        sqlCmd.ExecuteScalar() SELECT文の結果が単一の値の場合に実行
  *         
  *         ◆結果セットの読み取り
  *         SqlDataReader splCmd.ExecuteReader() SELECT文を実行
