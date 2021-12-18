@@ -38,10 +38,10 @@
  *         
  *         ◆結果セットの読み取り
  *         SqlDataReader splCmd.ExecuteReader() SELECT文を実行
- *         bool reader.Read()  次の行を読み込み、次の行が存在しない場合 false
- *         T    reader[string columnName]
- *         T    reader[int index]
- *         Xxxx reader.GetXxxx(int index)
+ *         bool   reader.Read()  次の行を読み込み、次の行が存在しない場合 false
+ *         object reader[string columnName]
+ *         object reader[int index]
+ *         Xxxx   reader.GetXxxx(int index)
  *
  *@see SqlDataReaderExeNonQuery.aspx.cs
  *@see SqlDataReaderExeScalar.aspx.cs
