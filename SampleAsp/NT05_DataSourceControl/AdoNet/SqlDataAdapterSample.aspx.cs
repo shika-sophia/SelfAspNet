@@ -32,8 +32,9 @@
  *         object              row[string columnName]
  *         object[]            row.ItemArray
  *         
+ *@see SqlDataReaderSample 接続型アクセス
  *@author shika
- *@date
+ *@date 2021-12-18
  */
 using System;
 using System.Collections.Generic;
