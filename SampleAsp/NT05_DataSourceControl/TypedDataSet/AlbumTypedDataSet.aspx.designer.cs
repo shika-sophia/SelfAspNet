@@ -51,15 +51,6 @@ namespace SelfAspNet.SampleAsp.NT05_DataSourceControl.TypedDataSet
         protected global::System.Web.UI.WebControls.GridView gridTyped;
 
         /// <summary>
-        /// sds コントロール。
-        /// </summary>
-        /// <remarks>
-        /// 自動生成されたフィールド。
-        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sds;
-
-        /// <summary>
         /// ods コントロール。
         /// </summary>
         /// <remarks>

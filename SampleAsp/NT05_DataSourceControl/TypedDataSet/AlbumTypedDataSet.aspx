@@ -20,6 +20,7 @@
     DataSourceID="sds_list"
     DataTextField="category"
     DataValueField="category">
+    <asp:ListItem Selected="True">(No Selected)</asp:ListItem>
 </asp:RadioButtonList>
 <asp:SqlDataSource ID="sds_list" runat="server"
     ConnectionString="<%$ ConnectionStrings:SelfAspDB %>"
@@ -29,7 +30,7 @@
     EmptyDataText="<！> [Categry] is not selected."
     AutoGenerateColumns="False"
     DataKeyNames="Id"
-    DataSourceID="sds">
+    DataSourceID="ods">
     <Columns>
         <asp:BoundField DataField="Id" HeaderText="Id" 
             ReadOnly="True" SortExpression="Id" />
@@ -43,41 +44,37 @@
             HeaderText="favorite" SortExpression="favorite" />
     </Columns>
 </asp:GridView>
-    <asp:SqlDataSource ID="sds" runat="server"
-        ConnectionString="<%$ ConnectionStrings:SelfAspDB %>"
-        SelectCommand="SELECT [Id], [category], [comment], [updated], [favorite] FROM [Album] WHERE ([category] = @category)">
-        <SelectParameters>
-            <asp:ControlParameter ControlID="list"
-                Name="category"
-                PropertyName="SelectedValue"
-                Type="String" />
-        </SelectParameters>
-    </asp:SqlDataSource>
-    <asp:ObjectDataSource ID="ods" runat="server"
-        DeleteMethod="Delete"
-        InsertMethod="Insert"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetAlbumData"
-        TypeName="SelfAspNet.SampleAsp.NT05_DataSourceControl.TypedDataSet.AlbumDataSetTableAdapters.AlbumTableAdapter"
-        UpdateMethod="Update">
-        <DeleteParameters>
-            <asp:Parameter Name="Original_Id" Type="String" />
-        </DeleteParameters>
-        <InsertParameters>
-            <asp:Parameter Name="Id" Type="String" />
-            <asp:Parameter Name="category" Type="String" />
-            <asp:Parameter Name="comment" Type="String" />
-            <asp:Parameter Name="updated" Type="DateTime" />
-            <asp:Parameter Name="favorite" Type="Boolean" />
-        </InsertParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="category" Type="String" />
-            <asp:Parameter Name="comment" Type="String" />
-            <asp:Parameter Name="updated" Type="DateTime" />
-            <asp:Parameter Name="favorite" Type="Boolean" />
-            <asp:Parameter Name="Original_Id" Type="String" />
-        </UpdateParameters>
-    </asp:ObjectDataSource>
+<asp:ObjectDataSource ID="ods" runat="server"
+    SelectMethod="GetAlbumData"
+    TypeName="SelfAspNet.SampleAsp.NT05_DataSourceControl.TypedDataSet.AlbumDataSetTableAdapters.AlbumTableAdapter" 
+    UpdateMethod="Update"
+    InsertMethod="Insert"
+    DeleteMethod="Delete"
+    OldValuesParameterFormatString="original_{0}" >
+    <DeleteParameters>
+        <asp:Parameter Name="Original_Id" Type="String" />
+    </DeleteParameters>
+    <InsertParameters>
+        <asp:Parameter Name="Id" Type="String" />
+        <asp:Parameter Name="category" Type="String" />
+        <asp:Parameter Name="comment" Type="String" />
+        <asp:Parameter Name="updated" Type="DateTime" />
+        <asp:Parameter Name="favorite" Type="Boolean" />
+    </InsertParameters>
+    <SelectParameters>
+        <asp:ControlParameter ControlID="list"
+            Name="category"
+            PropertyName="SelectedValue"
+            Type="String" />
+    </SelectParameters>
+    <UpdateParameters>
+        <asp:Parameter Name="category" Type="String" />
+        <asp:Parameter Name="comment" Type="String" />
+        <asp:Parameter Name="updated" Type="DateTime" />
+        <asp:Parameter Name="favorite" Type="Boolean" />
+        <asp:Parameter Name="Original_Id" Type="String" />
+    </UpdateParameters>
+</asp:ObjectDataSource>
 </div>
 </form>
 </body>
