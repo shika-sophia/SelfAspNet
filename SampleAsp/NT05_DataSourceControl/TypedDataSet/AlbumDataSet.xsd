@@ -59,7 +59,16 @@ FROM              Album</CommandText>
               <Mapping SourceColumn="updated" DataSetColumn="updated" />
               <Mapping SourceColumn="favorite" DataSetColumn="favorite" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="SelfAspDB (Web.config)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetAlbumNumber" Modifier="Public" Name="GetAlbumNumber" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="GetAlbumNumber">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT COUNT(*) FROM Album</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
         </Tables>
         <Sources />
@@ -69,7 +78,7 @@ FROM              Album</CommandText>
   <xs:element name="AlbumDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AlbumDataSet" msprop:Generator_UserDSName="AlbumDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Album" msprop:Generator_TableClassName="AlbumDataTable" msprop:Generator_TableVarName="tableAlbum" msprop:Generator_TablePropName="Album" msprop:Generator_RowDeletingName="AlbumRowDeleting" msprop:Generator_RowChangingName="AlbumRowChanging" msprop:Generator_RowEvHandlerName="AlbumRowChangeEventHandler" msprop:Generator_RowDeletedName="AlbumRowDeleted" msprop:Generator_UserTableName="Album" msprop:Generator_RowChangedName="AlbumRowChanged" msprop:Generator_RowEvArgName="AlbumRowChangeEvent" msprop:Generator_RowClassName="AlbumRow">
+        <xs:element name="Album" msprop:Generator_TableClassName="AlbumDataTable" msprop:Generator_TableVarName="tableAlbum" msprop:Generator_RowChangedName="AlbumRowChanged" msprop:Generator_TablePropName="Album" msprop:Generator_RowDeletingName="AlbumRowDeleting" msprop:Generator_RowChangingName="AlbumRowChanging" msprop:Generator_RowEvHandlerName="AlbumRowChangeEventHandler" msprop:Generator_RowDeletedName="AlbumRowDeleted" msprop:Generator_RowClassName="AlbumRow" msprop:Generator_UserTableName="Album" msprop:Generator_RowEvArgName="AlbumRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id">

@@ -1,33 +1,9 @@
-﻿/** <!--
- *@title SelfAspNet / SampleAsp / SampleAsp / NT05_DataSourceControl 
- *       / TypedDataSet / AlbumDataSetTableAdapters / AlbumTableAdapter.cs
- *@target partial AlbumDataSetTableAdapters.AlbumTableAdapter.cs
- *@source SelfAspDB / Album
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 5.3 DataAccessComponentの開発 / p264 / List 5-12 追補
- *@subject partial classで 自動生成コードに 自己定義コードを追加
- *         テキスト本文中 List 5-12は 「...中略...」となっていた部分を
- *         配布サンプルコードから追補。
- *         テキスト本文の説明通りだと、GetAlbumData()は
- *         引数なしのメソッドでしか定義できないので、
- *         Text Original:[ObjectParam2.aspx]を参照し
- *         => My Code:   [AlbumTypedDataSet.aspx]に
- *         ＊<asp:RadioButtonList>内
- *           <asp:ListItem Selected="True">(No Selected)</asp:ListItem>
- *           
- *         ＊<asp:GridView> - <asp:ObjectDataSource>内
- *           <SelectParameters>
- *             <asp:ControlParameter ControlID="list"
- *               Name="category"
- *               PropertyName="SelectedValue"
- *               Type="String" />
- *           </SelectParameters>
- *         を追補
- *         
- *@see ReaultFile / AlbumTypedDataSet.jpg
- *@author shika
- *@date 2021-12-28  
- * --> */
+﻿/**
+ *@see AlubumTypedDataSet.aspx.cs
+ *@see PagerSample.aspx.cs
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,7 +29,7 @@ namespace SelfAspNet.SampleAsp.NT05_DataSourceControl.TypedDataSet.AlbumDataSetT
             if (category == "(No Selected)")
             {
                 comm.CommandText = 
-                    "SELECT id, comment, updated, favorite, category FROM Album";
+                    "SELECT id, comment, updated, favorite, category FROM Album ";
             }
             else
             {
@@ -71,9 +47,15 @@ namespace SelfAspNet.SampleAsp.NT05_DataSourceControl.TypedDataSet.AlbumDataSetT
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public AlbumDataTable GetAlbumPaging(int startRowIndex, int maximumRows)
         {
+            //m～n件のレコード取得をする SELECT文
             SqlCommand comm = this.Connection.CreateCommand();
-            comm.CommandText = $"SELECT id, comment, updated, favorite, category FROM Album ORDER BY updated DESC OFFSET {startRowIndex} ROWS FETCH NEXT {maximumRows} ROWS ONLY";
+            comm.CommandText = 
+                $"SELECT id, comment, updated, favorite, category FROM Album" +
+                $" ORDER BY updated DESC" +
+                $" OFFSET {startRowIndex} ROWS FETCH NEXT {maximumRows} ROWS ONLY";
             this.Adapter.SelectCommand = comm;
+
+            //SELECT文を実行して、型付きDataSetに流し込む
             AlbumDataSet ds = new AlbumDataSet();
             this.Adapter.Fill(ds, "Album");
             return ds.Album;
