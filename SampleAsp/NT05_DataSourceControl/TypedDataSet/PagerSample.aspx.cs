@@ -33,6 +33,12 @@
  *             
  *@subject AlbumTableAdapter.csにページングメソッドを追加
  *         ◆AlbumDataTable GetAlbumPaging(int startRowIndex, int maximumRows)
+ *         引数型/名前: 固定
+ *         引数名: 自己定義する場合 
+ *           ObjectDataSource
+ *             StartRowIndexParameterName=""
+ *             maximumRowsParameterName="" を変更すること
+ *             
  *         〔SQL Server〕m～n 件のレコード取得をする SELECT文
  *          "SELECT * FROM Album
  *            ORDER BY updated
