@@ -13,5 +13,5 @@ CREATE TABLE [dbo].[AlbumHistory]
 
 -- AlbumDataSet.xsd / AlbumTableAdapter
 INSERT INTO [AlbumHistory] ([Id], [comment], [lastMod])
-  VALUES (@Id, @comment, GETDATE))
+  VALUES (@Id, @comment, GETDATE())
 */
