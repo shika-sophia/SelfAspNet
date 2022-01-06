@@ -26,7 +26,8 @@
         <asp:CommandField ButtonType="Button"
             DeleteText="Delete Row"
             HeaderText="Actions"
-            ShowDeleteButton="True" />
+            ShowDeleteButton="True"
+            OnClientClick="return confirm('＜!＞ Delete ROW OK?')" />
        
     </Columns>
 
