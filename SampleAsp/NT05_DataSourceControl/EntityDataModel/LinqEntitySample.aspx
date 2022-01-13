@@ -13,7 +13,7 @@
 <form id="formLinqEntitySample" runat="server">
 <div>
     <asp:GridView ID="gridLinqEntitySample" runat="server"
-        SelectMethod="gridLinqEntitySample_GetBooks"
+        SelectMethod="gridLinqEntitySample_GetBooksByPrice"
         DataKeyNames="isbn"
         AllowSorting="true"
         AllowPaging="true"

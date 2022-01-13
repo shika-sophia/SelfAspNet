@@ -4,7 +4,7 @@
  *@target LinqEntitySample.aspx
  *@source Models / Book.cs, SelfAspEntityModel.cs
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 5.4 Model Binding / p278 / List 5-17
+ *@content 5.4 Model Binding / p278 / List 5-17, 5-18
  *         EDM: Entity Data Modelを DataSourceにして、
  *         Code-Behind「.aspx.cs」に LINQ to Entitiesを用いて
  *         データバインドするプログラム
@@ -35,9 +35,29 @@
  *              PageSize="3">
  *         この記述だけで、DataBind, Paging, Sorting機能の実装が完了する
  *
+ *@subject 下記のような Query「?priceMin=3000」を付けて実行 (= ユーザーの <form>入力)
+ *         「where b.price >= priceMin」でフィルタリングした結果を出力
+ *https://localhost:44377/SampleAsp/NT05_DataSourceControl/EntityDataModel/LinqEntitySample.aspx?priceMin=3000
+ *
+ *          ＊「.aspx.cs」 GetBooksByPrice([QueryString] int? priceMin)
+ *          ◆Value Provider: ユーザー入力値から値を取得する仕組み
+ *          ◆Value Provider Attribute []属性
+ *          [QueryString([string key])]
+ *          [Control(string id, [string propertyName])]
+ *          [Form([string name])]
+ *          [Cookie([string name])]
+ *          [Session([string key])]
+ *          [RouteData([string key])]
+ *          [ViewState([string key])]
+ *          
+ *         ＊「.aspx」 GridView
+ *         SelectMethod="gridLinqEntitySample_GetBooksByPrice"
+ *         に変更
+ *         
  *@see ResultFile / LinqEntitySample.jpg
+ *@see ResultFile / LinqEntitySample_withQueryString.jpg
  *@author shika
- *@date 2022-01-12
+ *@date 2022-01-12, 01-13
  * -->
  */
 using SelfAspNet.Models;
@@ -45,6 +65,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.ModelBinding;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -72,5 +93,26 @@ namespace SelfAspNet.SampleAsp.NT05_DataSourceControl.EntityDataModel
                   select b;
             return qBook;
         }//GetBooks()
+
+        public IQueryable<Book> gridLinqEntitySample_GetBooksByPrice(
+            [QueryString] int? priceMin)
+        {
+            var db = new SelfAspEntityModel();
+            IQueryable<Book> qBook;
+
+            if (priceMin.HasValue)
+            {
+                qBook = from b in db.Book
+                        orderby b.isbn
+                        where b.price >= priceMin
+                        select b;
+            }
+            else
+            {
+                qBook = gridLinqEntitySample_GetBooks();
+            }
+
+            return qBook;
+        }//GetBooksByPrice()
     }//class
 }
