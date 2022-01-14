@@ -4,11 +4,11 @@
  *@target LinqEntitySample.aspx
  *@source Models / Book.cs, SelfAspEntityModel.cs
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 5.4 Model Binding / p278 / List 5-17, 5-18
+ *@content 5.4 Model Binding / p278 / List 5-17, 5-18, 5-19
  *         EDM: Entity Data Modelを DataSourceにして、
  *         Code-Behind「.aspx.cs」に LINQ to Entitiesを用いて
  *         データバインドするプログラム
- *         
+ *
  *@prepare Data Modelの作成
  *         [VS] SelfAspNet / Models 右クリック -> [追加] -> [新しい項目]
  *         -> [データ] - [ADO.NET Entity Data Model]
@@ -16,7 +16,9 @@
  *         -> DBから Code First -> DB接続: SelfAspDB
  *         -> Table - dbo - Book 選択 -> [完了]
  *       => Book.cs, SelfAspEntityModel.cs 自動生成される。
- *         
+ */
+#region -> ==== Method Implementation ====
+/*
  *@subject 「.aspx.cs」 GetBooks()
  *         ■LINQ to Entities
  *         ◆IQueryable<T> : IEnumerable (System.Linq.)
@@ -53,16 +55,54 @@
  *         ＊「.aspx」 GridView
  *         SelectMethod="gridLinqEntitySample_GetBooksByPrice"
  *         に変更
+ *
+ *@subject ◆データを更新する UPDATEメソッド
+ *         ＊「aspx.cs」 UpdateBook(TEntity)
+ *         引数: Entity-Type (= Tableをオブジェクト化したクラス) Book
+ *               各列の入力値を Bookオブジェクトのプロパティに自動的にバインドしてくれる
+ *         db: DbContext, T: TEntity
+ *         DbEntityEntity<T> db.Entry<T>(T) 
+ *             エンティティにアクセス / 操作できるオブジェクトを生成
+ *         EntityState en.State エンティティの状態を取得/設定
+ *         int         EntityState.Modified = 16 変更されたエンティティの状態
+ *         int affected db.SaveChanges()  変更されたエンティティの状態を DBに保存
  *         
+ *         ＊「.aspx」 GridView
+ *         DataKeyNames="isbn"
+ *         UpdateMethod="gridLinqEntitySample_UpdateBook"
+ *         AutoGenerateEditButton="true"
+ *         
+ *@subject 「Book.cs」 Validation機能 (= 検証機能)
+ *         ◆検証属性　System.ComponentModel.DataAnnotations        
+ *         [Required()]              必須検証
+ *         [StringLength(int max)]   文字列長検証
+ *         [Range(int min, int max)] 値の範囲検証
+ *         [Compare(other)]          比較検証
+ *         [RegularExpression(string regexPattern)]
+ *                                   正規表現検証
+ *         [DataType(TypeName="")]   データ型検証
+ *         [CostomValidation(type, method)] 自己定義の検証メソッド
+ *         
+ *         ◆その他の属性
+ *         [DisplayName(string)]     ヘッダ行の表示名
+ *         [Key]                     primary keyを通知
+ *         ErrorMessage=""           Page.IsValid - false時に表示
+ *           プレースホルダ 記述可
+ *             {0}: プロパティの表示名
+ *             {1}, {2}, ... 検証パラメタ
+ */
+#endregion
+/*
  *@see ResultFile / LinqEntitySample.jpg
  *@see ResultFile / LinqEntitySample_withQueryString.jpg
  *@author shika
- *@date 2022-01-12, 01-13
+ *@date 2022-01-12, 01-13, 01-14
  * -->
  */
 using SelfAspNet.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.ModelBinding;
@@ -73,6 +113,7 @@ namespace SelfAspNet.SampleAsp.NT05_DataSourceControl.EntityDataModel
 {
     public partial class LinqEntitySample : System.Web.UI.Page
     {
+        private SelfAspEntityModel db = new SelfAspEntityModel();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -86,7 +127,7 @@ namespace SelfAspNet.SampleAsp.NT05_DataSourceControl.EntityDataModel
         //     string sortByExpression
         public IQueryable<Book> gridLinqEntitySample_GetBooks()
         {
-            var db = new SelfAspEntityModel();
+            //var db = new SelfAspEntityModel();
             IQueryable<Book> qBook
                 = from b in db.Book
                   orderby b.isbn
@@ -97,7 +138,7 @@ namespace SelfAspNet.SampleAsp.NT05_DataSourceControl.EntityDataModel
         public IQueryable<Book> gridLinqEntitySample_GetBooksByPrice(
             [QueryString] int? priceMin)
         {
-            var db = new SelfAspEntityModel();
+            //var db = new SelfAspEntityModel();
             IQueryable<Book> qBook;
 
             if (priceMin.HasValue)
@@ -114,5 +155,12 @@ namespace SelfAspNet.SampleAsp.NT05_DataSourceControl.EntityDataModel
 
             return qBook;
         }//GetBooksByPrice()
+
+        public void gridLinqEntitySample_UpdateBook(Book b)
+        {
+            //var db = new SelfAspEntityModel();
+            db.Entry<Book>(b).State = EntityState.Modified;
+            db.SaveChanges();
+        }//UpdateBook()
     }//class
 }

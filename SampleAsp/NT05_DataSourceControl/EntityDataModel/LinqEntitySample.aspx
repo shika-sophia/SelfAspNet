@@ -13,8 +13,10 @@
 <form id="formLinqEntitySample" runat="server">
 <div>
     <asp:GridView ID="gridLinqEntitySample" runat="server"
-        SelectMethod="gridLinqEntitySample_GetBooksByPrice"
         DataKeyNames="isbn"
+        SelectMethod="gridLinqEntitySample_GetBooksByPrice"
+        UpdateMethod="gridLinqEntitySample_UpdateBook"
+        AutoGenerateEditButton="true"
         AllowSorting="true"
         AllowPaging="true"
         PageSize="3">
