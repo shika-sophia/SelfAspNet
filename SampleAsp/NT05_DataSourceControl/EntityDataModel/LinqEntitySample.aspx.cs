@@ -87,10 +87,17 @@
  *         [DisplayName(string)]     ヘッダ行の表示名
  *         [Key]                     primary keyを通知
  *         [Column(TypeName="")      データ型を指定
- *         ErrorMessage=""           Page.IsValid - false時に表示
+ *         ErrorMessage=""           ModelState.IsValid - false時に表示
  *           プレースホルダ 記述可
  *             {0}: プロパティの表示名
  *             {1}, {2}, ... 検証パラメタ
+ *         
+ *         ＊UpdateBook()の修正
+ *         if(ModelState.IsValid) { } を追加
+ *         
+ *         bool ModelState.IsValid 検証できたか
+ *                └ ModelStateDictionary Page.ModelState
+ *                    検証状態を含むモデルの状態を表す Dictionaryオブジェクト
  */
 #endregion
 /*
@@ -160,8 +167,12 @@ namespace SelfAspNet.SampleAsp.NT05_DataSourceControl.EntityDataModel
         public void gridLinqEntitySample_UpdateBook(Book b)
         {
             //var db = new SelfAspEntityModel();
-            db.Entry<Book>(b).State = EntityState.Modified;
-            db.SaveChanges();
+
+            if (ModelState.IsValid)
+            {
+                db.Entry<Book>(b).State = EntityState.Modified;
+                db.SaveChanges();
+            }
         }//UpdateBook()
     }//class
 }
