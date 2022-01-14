@@ -1,4 +1,9 @@
-﻿namespace SelfAspNet.Models
+﻿/*
+ * @see SelfAspNet / SampleAsp / NT05_DataSourceControl
+ *      / EntityDataModel / LinqEntitySample.aspx.cs
+ */
+
+namespace SelfAspNet.Models
 {
     using System;
     using System.Collections.Generic;

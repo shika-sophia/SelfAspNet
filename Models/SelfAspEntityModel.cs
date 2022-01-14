@@ -1,3 +1,7 @@
+/*
+ * @see SelfAspNet / SampleAsp / NT05_DataSourceControl
+ *      / EntityDataModel / LinqEntitySample.aspx.cs
+ */
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
