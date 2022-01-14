@@ -77,15 +77,16 @@
  *         [Required()]              必須検証
  *         [StringLength(int max)]   文字列長検証
  *         [Range(int min, int max)] 値の範囲検証
- *         [Compare(other)]          比較検証
+ *         [Compare(string otherProperty)]          比較検証
  *         [RegularExpression(string regexPattern)]
  *                                   正規表現検証
- *         [DataType(TypeName="")]   データ型検証
+ *         [DataType(enum DataType.Xxxx)]   データ型検証
  *         [CostomValidation(type, method)] 自己定義の検証メソッド
  *         
  *         ◆その他の属性
  *         [DisplayName(string)]     ヘッダ行の表示名
  *         [Key]                     primary keyを通知
+ *         [Column(TypeName="")      データ型を指定
  *         ErrorMessage=""           Page.IsValid - false時に表示
  *           プレースホルダ 記述可
  *             {0}: プロパティの表示名
