@@ -13,6 +13,7 @@
 <form id="formLinqEntitySample" runat="server">
 <div>
     <asp:GridView ID="gridLinqEntitySample" runat="server"
+        ItemType="SelfAspNet.Models.Book"
         DataKeyNames="isbn"
         SelectMethod="gridLinqEntitySample_GetBooksByPrice"
         UpdateMethod="gridLinqEntitySample_UpdateBook"
@@ -20,7 +21,17 @@
         AllowSorting="true"
         AllowPaging="true"
         PageSize="3">
+        <Columns>
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <%#: Item.isbn  %>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
     </asp:GridView>
+    <asp:ValidationSummary ID="summaryLinqEntitySample" runat="server"
+        HeaderText="Validation Error:"
+        ShowSummary="true" />
 </div>
 </form>
 </body>

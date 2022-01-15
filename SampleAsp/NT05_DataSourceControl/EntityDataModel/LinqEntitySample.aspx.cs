@@ -4,7 +4,7 @@
  *@target LinqEntitySample.aspx
  *@source Models / Book.cs, SelfAspEntityModel.cs
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 5.4 Model Binding / p278 / List 5-17, 5-18, 5-19
+ *@content 5.4 Model Binding / p278 / List 5-17 ～ 5-22
  *         EDM: Entity Data Modelを DataSourceにして、
  *         Code-Behind「.aspx.cs」に LINQ to Entitiesを用いて
  *         データバインドするプログラム
@@ -17,7 +17,7 @@
  *         -> Table - dbo - Book 選択 -> [完了]
  *       => Book.cs, SelfAspEntityModel.cs 自動生成される。
  */
-#region -> ==== Method Implementation ====
+#region -> @subjects ==== Method Implementation ====
 /*
  *@subject 「.aspx.cs」 GetBooks()
  *         ■LINQ to Entities
@@ -98,11 +98,36 @@
  *         bool ModelState.IsValid 検証できたか
  *                └ ModelStateDictionary Page.ModelState
  *                    検証状態を含むモデルの状態を表す Dictionaryオブジェクト
+ *                    
+ *@subject 「.aspx」ValidatationSummary
+ *           ID="summaryLinqEntitySample" 
+ *           HeaderText="Validation Error:"
+ *           ShowSummary="true"
+ *           
+ *subject ◆型付きDataBindContorol ASP.NET 4.5-
+ *         ItemType="" バインドされた型を指定
+ *         
+ *         ＊従来 => ASP.NET 4.5-
+ *         <%#: Eval("isbn") %> => <%#: Item.isbn  %>
+ *         <%#: Bind("isbn") %> => <%#: BindItem.isbn  %>
+ *         
+ *        ＊「.aspx」GridView
+ *       <asp:GridView
+ *            ItemType="SelfAspNet.Models.Book" >
+ *         <Columns> １列目に挿入される
+ *           <asp:TemplateField>
+ *               <ItemTemplate>
+ *                  <%#: Item.isbn  %> <= これでデータバインド
+ *               </ItemTemplate>
+ *           </asp:TemplateField>
+ *         </Columns>
+ *      </asp:GridView>
  */
 #endregion
 /*
  *@see ResultFile / LinqEntitySample.jpg
  *@see ResultFile / LinqEntitySample_withQueryString.jpg
+ *@see ResultFile / LinqEntitySample_withValidation.jpg
  *@author shika
  *@date 2022-01-12, 01-13, 01-14
  * -->

@@ -31,5 +31,14 @@ namespace SelfAspNet.SampleAsp.NT05_DataSourceControl.EntityDataModel
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridLinqEntitySample;
+
+        /// <summary>
+        /// summaryLinqEntitySample コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary summaryLinqEntitySample;
     }
 }
