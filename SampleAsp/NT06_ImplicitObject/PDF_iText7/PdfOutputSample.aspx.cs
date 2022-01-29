@@ -21,8 +21,10 @@
  *             int ttcIndex,   //index of purpose font in same file above.
  *             PdfEncodings,   //PdfEncodings.IDENTITY_H / IDENTITY_V 
  *                               as letter direction is horizontal / virtical.
- *             PdfFontFactory.EmbeddingStrategy,
- *             bool cache)
+ *             PdfFontFactory.EmbeddingStrategy, 
+ *                             //strategy of embedding Font on Document
+ *                             //[英] embedded: 埋め込み
+ *             bool cache)     //if do cache
  *             
  *         Document document.SetFont(PdfFont)
  *         Document document.Add(IBlockElement)
