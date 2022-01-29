@@ -42,7 +42,7 @@
  *          <%@ Page ... ContentType="application/pdf" %>
  *                                       
  *          ＊use when dynamic variable
- *          Response.CintentType(string) 
+ *          Response.ContentType(string) 
  *
  *@see PdfOutputSample.jpg
  *@author shika
