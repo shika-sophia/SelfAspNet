@@ -135,6 +135,11 @@
                 </UpdateParameters>
             </asp:SqlDataSource>
         </div>
+        <p>
+            <asp:Button ID="btnListView" runat="server"
+                Text="ListView"
+                OnClick="btnListView_Click" />
+        </p>
     </form>
 </body>
 </html>

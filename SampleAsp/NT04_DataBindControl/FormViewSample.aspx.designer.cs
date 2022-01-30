@@ -40,5 +40,14 @@ namespace SelfAspNet.SampleAsp.NT04_DataBindControl
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SelfAspDB_FormView;
+
+        /// <summary>
+        /// btnListView コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnListView;
     }
 }

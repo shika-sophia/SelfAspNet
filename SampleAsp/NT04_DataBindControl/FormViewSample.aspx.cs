@@ -4,6 +4,7 @@
  *@source SelfAspDB_FormView / Book_tb
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content 第４章 DB / FormView / p175
+ *@content 第６章 6.2 Response / p319 / List 6-8
  *@subject 単票(= Single Record)の表示
  *@subject 編集、削除、新規作成
  *@subject 更新後に画面を移動する
@@ -21,7 +22,15 @@
  *         
  *         Control control.FindControl(string controlID)
  *           Control: 全てのサーバーコントロールの rootクラス。キャストして利用。
- *
+ *           
+ *@subject リダイレクトと、フォワード
+ *         void Response.Redirect(string url)          //一時的
+ *         void Response.RedirectPermanent(string url) //永続的
+ *         void Server.Transfer(string path) 
+ *         void Transfer(string path, bool preserveForm);
+ *              //フォワード: Request情報(POSTデータ, Query, ViewState等を引き継ぐ)
+ *              //第２引数 falseで Request情報を破棄
+ *         
  *@see ResultFile / FormViewSample.jpg
  *@author shika
  *@date 2021-12-03
@@ -46,7 +55,7 @@ namespace SelfAspNet.SampleAsp.NT04_DataBindControl
         protected void formViewSample_ItemUpdated(
             object sender, FormViewUpdatedEventArgs e)
         {
-            Response.Redirect("GridViewSample.aspx");
+            Response.Redirect("ListViewGroup.aspx");
             //formViewSample.DefaultMode = FormViewMode.Insert;
         }
 
@@ -68,6 +77,12 @@ namespace SelfAspNet.SampleAsp.NT04_DataBindControl
             }
         }
 
+        protected void btnListView_Click(object sender, EventArgs e)
+        {
+            //Response.Redirect("ListViewGroup.aspx");
+            //Response.RedirectPermanent("ListViewGroup.aspx");
+            Server.Transfer("ListViewGroup.aspx");
+        }
     }//class
 }
 
