@@ -4,12 +4,21 @@
  *@source
  *@reference DS 山田祥寛『独習 Java Server-side 新版』翔泳社, 2013
  *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content NT 第６章 組込オブジェクト 6.2 Response / p310 / List 6-5
+ *@content NT 第６章 組込オブジェクト 6.2 Response / p310, p319 / List 6-5, 6-8
  *@subject ◆Response
  *         HttpResponse Page.Response
  *         int          Response.StatusCode
  *         string       Response.StatusDescription
  *         void         Response.Write(string)
+ *         
+ *@subject リダイレクトと、フォワード 
+ *         void Response.Redirect(string url)          //一時的
+ *         void Response.RedirectPermanent(string url) //永続的
+ *         void Server.Transfer(string path) 
+ *         void Transfer(string path, bool preserveForm);
+ *              //フォワード: Request情報(POSTデータ, Query, ViewState等を引き継ぐ)
+ *              //第２引数 falseで Request情報を破棄
+ *        => @see 〔NT04_DataBindControl / FormViewSample.aspx.cs〕
  *        
  *@subject ◆HTTP Status Code (summary)〔NT90 / p311〕
  *         200: OK            //成功
