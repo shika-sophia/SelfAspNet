@@ -5,19 +5,22 @@
  *@source SelfAspDB / Book
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content 第６章 6.2 Response / p321 / List 6.9
- *@subject ResponseHeaderを自己定義
+ *         ResponseHeaderを自己定義
  *         void Response.AppendHeader(string key, string value)
- *           //HTTP Headerを出力ストリームに追加
+ *             //HTTP Headerを出力ストリームに追加
  *           
  *@subject 「.aspx」ASPページ
  *          <%@ Page ... 
  *             ContentType="application/octet-stream"
- *               バイナリーストリームを output? 実行結果は下記。
  *             ResponseEncoding="Shift-JIS" %>
  *             
- *          ResponseEncoding="": デフォルト値 UTF-8だが、Excelには Shift-JISが適す。
- *          CSV変換のため、空白、改行に意味を持つため、削除。
- *          HTMLタグは不要なので、<DOCTYPE><head><body><form>なども削除。
+ *          ContentType="application/octet-stream"
+ *            バイナリーストリームを output? 実行結果は下記。
+ *            
+ *          ResponseEncoding=""
+ *            デフォルト値 UTF-8だが、Excelには Shift-JISが適す。
+ *            CSV変換のため、空白、改行に意味を持つため、削除。
+ *            HTMLタグは不要なので、<DOCTYPE><head><body><form>なども削除。
  *          
  *@subject 「.aspx.cs」Page_Load()
  *          Response.AppendHeader(
@@ -28,7 +31,7 @@
  *         「ResponseHeaderSample_CSV.aspx」に改名
  *         正しく書くと、「Book.csv」を自動ダウンロード。
  *         
- *@result  ◆実行結果
+ *@result  実行結果
  *         テキストの記述と異なり、確認画面は出ず、自動でダウンロード
  *         CSV形式の「Book.csv」
  *         ファイルを開くと自動で Excel起動、ファイルは消滅。
