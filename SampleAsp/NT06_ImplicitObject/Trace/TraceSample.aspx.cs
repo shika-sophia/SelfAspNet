@@ -13,7 +13,8 @@
  *                TraceMode="SortByTime" %>
  *                   SortByTime (=Default)
  *                   SortByCategory
- *                   
+ *          TextBox: ID="txtName"
+ *          
  *@subject 「Web.config」アプリケーション全体でTraceを有効にする
  *          <system.web> 
  *          ...
@@ -39,8 +40,7 @@
  *                    System.Web.Handlars.TraceHandlarクラスを呼出、
  *                    Trace出力を生成して、表示する。
  *                    
- *@subject Traceにメッセージを追加
- *         「.aspx.cs」Page_Load()
+ *@subject 「.aspx.cs」Page_Load() Traceにメッセージを追加           
  *          TraceContext Page.Trace
  *          void         Trace.Write(string); Trace情報に表示
  *          void         Trace.Warn(string);  赤字で表示
