@@ -1,0 +1,144 @@
+@see SampleAsp/NT06_ImplicitObject/Trace/TraceSample.aspx.cs
+
+■ Trace情報
+Shika
+
+要求の詳細
+セッション ID:	iyzwgn0x24dmfc35t4jqqd5o	要求の種類:	GET
+要求時間:	2022/02/03 15:20:37	状態コード:	200
+要求のエンコード:	Unicode (UTF-8)	応答のエンコード:	Unicode (UTF-8)
+
+トレース情報
+カテゴリ	メッセージ	最初から	最後から
+aspx.page	Begin PreInit		
+aspx.page	End PreInit	0.000012	0.000012
+aspx.page	Begin Init	0.000021	0.000009
+aspx.page	End Init	0.000031	0.000010
+aspx.page	Begin InitComplete	0.000037	0.000006
+aspx.page	End InitComplete	0.000042	0.000005
+aspx.page	Begin PreLoad	0.000047	0.000005
+aspx.page	End PreLoad	0.000052	0.000005
+aspx.page	Begin Load	0.000057	0.000005
+Shika (通常)	0.000289	0.000232
+Shika (警告)	0.000300	0.000010
+aspx.page	End Load	0.000306	0.000006
+aspx.page	Begin LoadComplete	0.000311	0.000005
+aspx.page	End LoadComplete	0.000320	0.000009
+aspx.page	Begin PreRender	0.000325	0.000005
+aspx.page	End PreRender	0.000335	0.000010
+aspx.page	Begin PreRenderComplete	0.000342	0.000007
+aspx.page	End PreRenderComplete	0.000347	0.000005
+aspx.page	Begin SaveState	0.000429	0.000082
+aspx.page	End SaveState	0.001225	0.000795
+aspx.page	Begin SaveStateComplete	0.001237	0.000012
+aspx.page	End SaveStateComplete	0.001242	0.000006
+aspx.page	Begin Render	0.001252	0.000009
+aspx.page	End Render	0.002268	0.001016
+
+コントロールのツリー
+UniqueID の制御	型	レンダー サイズのバイト数 (子を含む)	ViewState サイズのバイト数 (子を除く)	ControlState サイズ (バイト)(子は含まない)
+__Page	ASP.sampleasp_nt06_implicitobject_trace_tracesample_aspx	935	0	0
+    ctl03	System.Web.UI.LiteralControl	68	0	0
+    ctl00	System.Web.UI.HtmlControls.HtmlHead	113	0	0
+        ctl01	System.Web.UI.HtmlControls.HtmlMeta	69	0	0
+        ctl02	System.Web.UI.HtmlControls.HtmlTitle	31	0	0
+    ctl04	System.Web.UI.LiteralControl	10	0	0
+    formTraceSample	System.Web.UI.HtmlControls.HtmlForm	724	0	0
+        ctl05	System.Web.UI.LiteralControl	13	0	0
+        txtName	System.Web.UI.WebControls.TextBox	63	0	0
+        ctl06	System.Web.UI.LiteralControl	10	0	0
+    ctl07	System.Web.UI.LiteralControl	20	0	0
+セッション状態
+セッション キー	型	値
+アプリケーションの状態
+アプリケーション キー	型	値
+Request Cookies のコレクション
+名前	値	サイズ
+Response Cookies のコレクション
+名前	値	サイズ
+ヘッダー コレクション
+名前	値
+Connection	close
+Accept	text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding	gzip, deflate, br
+Accept-Language	ja,en-US;q=0.9,en;q=0.8
+Host	localhost:44377
+User-Agent	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36
+sec-ch-ua	" Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98"
+sec-ch-ua-mobile	?0
+sec-ch-ua-platform	"Windows"
+upgrade-insecure-requests	1
+sec-fetch-site	none
+sec-fetch-mode	navigate
+sec-fetch-user	?1
+sec-fetch-dest	document
+Response Headers のコレクション
+名前	値
+X-AspNet-Version	4.0.30319
+Cache-Control	private
+Content-Type	text/html
+フォーム コレクション
+名前	値
+Querystring コレクション
+名前	値
+サーバー変数
+名前	値
+ALL_HTTP	HTTP_CONNECTION:close HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9 HTTP_ACCEPT_ENCODING:gzip, deflate, br HTTP_ACCEPT_LANGUAGE:ja,en-US;q=0.9,en;q=0.8 HTTP_HOST:localhost:44377 HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36 HTTP_SEC_CH_UA:" Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98" HTTP_SEC_CH_UA_MOBILE:?0 HTTP_SEC_CH_UA_PLATFORM:"Windows" HTTP_UPGRADE_INSECURE_REQUESTS:1 HTTP_SEC_FETCH_SITE:none HTTP_SEC_FETCH_MODE:navigate HTTP_SEC_FETCH_USER:?1 HTTP_SEC_FETCH_DEST:document
+ALL_RAW	Connection: close Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9 Accept-Encoding: gzip, deflate, br Accept-Language: ja,en-US;q=0.9,en;q=0.8 Host: localhost:44377 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36 sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98" sec-ch-ua-mobile: ?0 sec-ch-ua-platform: "Windows" upgrade-insecure-requests: 1 sec-fetch-site: none sec-fetch-mode: navigate sec-fetch-user: ?1 sec-fetch-dest: document
+APPL_MD_PATH	/LM/W3SVC/2/ROOT
+APPL_PHYSICAL_PATH	C:\Users\sophia\source\repos\SelfAspNet\SelfAspNet\
+AUTH_TYPE	 
+AUTH_USER	 
+AUTH_PASSWORD	 
+LOGON_USER	 
+REMOTE_USER	 
+CERT_COOKIE	 
+CERT_FLAGS	 
+CERT_ISSUER	 
+CERT_KEYSIZE	256
+CERT_SECRETKEYSIZE	2048
+CERT_SERIALNUMBER	 
+CERT_SERVER_ISSUER	CN=localhost
+CERT_SERVER_SUBJECT	CN=localhost
+CERT_SUBJECT	 
+CONTENT_LENGTH	0
+CONTENT_TYPE	 
+GATEWAY_INTERFACE	CGI/1.1
+HTTPS	on
+HTTPS_KEYSIZE	256
+HTTPS_SECRETKEYSIZE	2048
+HTTPS_SERVER_ISSUER	CN=localhost
+HTTPS_SERVER_SUBJECT	CN=localhost
+INSTANCE_ID	2
+INSTANCE_META_PATH	/LM/W3SVC/2
+LOCAL_ADDR	::1
+PATH_INFO	/SampleAsp/NT06_ImplicitObject/Trace/TraceSample.aspx
+PATH_TRANSLATED	C:\Users\sophia\source\repos\SelfAspNet\SelfAspNet\SampleAsp\NT06_ImplicitObject\Trace\TraceSample.aspx
+QUERY_STRING	 
+REMOTE_ADDR	::1
+REMOTE_HOST	::1
+REMOTE_PORT	52609
+REQUEST_METHOD	GET
+SCRIPT_NAME	/SampleAsp/NT06_ImplicitObject/Trace/TraceSample.aspx
+SERVER_NAME	localhost
+SERVER_PORT	44377
+SERVER_PORT_SECURE	1
+SERVER_PROTOCOL	HTTP/1.1
+SERVER_SOFTWARE	Microsoft-IIS/10.0
+URL	/SampleAsp/NT06_ImplicitObject/Trace/TraceSample.aspx
+HTTP_CONNECTION	close
+HTTP_ACCEPT	text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+HTTP_ACCEPT_ENCODING	gzip, deflate, br
+HTTP_ACCEPT_LANGUAGE	ja,en-US;q=0.9,en;q=0.8
+HTTP_HOST	localhost:44377
+HTTP_USER_AGENT	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36
+HTTP_SEC_CH_UA	" Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98"
+HTTP_SEC_CH_UA_MOBILE	?0
+HTTP_SEC_CH_UA_PLATFORM	"Windows"
+HTTP_UPGRADE_INSECURE_REQUESTS	1
+HTTP_SEC_FETCH_SITE	none
+HTTP_SEC_FETCH_MODE	navigate
+HTTP_SEC_FETCH_USER	?1
+HTTP_SEC_FETCH_DEST	document
+Microsoft .NET Framework バージョン:4.0.30319; ASP.NET バージョン:4.8.4465.0
+
