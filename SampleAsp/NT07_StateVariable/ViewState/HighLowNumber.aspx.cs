@@ -23,7 +23,7 @@
  *          
  *          ＊btnSend_Click()
  *          int  Int32.Parse(string);
- *          bool Int32.TryParse(string, out object)
+ *          bool Int32.TryParse(string, out int value)
  *          
  *          TextBox this.txtNum;
  *          Label   this.lblResult;
