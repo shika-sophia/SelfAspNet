@@ -11,34 +11,25 @@ namespace SelfAspNet.SampleAsp.NT07_StateVariable.Session
 {
 
 
-    public partial class Session1
+    public partial class Session2
     {
 
         /// <summary>
-        /// formSession1 コントロール。
+        /// formSession2 コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formSession1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formSession2;
 
         /// <summary>
-        /// lblSession1 コントロール。
+        /// lblSeeion2 コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSession1;
-
-        /// <summary>
-        /// link コントロール。
-        /// </summary>
-        /// <remarks>
-        /// 自動生成されたフィールド。
-        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton link;
+        protected global::System.Web.UI.WebControls.Label lblSeeion2;
     }
 }

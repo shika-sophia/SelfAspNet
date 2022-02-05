@@ -12,7 +12,11 @@
 <body>
 <form id="formSession1" runat="server">
 <div>
-
+    ◆Session 1<br />
+    <asp:Label ID="lblSession1" runat="server" Text=""></asp:Label><br />
+    LinkButton[<asp:LinkButton ID="link" runat="server"
+        OnClick="link_Click" >Session 2</asp:LinkButton>]<br />
+    HTML &lt;a&gt;[<a href="Session2.aspx">Session 2</a>]<br />
 </div>
 </form>
 </body>
