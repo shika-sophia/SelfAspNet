@@ -5,10 +5,12 @@
  *@link   Session2.aspx
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content 第７章 状態管理 / 7.2 Session / p342 / List 7-2, 7-3
+ *         Sessionを用いて、異なるページ間での情報維持。
+ *         
  *@subject 「.aspx」
  *          Label ID="lblSession1"
  *          LinkButton ID="link"
- *          //【註】<a href=""> </a>も可だが、リンクColorは適用されない。
+ *          <a href=""> </a> も可だが、リンクColorは適用されない。
  *          
  *@subject 「.aspx.cs」Page_Load()
  *          ◆Session 
@@ -20,8 +22,8 @@
  *          void   Session.Remove(string key) session変数 keyを削除
  *          void   Session.Remove()   全ての session変数を削除
  *          void   Session.Abandon()  Sessionオブジェクトを破棄
- *          
- *          
+ *
+ *@see Session2.aspx
  *@see Session_Links.jpg
  *@author shika
  *@date 2022-02-05

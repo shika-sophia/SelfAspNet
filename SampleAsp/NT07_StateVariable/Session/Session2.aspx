@@ -12,8 +12,8 @@
 <body>
 <form id="formSession2" runat="server">
 <div>
-    ◆ Session 2<br />
-    Sessionの値:&nbsp;
+    ◆Session 2<br />
+    Session:&nbsp;
     <asp:Label ID="lblSeeion2" runat="server" Text=""></asp:Label><br />
     [<a href="Session1.aspx">Session 1</a>]<br />
 </div>
