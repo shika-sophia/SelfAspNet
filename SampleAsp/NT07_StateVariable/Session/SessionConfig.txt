@@ -1,0 +1,112 @@
+﻿/**
+ *@title SelfAspNet / SampleAsp / NT07_StateVariable
+ *       / Session / SessionConfig.txt
+ *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content 第７章 状態管理 / 7.2 Session / p345
+           Session Configuration
+           Session Disabled
+ *@author shika
+ *@date 2022-02-06
+ */
+
+■ Session State Config
+◆「Web.config」 whole Application 
+   <system.web>
+     └ <sessionState>
+          └ property below
+   int? mode=""
+     Off:         Session disabled
+     InProc:      keep session in local memory (= in process)
+                  [ATTENTION] It lose session data when Web-App restart.
+                  because it keeps session in Application process
+
+     StateServer: keep session in StateService (in another process)
+     SQLServer:   keep session in SQL Server   (= DB)
+     Custom:      keep session in custom defined DataStore
+
+   int timeout="" (int minutes)
+     default: 20 minutes
+
+   bool compressionEnabled="" :if compress data size of session
+     dedault: false
+
+◆State Service
+＊It keeps session another process out of Application process
+＊It retain session data when Web-App restart, but lose when State Service restart,
+  because State Service is memory also.
+＊This keep session more certainly than in Application process, but more slowly.
+
+＊[PC] -> [Contorol Panel] -> [System and Security] -> [Management Tools]
+ -> [Service] -> [ASP.NET State Service] right click -> [start]
+ 
+ [Example] Web.config / 42424: port number fixed
+ <system.web>
+   ...
+   <sessionState mode="StateServer"
+    stateConnecionStrings="tcpip=127.0.0.1:42424" />
+   ...
+ </system.web>
+
+◆SQL Server
+＊It keeps session in SQL Server (= DB)
+＊This keep session more certainly than in State Service, but more slowly.
+
+＊【Prepare】Session State Database
+  command [aspnet_regaql] in [.NET Framework] installed folder.
+
+  command [aspnet_regaql] options
+    -S <string server> SQL Server Computer name
+    -E                 Windows-authentication enabled
+    -ssadd             create session database
+    -sstype <type>     p: permanently ASP State Database
+                       t: temporarily  tempdb
+                          tempdb lose sesion when SQL Server restart.
+
+  [Example] Command Prompt / v4.0.30139: version number as various
+  >cd C:\Windows\Microsoft.NET\Framework\v4.0.30139
+  >aspnet_regspl -S "(LocalDB)\MSSQLLocalDB"
+                 -E -ssadd -sstype p
+  
+  [Result]
+  Microsoft(R) ASP.NET SQL 登録ツール バージョン 4.8.4084.0
+  SQL Server に ASP.NET 機能をインストールおよびアンインストールするための管理ユーティリティです。
+  Copyright (C) Microsoft Corporation. All rights reserved.
+
+  セッション状態の追加を開始します。
+  ....
+  完了しました。
+
+  => [C:\Users\<userName>] ASPState.mdf, ASPState_log.ldf
+
+＊【Prepare】registeration SessionDB into VS
+[VS] -> [Server Explorer] -> [Data Connection] -> [Append Conection]
+-> [Select Data Source] Dialog -> 
+     Data Source: Microsoft SQL Server
+     Server Name: (LocalDB)\MSSQLLocalDB
+     Database Name: ASPState
+-> [OK]
+
+=> Database: ASPState 
+     └ Table: ASPStateTempApplications
+     └ Table: ASPStateTempSessions 
+=> @see SampleSql / ASPState.sql
+
+＊whole Application Settings
+[Example] Web.config
+ <system.web>
+   ...
+   <sessionState mode="SQLServer"
+    sqlConnectionString="Data Source=(LocalDB)\MSSQLLocalDB";
+                         Integrated Security=True" />
+   ...
+ </system.web>
+
+ ■ Session Disabled
+ ＊whole Application settings
+ <sessionState mode="Off" /> 
+ 
+ ＊each page settings
+ <%@ Page ... EnableSessionState="False" %>    //disable
+ <%@ Page ... EnableSessionState="ReadOnly" %> //readonly
+
+
