@@ -1,0 +1,78 @@
+﻿/**
+ *@title SelfAspNet / SampleAsp / NT07_StateVariable
+ *       / Cache / Cache_WebConfig.txt
+ *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content 第７章 7.5 Cache / DataCache / p363
+ *@subject アプリケーション全体で PageCache共通のルールを定義
+           ◆Web.config <outputCacheSettiongs>要素
+             アプリケーション全体で PageCache共通のルールを定義
+
+           ◆<% @OutputCache ... %> 各Page個別の設定
+
+ */
+
+◆「Web.config」<outputCacheSettiongs>要素
+<system.web>
+  └ <caching>
+      └ <outputCacheSettings>
+          └ <outputChacheProfiles>
+              └<add>
+                 └ string name=""
+                   bool   enable=""
+                   int    duration="" (sec)
+                   string varyByParam=""
+                   string varyByHeader=""
+                   string varyByCustom=""  
+   
+    <caching> Cache Policy: 有効期限, メモリ割合など Cache機能の仕様を定義
+       └ <cache>
+           └ bool disableMemoryCollection="" 
+               メモリ逼迫時のメモリ収集機能(Cache削除)を無効にするか
+               default false(有効)
+            bool disableExpiration=""
+               Cache有効期限を無効にするか
+               default false(有効)
+            int  privateBytesLimit=""
+               有効期限切れCache削除するかを決める アプリ・プライベートメモリの上限
+               default 0 (自動判定)
+            int  percentagePhysicalMemoryUsedLimit=""
+               同上、物理メモリの上限
+               default 90
+            DateTime? privateBytesPollTime=""
+               メモリ使用状況を検証する時間間隔
+               default 00:02:00 (2分)
+
+◆例「Web.config」
+<system.web>
+  ...
+  <caching>
+    <outputCacheSettings>
+      <outputChacheProfiles>
+        <add name="MyCache"
+             enabled="true" 
+             duration="120" 
+             varyByParam="*" />
+      </outputChacheProfiles>
+    </outputCacheSettings>
+  </caching>
+  ...
+</system.web>
+
+
+◆「Web,config」Cache対象となる DBをアプリケーションに登録
+ *          <system.web>
+ *            ...
+ *            <caching>
+ *                <sqlCacheDependency enabled="true" pollTime="5000" >
+ *                    <databases>
+ *                        <add name="MyCache" connectionStringName="SelfAspDB" />
+ *                    </databases>
+ *                </sqlCacheDependency>
+ *            </caching>
+ *          </system.web>
+ *          
+ *         「.aspx」
+ *         <%@ OutputCache Duration="120" VaryParam="None"
+ *             SqlDependency="MyCache:Book" %>
+
+ (実際に記述済)

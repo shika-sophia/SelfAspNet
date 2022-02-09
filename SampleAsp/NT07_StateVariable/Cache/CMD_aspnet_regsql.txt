@@ -1,0 +1,59 @@
+/**
+*@title SelfAspNet / SampleAsp / NT07_StateVariable
+ *       / Cache / CMD_aspnet_regsql.txt
+ *
+ *@prepare 【準備】DB上で Cache機能を有効にする
+ *          .NET Framework / aspnet_regsqlコマンド
+ *          C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_regsql.exe
+ *          
+ *         >cd C:\Windows\Microsoft.NET\Framework\<version number>
+ *         >aspnet_regsql
+ *            -S <serverName> 接続するサーバー名
+ *            -E              Windows認証を有効化
+ *            -d <.mdfの絶対path> 
+ *            -ed             DBの Cache機能を有効化
+ *            -et             Tableの Cache機能を有効化
+ *            -t <Table名>    有効にするTable名
+ */
+◆【註】「.mdf」DB定義ファイルにログインした状態でこのコマンドを実行する。
+   そうしないと下記のようにエラーとなる。
+
+>cd C:\Windows\Microsoft.NET\Framework\v4.0.30319
+>aspnet_regsql -S "(LocalDB)\MSSQLLocalDB" -E -d "C:\Users\sophia\source\repos\SelfAspNet\SelfAspNet\App_Data\SelfAspDB.mdf" -ed -et -t Album
+
+Microsoft(R) ASP.NET SQL 登録ツール バージョン 4.8.4084.0
+SQL Server に ASP.NET 機能をインストールおよびアンインストールするための管理ユーティリティです。
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+SQL キャッシュ依存のため、データベースを有効にします。
+............エラーが発生しました。
+例外の詳細:
+Cannot open database "C:\Users\sophia\source\repos\SelfAspNet\SelfAspNet\App_Data\SelfAspDB.mdf" requested by the login. The login failed.
+Login failed for user 'LAPTOP-CDD9ES8C\sophia'.
+キャッシュの依存関係を登録するために SQL データベ ースに接続できません。
+
+
+C:\Windows\Microsoft.NET\Framework\v4.0.30319>aspnet_regsql -S "(LocalDB)\MSSQLLocalDB" -E -d "C:\Users\sophia\source\repos\SelfAspNet\SelfAspNet\App_Data\SelfAspDB.mdf" -ed -et -t Album
+
+Microsoft(R) ASP.NET SQL 登録ツール バージョン 4.8.4084.0
+SQL Server に ASP.NET 機能をインストールおよびアンインストールするための管理ユーティリティです。
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+SQL キャッシュ依存のため、データベースを有効にします。
+.
+完了しました。
+SQL キャッシュ依存のため、テーブルを有効にします。
+完了しました。
+
+C:\Windows\Microsoft.NET\Framework\v4.0.30319>aspnet_regsql -S "(LocalDB)\MSSQLLocalDB" -E -d "C:\Users\sophia\source\repos\SelfAspNet\SelfAspNet\App_Data\SelfAspDB.mdf" -ed -et -t Book
+
+Microsoft(R) ASP.NET SQL 登録ツール バージョン 4.8.4084.0
+SQL Server に ASP.NET 機能をインストールおよびアンインストールするための管理ユーティリティです。
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+SQL キャッシュ依存のため、データベースを有効にします。
+.
+完了しました。
+SQL キャッシュ依存のため、テーブルを有効にします。
+完了しました。
+
