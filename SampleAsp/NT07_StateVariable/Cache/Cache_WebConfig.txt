@@ -59,7 +59,7 @@
 </system.web>
 
 
-◆「Web,config」Cache対象となる DBをアプリケーションに登録
+◆「Web,config」Cache対象となる DBをアプリケーションに登録  (実際に記述済)
  *          <system.web>
  *            ...
  *            <caching>
@@ -75,4 +75,3 @@
  *         <%@ OutputCache Duration="120" VaryParam="None"
  *             SqlDependency="MyCache:Book" %>
 
- (実際に記述済)
