@@ -10,11 +10,14 @@
  *         ・FlagumentCache 〔10.1.3〕
  *         ・DataCache
  *         
+ *@subject ◆「Web.config」アプリケーション全体で PageCache共通のルールを定義
+ *           =>@see [Cache_WebConfig.txt]
+ *             
  *@subject ◆OutputCache (= PageCache)
  *         Caching Page.Cache
  *         他メンバー〔DataCacheSample.cs 参照〕
  *         
- *@subject 「.aspx」
+ *@subject 「.aspx」各Page個別の設定
  *         <%@ Page ... %>
  *         <%@ OutputCache ... 
  *             Duration="" Cacheの有効期間 (秒)
