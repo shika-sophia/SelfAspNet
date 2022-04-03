@@ -2,7 +2,11 @@
  *@title AspNetIdentity_EmailSetting.txt
  *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content 第８章 ASP.NET Identity / 8.5 電子メール機能 / p392
- *@subject
+ *@subject メール送信機能
+ *         ２段階認証や、パスワード変更機能
+ *
+ *@NOTE 【考察】
+ *       実装には SMTP 仮想メールサーバーか、送信可能なメールアドレスが必要
  *
  *@author shika
  *@date 2022-04-03
