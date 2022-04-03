@@ -1,0 +1,42 @@
+/*
+ *@title AspNetIdentity_EmailSetting.txt
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content 第８章 ASP.NET Identity / 8.5 電子メール機能 / p392
+ *@subject
+ *
+ *@author shika
+ *@date 2022-04-03
+ */
+ 
+ ◆Web.config
+   ...
+ </system.web>
+ 
+ <system.net>
+   <mailSettings>
+     <smtp from="XXXX@example.com">
+       <network host="smtp.example.com" port="nnn"
+         password="passXXXX" userName="userXXXX" />
+     </smtp>
+   </mailSettings>
+ <system.net>
+ 
+ <system.webServer>
+  ...
+ 
+ ◆App_Start/IdentityConfig.cs
+ using System.Net.Mail
+ 
+ public class EmailService : IIdentityMessageService
+ {
+   public Task SendAsync(IdentityMessage message)
+   {
+     var mail = new MailMessage("XXXX@example.com",
+         message.Destination, message.Subject, message.Boddy);
+     mail.IsBodyHtml = true;
+     
+     var client = new SmtpClient();
+     
+     return client.SendMailAsync(mail);
+   }//SendAsync()
+ }//class
