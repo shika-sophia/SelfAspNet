@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DB_Connection\Rdb.txt" title="DB連携"  description="DB連携">
+    <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DB_Connection\DB.txt" title="DB"  description="DB">
+      <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DB_Connection\DataType.txt" title="データ型"  description="データ型" />
+	  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DB_Connection\Limit.txt" title="制約"  description="制約" />
+		<siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\SQL\Sql.txt" title="SQL"  description="SQL">
+		  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\SQL\Dml.txt" title="DML"  description="データ操作言語" />
+		  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\SQL\Ddl.txt" title="DDL"  description="データ定義言語" />
+		  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\SQL\Dcl.txt" title="DCL"  description="データ制御言語" />
+		</siteMapNode>
+    </siteMapNode>
+  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DataSource\DataSource.txt" title="データソース"  description="データソース">
+	  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DataSource\Content.txt" title="SqlDataSource" />
+	  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DataSource\SiteMapDataSource.txt" title="SiteMapDataSource" />
+	  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DataSource\ObjectDataSource.txt" title="ObjectDataSource" />
+  </siteMapNode>
+  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DataAccessControl\DataAccessControl.txt" title="データバインド"  description="データバインド">
+	  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DataAccessControl\GridView.txt" title="GridView" />
+	  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DataAccessControl\DetailsView.txt" title="DatailsView" />
+	  <siteMapNode url="~\SampleAsp\NT09_RichControl\NavigationControl\DemoSite\DataAccessControl\FormView.txt" title="FormView" />
+  </siteMapNode>
+</siteMapNode>
+</siteMap>
