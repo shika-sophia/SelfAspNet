@@ -1,0 +1,299 @@
+
+■スケ郎のお話
+◆MailKitの使い方! エンコーディング指定や添付ファイをメールで送信する方法[C#/VB Tips]
+https://www.sukerou.com/2018/10/vb-c-mailkit.html
+2021年2月10日水曜日
+ 
+目次[非表示]
+
+1.
+MailKitって何？
+2.
+UTF8でメールを送信
+3.
+文字エンコーディングを指定してメールを送信
+4.
+メールエイリアスを付けて送信する
+5.
+Yahooメールで送信する
+6.
+GMailで送信する
+7.
+添付ファイルを送信する
+7.1.
+ファイルの拡張子に合わせたMimeTypeを設定する
+8.
+参考情報
+8.1.
+なぜ標準の SmtpClient ではなく、MailKitなの？
+8.2.
+ポート25, 587, 465の違い
+8.3.
+MacのVisual StudioでMailKitを使用する
+9.
+さいごに
+9.1.
+なぜ標準の SmtpClient ではなく、MailKitなの？
+9.2.
+ポート25, 587, 465の違い
+
+MailKitって何？
+**
+2017年に.NET標準のSystem.Net.Mail.SmtpClientが廃止予定となり、Microsoftより、今後はオープンソースライブラリである、MailKitに置き換えるとアナウンスがありました。
+
+既に現在では、SmtpClientは非推奨にとなっており、今後は廃止されていきます。現在、SmtpClientを使用したソースコードには、Visual StudioからMailKitを使うよう警告が出るようになっています。
+
+さっそく、MailKitメールを送するルコードを作っていきます。
+
+UTF8でメールを送信
+文字エンコーディングを、UTF8でメールを送信するサンプルコードです。
+MailKitは、デフォルトの文字エンコーディングがUTF8なっている為MailKitは、デフォルトUTF8でメールを送信するため、シンプルなコードで、メールを送信する事ができます。
+
+var host = "<smtp server name>";
+var port = 25; // or 587
+
+using (var smtp = new MailKit.Net.Smtp.SmtpClient()) {
+
+    //SMTPサーバに接続する
+    smtp.Connect(host, port, MailKit.Security.SecureSocketOptions.t);
+    //認証が必要な場合は、以下のコメントを解除
+    //smtp.Authenticate("<id>", "<password>");
+
+    //送信するメールを作成する
+    var mail = new MimeKit.MimeMessage();
+    var builder = new MimeKit.BodyBuilder();
+    mail.From.Add(new MimeKit.MailboxAddress("", "<from mail address>"));
+    mail.To.Add(new MimeKit.MailboxAddress("", "<to mail address>"));
+    mail.Subject = "メールの件名";
+    builder.TextBody = "メールの本文です。\n\n以上";
+    mail.Body = builder.ToMessageBody();
+
+    //メールを送信する
+    smtp.Send(mail);
+
+    //SMTPサーバから切断する
+    smtp.Disconnect(true);
+}
+文字エンコーディングを指定してメールを送信
+次は、文字エンコーディングを指定して、メールを送るサンプルコードです。
+iso-2022-jpでメールを送信します。
+
+var host = "<smtp server name>";
+var port = 25; // or 587
+var enc = System.Text.Encoding.GetEncoding("iso-2022-jp");
+
+using (var smtp = new MailKit.Net.Smtp.SmtpClient()) {
+    smtp.Connect(host, port, MailKit.Security.SecureSocketOptions.Auto);
+    smtp.Authenticate("<id>", "<password>");
+
+    var mail = new MimeKit.MimeMessage();
+    mail.From.Add(new MimeKit.MailboxAddress("", "<from mail address>"));
+    mail.To.Add(new MimeKit.MailboxAddress("", "<to mail address>"));
+
+    //(1)エンコーディング指定で、件名を設定 (Headers.Replaceで既存のヘッダを置換するのがミソ)
+    mail.Headers.Replace(MimeKit.HeaderId.Subject, enc, "メールの件名");
+
+    //(2)本文もエンコーディング指定で設定
+    MimeKit.TextPart textPart = new MimeKit.TextPart("plain");
+    textPart.SetText(enc, "メールの本文です。\n\n以上");
+    // "iso-2022-jp"で送るので、"Content-Transfer-Encoding"に"7bit"を指定
+    textPart.ContentTransferEncoding = MimeKit.ContentEncoding.SevenBit;
+    mail.Body = textPart;
+
+    smtp.Send(mail);
+    smtp.Disconnect(true);
+}
+(1) の所で件名を、エンコーディング指定で設定しています。
+注意すべきは、Headers.Addではなく、Headers.Replaceでヘッダを置換している所です。
+MimeMessageクラスはインスタンスを作成する化時点で、件名(Subjectヘッダ)が作成される為、置換して内容を書き換えます。
+※ Headers.Addを使ってしまうと、２重に Subjectヘッダが作成されてしまいます。
+
+(2) では、本文を作成しています。
+TextPartクラスに本文の内容を、エンコーディング指定で設定します。
+また、"iso-2022-jp"の JISコードで送る為、ContentTransferEncodingに7bitを設定しています。
+
+ネットを検索しても、MailKitで件名のエンコーディングを指定する方法が見つからず、正直苦労しました。
+結局 MimeKitのソースを解析して、上のコードで送信出来ることが分かりました。
+
+スポンサーリンク
+
+ 
+メールエイリアスを付けて送信する
+メールエイリアスを付けて送信するサンプルコードです。
+送信元、送信先のメールアドレスを設定する処理で、エイリアス(別名)とメールアドレスを設定します。
+
+UTF8でエイリアスを設定する場合
+
+mail.From.Add(new MimeKit.MailboxAddress("ネットショッピング通信", "xxxxxx@example.com"));
+mail.To.Add(new MimeKit.MailboxAddress("山田 太郎", "xxxxxx@example.com"));
+iso-2022-jpでエイリアスを設定する場合
+
+var enc = System.Text.Encoding.GetEncoding("iso-2022-jp");
+mail.From.Add(new MimeKit.MailboxAddress(enc, "ネットショッピング通信", "xxxxxx@example.com"));
+mail.To.Add(new MimeKit.MailboxAddress(enc, "山田 太郎", "xxxxxx@example.com"));
+Yahooメールで送信する
+YahooのSMTPサーバを使ってメールを送信するサンプルコードです。
+SMTPS(over SSL)でメールを暗号化します。
+※ Yahoo Japanは STARTTLSには対応していない模様
+
+var host = "smtp.mail.yahoo.co.jp";
+var port = 465;
+
+using (var smtp = new MailKit.Net.Smtp.SmtpClient()) {
+    //(1)SMTPS(over SSL)で接続します。
+    smtp.Connect(host, port MailKit.Security.SecureSocketOptions.SslOnConnect);
+    //(2)Yahooメールのアカウント（メールアドレスの@より前の部分)を指定して認証する
+    smtp.Authenticate("<account>xxxxxxxx@yahoo.co.jp", "<password>");
+
+    var mail = new MimeKit.MimeMessage();
+    var builder = new MimeKit.BodyBuilder();
+
+    mail.From.Add(new MimeKit.MailboxAddress("", "xxxxxxxx@yahoo.co.jp"));
+    mail.To.Add(new MimeKit.MailboxAddress("", "<to mail address>"));
+    mail.Subject = "メールの件名";
+    builder.TextBody = "メールの本文です。\n\n以上";
+    mail.Body = builder.ToMessageBody();
+
+    smtp.Send(mail);
+    smtp.Disconnect(true);
+}
+GMailで送信する
+GMailのSMTPサーバを使ってメールを送信するサンプルコードです。
+STARTTLSで送信します。
+
+var host = "smtp.gmail.com";
+var port = 5;
+
+using (var smtp = new MailKit.Net.Smtp.SmtpClient()) {
+    //(1)STARTTLSで接続する
+    smtp.Connect(host, port, MailKit.Security.SecureSocketOptions.StartTls);
+    //(2)GMailメールのアカウントを指定して認証する
+    smtp.Authenticate("xxxxxxxx@gmail.com", "<password>");
+
+    var mail = new MimeKit.MimeMessage();
+    var builder = new MimeKit.BodyBuilder();
+
+    mail.From.Add(new MimeKit.MailboxAddress("", "xxxxxxxx@gmail.com"));
+    mail.To.Add(new MimeKit.MailboxAddress("", "<to mail address>"));
+    mail.Subject = "メールの件名";
+    builder.TextBody = "メールの本文です。\n\n以上";
+    mail.Body = builder.ToMessageBody();
+
+    smtp.Send(mail);
+    smtp.Disconnect(true);
+}
+このサンプルでメールを送るには、Googleアカウントのセキュリティ設定を変更する必要があります。
+※セキュリティが低くなるので、自己責任でお願いします。
+
+設定	内容
+２段階認証	オフ
+安全性の低いアプリのアクセス	オン
+[関連リンク]
+ログインとセキュリティ
+安全性の低いアプリのアクセス
+
+スポンサーリンク
+
+ 
+添付ファイルを送信する
+Mailkitで添付ファイルを送信するサンプルコードです。
+ファイルの添付には、MimeKit.MimePartクラスを使用します。
+
+var filePath = "image.png";  //テンプファイルのパス
+
+//(1)添付ファイルを設定
+var attachment = new MimeKit.MimePart("image/png");
+attachment.Content = new MimeKit.MimeContent(System.IO.File.OpenRead(filePath));
+attachment.ContentDisposition = new MimeKit.ContentDisposition ();
+attachment.ContentTransferEncoding = MimeKit.ContentEncoding.Base64;
+attachment.FileName = System.IO.Path.GetFileName (filePath);
+
+//メールの本文を設定
+MimeKit.TextPart textPart = new MimeKit.TextPart ("plain");
+textPart.Text = "メールの本文です。\n\n以上";
+
+//(2)Multipartオブジェクトの作成
+var multipart = new MimeKit.Multipart ("mixed");
+multipart.Add (textPart);
+multipart.Add (attachment);
+
+//(3)Bodyに、添付ファイルとメール本文を格納したMultipartオブジェクトを設定
+mail.Body = multipart;
+smtp.Send (mail);  //メールを送信
+(1) 添付ファイルの設定には、MimeKit.MimePartクラスを使用します。
+コンストラクタには、送信するファイルのMimeTypeを指定し、それ以降のプロパティで送信するフィアルの情報を設定していきます。
+
+(2) メールの本文と添付ファイルを合わせて送る為に、MimeKit.MultipartクラスにTextPartとMimePartを設定します。
+
+(3)メール本文と添付ファイルを設定したMimeKit.Multipartを、MimeKit.MimeMessageのBodyに指定して、メールを送信します。
+
+ファイルの拡張子に合わせたMimeTypeを設定する
+上で紹介したサンプルコードは、送信する添付ファイルのMimeTypeがimage/png固定で書かれおり、汎用性がありません。複数の拡張子を添付ファイルで送信する場合、MimeTypeをファイルの拡張子から動的に設定する必要があります。
+
+MailKitには、ファイルの拡張子からMimeTypeを取得するMimeKit.MimeTypes.GetMimeTypeメソッドが用意されており、以下のコードを書くことで複数の拡張子に対応可能です。
+
+var filePath = "image.jpg";  
+  
+//ファイルの拡張子からMIMEタイプを取得する
+var mimeType = MimeKit.MimeTypes.GetMimeType(filePath);  //=> image/jpeg
+var attachment = new  MimeKit.MimePart(mimeType);
+MimeKit.MimeTypes.GetMimeTypeメソッドが対応している拡張子は、MailKitのソースコードに書かれてましたので、以下のリンクに対応している拡張子をまとめました。
+MailKitのGetMimeTypeでMIMEタイプに変換できる拡張子一覧
+
+参考情報
+なぜ標準の SmtpClient ではなく、MailKitなの？
+MailKit が、標準の SmtpClient 置き換わった経緯などは、2017/04/14に投稿された以下のリンクに詳しく書かれています。
+
+
+また、.NET Framework 4.8のSmtpClientクラスのAPIドキュメントには、次のイメージのように、明確に廃止されたと記載があり、代わりにMailKitを使う事が推奨されています。
+
+.NET Framework 4.8のSmtpClientクラスのAPIドキュメント
+
+もし、過去にSmtpClientでメール送信する処理を組んでいて、新しい .NET Frameworkに移行する予定がある場合は、MailKitへの移行作業が発生することを、頭に入れておいてください。
+
+ポート25, 587, 465の違い
+メールを送信する時のSMTPのポート番号には、25, 587, 465のいずれかを使用します。ポート番号毎の用途について、以下にまとめました。
+
+25番
+
+特定のネットワークアドレス(社内など)からから認証なしで送信する用途に使われる。
+メールの暗号化を行わない為、通常の用途では使用しない。
+
+587番
+
+一般的に、認証に成功した場合のみ送信を許可。
+暗号化にはSTARTTLSを使用。
+
+465番
+
+認証に成功した場合のみ送信を許可。
+暗号化にはSMTPS(over SSL)を使用。
+
+MacのVisual StudioでMailKitを使用する
+以下のリンクを参考ください。
+MacのVisual StudioでMailKitを使用する方法のリンクを参考ください。
+
+さいごに
+MailKitを使ってメールを送る方法を紹介してきました。以前のSystem.Net.Mail.SmtpClientを使った人であれば、それほと使い方に大きな違いはないため、スッと理解できると思います。
+参考情報
+
+なぜ標準の SmtpClient ではなく、MailKitなの？
+MailKit が、標準の SmtpClient 置き換わった経緯などは、2017/04/14に投稿された以下のリンクに詳しく書かれています。
+
+
+ポート25, 587, 465の違い
+25番
+
+特定のネットワークアドレス(社内など)からから認証なしで送信する用途に使われる。
+メールの暗号化を行わない為、通常の用途では使用しない。
+
+587番
+
+一般的に、認証に成功した場合のみ送信を許可。
+暗号化にはSTARTTLSを使用。
+
+465番
+
+認証に成功した場合のみ送信を許可。
+暗号化にはSMTPS(over SSL)を使用。
+
