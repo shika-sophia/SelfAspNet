@@ -149,7 +149,7 @@ var port = 465;
 
 using (var smtp = new MailKit.Net.Smtp.SmtpClient()) {
     //(1)SMTPS(over SSL)で接続します。
-    smtp.Connect(host, port MailKit.Security.SecureSocketOptions.SslOnConnect);
+    smtp.Connect(host, port, MailKit.Security.SecureSocketOptions.SslOnConnect);
     //(2)Yahooメールのアカウント（メールアドレスの@より前の部分)を指定して認証する
     smtp.Authenticate("<account>xxxxxxxx@yahoo.co.jp", "<password>");
 
@@ -255,7 +255,7 @@ MailKitのGetMimeTypeでMIMEタイプに変換できる拡張子一覧 〔下記
 MailKit が、標準の SmtpClient 置き換わった経緯などは、
 2017/04/14に投稿された以下のリンクに詳しく書かれています。
 
-@ MailKit Officially Replaces .NET’s SmtpClient
+@ MailKit Officially Replaces .NET’s SmtpClient 〔下記〕
 https://www.infoq.com/news/2017/04/MailKit-MimeKit-Official
 
 また、.NET Framework 4.8のSmtpClientクラスのAPIドキュメントには、
@@ -296,6 +296,7 @@ https://www.sukerou.com/2019/07/macvisual-studiomailkit.html
 MailKitを使ってメールを送る方法を紹介してきました。
 以前のSystem.Net.Mail.SmtpClientを使った人であれば、
 それほと使い方に大きな違いはないため、スッと理解できると思います。
+
 
 ■スケ郎のお話
 ◆MailKitのGetMimeTypeでMIMEタイプに変換できる拡張子一覧
@@ -860,6 +861,6 @@ z	application/x-compressed
 zip	application/zip
 zsh	text/x-script.zsh
 
-MailKitの使い方は、こちらを参照
+MailKitの使い方は、こちらを参照 〔上記〕
 
 
