@@ -17,7 +17,7 @@ Visual StudioのNuGetパッケージ管理画面で「MailKit」を検索して�
 
 mailtest.cs
 var host = "smtp server name";
-var port = 25 or 465 or 587;
+var port = 587 //25 or 465 or 587;
 
 using (var smtp = new MailKit.Net.Smtp.SmtpClient())
 {

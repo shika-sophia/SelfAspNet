@@ -230,24 +230,35 @@ multipart.Add (attachment);
 //(3)Bodyに、添付ファイルとメール本文を格納したMultipartオブジェクトを設定
 mail.Body = multipart;
 smtp.Send (mail);  //メールを送信
+
 (1) 添付ファイルの設定には、MimeKit.MimePartクラスを使用します。
-コンストラクタには、送信するファイルのMimeTypeを指定し、それ以降のプロパティで送信するフィアルの情報を設定していきます。
+    コンストラクタには、送信するファイルのMimeTypeを指定し、
+    それ以降のプロパティで送信するフィアルの情報を設定していきます。
 
-(2) メールの本文と添付ファイルを合わせて送る為に、MimeKit.MultipartクラスにTextPartとMimePartを設定します。
+(2) メールの本文と添付ファイルを合わせて送る為に、
+    MimeKit.Multipartクラスに TextPartと MimePartを設定します。
 
-(3)メール本文と添付ファイルを設定したMimeKit.Multipartを、MimeKit.MimeMessageのBodyに指定して、メールを送信します。
+(3)メール本文と添付ファイルを設定したMimeKit.Multipartを、
+   MimeKit.MimeMessageのBodyに指定して、メールを送信します。
 
 ファイルの拡張子に合わせたMimeTypeを設定する
-上で紹介したサンプルコードは、送信する添付ファイルのMimeTypeがimage/png固定で書かれおり、汎用性がありません。複数の拡張子を添付ファイルで送信する場合、MimeTypeをファイルの拡張子から動的に設定する必要があります。
+上で紹介したサンプルコードは、送信する添付ファイルのMimeTypeがimage/png固定で書かれおり、
+汎用性がありません。
+複数の拡張子を添付ファイルで送信する場合、
+MimeTypeをファイルの拡張子から動的に設定する必要があります。
 
-MailKitには、ファイルの拡張子からMimeTypeを取得するMimeKit.MimeTypes.GetMimeTypeメソッドが用意されており、以下のコードを書くことで複数の拡張子に対応可能です。
+MailKitには、ファイルの拡張子からMimeTypeを取得する
+MimeKit.MimeTypes.GetMimeTypeメソッドが用意されており、
+以下のコードを書くことで複数の拡張子に対応可能です。
 
 var filePath = "image.jpg";  
   
 //ファイルの拡張子からMIMEタイプを取得する
 var mimeType = MimeKit.MimeTypes.GetMimeType(filePath);  //=> image/jpeg
 var attachment = new  MimeKit.MimePart(mimeType);
-MimeKit.MimeTypes.GetMimeTypeメソッドが対応している拡張子は、MailKitのソースコードに書かれてましたので、以下のリンクに対応している拡張子をまとめました。
+
+MimeKit.MimeTypes.GetMimeTypeメソッドが対応している拡張子は、
+MailKitのソースコードに書かれてましたので、以下のリンクに対応している拡張子をまとめました。
 MailKitのGetMimeTypeでMIMEタイプに変換できる拡張子一覧 〔下記〕
 
 ＊参考情報
@@ -263,7 +274,7 @@ https://www.infoq.com/news/2017/04/MailKit-MimeKit-Official
 代わりにMailKitを使う事が推奨されています。
 
 .NET Framework 4.8のSmtpClientクラスのAPIドキュメント
-[MsDoc_SmtpClient.png]
+=> [MsDoc_SmtpClient.png]
 
 もし、過去にSmtpClientでメール送信する処理を組んでいて、
 新しい .NET Frameworkに移行する予定がある場合は、
