@@ -3,7 +3,7 @@
  *@require VS [Menu] -> [Project] -> [NuGet] -> "MailKit" install
  *
  *@class   ==== MainMailKitSample.cs ====
- *@subject MailKitクラス 〔NT 122 app1-〕
+ *@subject MailKitクラス 〔NT 122 App1-5〕
  *         MailKit.Net.Smtp.SmtpClient smtp =
  *              new MailKit.Net.Smtp.SmtpClient()
  *         void smtp.Connect(string host, [int port], 
@@ -70,16 +70,24 @@
  *@subject MimeKit.MimePartクラス : MimeEntity
  *         MimeKit.MimePart attach = 
  *             new MimeKit.MimePart(string contentType) 
- *               "image/jpg" | "image/png" | "image/gif" など
- *               string MimeKit.MimeTypes.GetMimeType(filePath)
- *         MimeKit.MimeKitContent attach.Content =
+ *               "image/jpeg" | "image/png" | "image/gif"
+ *               "audio/mp4" | "video/mpeg" | "applicattion/pdf" など
+ *               string MimeKit.MimeTypes.GetMimeType(filePath) 
+ *                         pathのファイル拡張子から MIMEタイプ文字列を取得
+ *                         =>〔Reference_MailKit / MailKit_CsharpMailSend.txt〕
+ *
+ *         MimeKit.IMimeContent attach.Content =
  *         MimeKit.MimeKitContent 
- *             new MimeKit.MimeContent(
- *                 Stream, [Encoging encoding = MimeKit.ContentEncoding.Default])
+ *             new MimeKit.MimeContent(Stream, [Encoging])
+ *                   Stream 〔CS33 ReadStream, CS36 File〕
+ *                     FileStream File.OpenRead(string path)
+ *                  [Encoding]
+ *                     encoding = MimeKit.ContentEncoding.Default
  *         attach.ContentDisposition =
  *             new MimeKit.ContentDisposition();
  *         string attach.FileName = Path.GetFileName(string path)
- *         
+ *         MimeKit.ContentEncoding attach.ContentTransferEncoding 〔上記〕
+ *
  *@subject MimeKit.Multipart : MimeEntity
  *         MimeKit.Multipart multi = 
  *             new MimeKit.Multipart(string subtype); //"mixed"など

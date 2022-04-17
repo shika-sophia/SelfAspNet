@@ -7,7 +7,7 @@
  *            https://qiita.com/tkc13687936/items/fbbc1339d0af1c26b004
  *            =>〔Reference / MailKit_Example.txt〕
  *            
- *@content MailKitによるメール送信の汎用コピーコード
+ *@content 〔NT122 App5〕MailKitによるメール送信の汎用コピーコード
  *@subject
  *
  *@see MailKitSample_API.txt
@@ -53,7 +53,7 @@ namespace SelfAspNet.MailKitSample
                     //添付ファイルがあった時の処理
                     if (!string.IsNullOrEmpty(filename))
                     {
-                        //Page.Server.MapPath(string) は 「aspx.cs」で有効
+                        //〔NT 86〕Page.Server.MapPath(string) は 「aspx.cs」で有効
                         //ASP.NET限定「~」アプリルートを表す
                         //var filePath = Server.MapPath("~/App_Data/doc/" + filename);
                         var filePath = "/App_Data/doc/" + filename;
@@ -75,13 +75,12 @@ namespace SelfAspNet.MailKitSample
                     }
                     else
                     {
-                        var multipart = new MimeKit.Multipart("mixed");
-                        multipart.Add(textPart);
-                        mail.Body = multipart;
+                        //mail.Body = builder.ToMessageBody();
+                        mail.Body = textPart;
                         //メールを送信する
                         smtp.Send(mail);
                     }
-                }
+                }//try
                 catch (Exception exception)
                 {
                     Console.WriteLine(exception.Message);
