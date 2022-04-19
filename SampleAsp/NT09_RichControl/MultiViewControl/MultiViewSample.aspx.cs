@@ -2,13 +2,13 @@
  *@title SelfAspNet / SampleAsp / MultiViewSample.aspx.cs
  *@target MultiViewSample.aspx
  *@source SelfAspDB / Album_tb
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第９章 9.3 MultiView / p461 / List 9-9
- *@subject 一覧 / 詳細画面の切替 (未完成)
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第９章 9.3 MultiView / p461 / List 9-9
+ *@subject MultiView 一覧 / 詳細画面の切替 (未完成)
  *         別ページに遷移することなく、１つのページ内で定義できる。
  *         
  *NOTE 【考察】
- *      章末問題4-6 が必要
+ *      章末問題4-6 が必要 => 〔後日〕
  *      
  *      アプリケーションでサーバー エラーが発生しました。
  *      例外の詳細: System.InvalidOperationException:
