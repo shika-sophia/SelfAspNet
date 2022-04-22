@@ -3,8 +3,8 @@
  *@based  FormViewSample.aspx
  *@target FormViewMod.aspx
  *@source SelfAspDB_FormView / Book_tb
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第４章 DataBind / FormView 練習問題 4-4 / p184
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第４章 DataBind / FormView 練習問題 4-4 / p184
  *
  *@subject 問 FormViewの新規登録Formをカスタマイズ
  *         ＊検証機能の追加
