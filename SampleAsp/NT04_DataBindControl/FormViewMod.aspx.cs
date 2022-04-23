@@ -1,4 +1,4 @@
-﻿/**
+﻿/** <!--
  *@title SelfAspNet / SampleAsp / NT04_DataBindControl / FormViewMod.aspx.cs
  *@based  FormViewSample.aspx
  *@target FormViewMod.aspx
@@ -7,7 +7,7 @@
  *@content NT 第４章 DataBind / FormView 練習問題 4-4 / p184
  *
  *@subject 問 FormViewの新規登録Formをカスタマイズ
- *         ＊検証機能の追加
+ *         ＊検証機能の追加 〔NT26〕
  *           ・ISBN: RegularExpressionValidator
  *           ・price: RangeValidator 0 - 10000
  *           ・publisherData: CompareValidator Type="Date"
@@ -15,10 +15,33 @@
  *           ・output only「*」at each Validater
  *         ＊出版社の入力欄は選択ボックスに変更
  *           選択肢はデータベースからバインド
+ *@subject FormView
+ *         InsertItemTemplate
+ *           TextBox, CheckBox
  *
+ *NOTE 【考察】
+ *      Server Error: 'cmpDate' の ValueToCompare プロパティの値 '' を
+ *      型 'Date' に変換することはできません。
+ *      
+ *      <asp:CompareValidator ID="cmpDate" runat="server"
+ *           ErrorMessage="日付は [xxxx-xx-xx]の形式で入力してください。"
+ *           Text="*"
+ *           ControlToValidate="publishDateTextBox"
+ *           Type="Date"></asp:CompareValidator>
+ *           
+ *       新規登録時の初期値 ValueToCompare=""が ''(Empty: 空文字)のため、
+ *       「Dateに変換できない」というエラーになると思われる。
+ *       Type="String"にすると、他表示はちゃんとできているが、
+ *       Date検証は行われないので、
+ *       イベントハンドラー側で 検証の有効/無効をする必要がある。(未完成)
+ *       
+ *       【解答】サンプルコード確認
+ *       
  *@see FormViewSample.aspx.cs
+ *@see ResultFile / FormViewMod.jpg
  *@author shika
  *@date 2022-04-22
+ * -->
  */
 using System;
 using System.Collections.Generic;
@@ -40,9 +63,12 @@ namespace SelfAspNet.SampleAsp.NT04_DataBindControl
         protected void formViewMod_ItemUpdated(
             object sender, FormViewUpdatedEventArgs e)
         {
-            Response.Redirect("ListViewGroup.aspx");
-            //formViewSample.DefaultMode = FormViewMode.Insert;
-        }
+            if (Page.IsValid)
+            {
+                Response.Redirect("GridViewBook.aspx");
+                formViewMod.DefaultMode = FormViewMode.Insert;
+            }
+        }//formViewMod_ItemUpdated()
 
         //実行時にパラメータを引き渡す
         protected void formViewMod_ItemUpdating(
@@ -62,11 +88,9 @@ namespace SelfAspNet.SampleAsp.NT04_DataBindControl
             }
         }
 
-        protected void btnListView_Click(object sender, EventArgs e)
+        protected void btnGridViewBook_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("ListViewGroup.aspx");
-            //Response.RedirectPermanent("ListViewGroup.aspx");
-            Server.Transfer("ListViewGroup.aspx");
+            Server.Transfer("GridViewBook.aspx");
         }
     }//class
 }
