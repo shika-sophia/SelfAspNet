@@ -96,7 +96,8 @@
             ErrorMessage="日付は [xxxx-xx-xx]の形式で入力してください。"
             Text="*"
             ControlToValidate="publishDateTextBox"
-            Type="String"></asp:CompareValidator>
+            Operator="DataTypeCheck"
+            Type="Date"></asp:CompareValidator>
         <br />
         CD-ROM:
         <asp:CheckBox ID="cdromCheckBox" runat="server" 

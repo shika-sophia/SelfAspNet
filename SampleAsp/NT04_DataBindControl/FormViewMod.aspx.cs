@@ -4,7 +4,7 @@
  *@target FormViewMod.aspx
  *@source SelfAspDB_FormView / Book_tb
  *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content NT 第４章 DataBind / FormView 練習問題 4-4 / p184
+ *@content NT 第４章 DataBind / FormView 練習問題 4-4 / p184, p641
  *
  *@subject 問 FormViewの新規登録Formをカスタマイズ
  *         ＊検証機能の追加 〔NT26〕
@@ -16,7 +16,7 @@
  *         ＊出版社の入力欄は選択ボックスに変更
  *           選択肢はデータベースからバインド
  *@subject FormView
- *         InsertItemTemplate
+ *         <InsertItemTemplate>
  *           TextBox, CheckBox
  *
  *NOTE 【考察】
@@ -33,9 +33,13 @@
  *       「Dateに変換できない」というエラーになると思われる。
  *       Type="String"にすると、他表示はちゃんとできているが、
  *       Date検証は行われないので、
- *       イベントハンドラー側で 検証の有効/無効をする必要がある。(未完成)
+ *       イベントハンドラー側で 検証の有効/無効をする必要がある。(下記【解答】)
+ *       GridViewに戻るリンクが機能していることを確認。
  *       
  *       【解答】サンプルコード確認
+ *       <CompareValidator>に
+ *       Operator="DataTypeCheck"を追加すると解決
+ *       イベントハンドラーは空文でした。
  *       
  *@see FormViewSample.aspx.cs
  *@see ResultFile / FormViewMod.jpg
