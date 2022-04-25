@@ -7,12 +7,12 @@
  *@subject MultiView 一覧 / 詳細画面の切替
  *         別ページに遷移することなく、１つのページ内で定義できる。
  *         
- *@subject 〔NT GridView: p259〕DataKeyNames="" 
- *          DataKeyNames=""は SqlDataSourceの primary keyを表す。
- *          これを設定しないと、WHERE句検索などができずコンパイルエラー。
- *          SqlDataSourceで自動生成されるが、
- *          ObjectDataSource時は自分で記述する必要がある。
- *          MultiViewでも自己設定が必要なのかも。
+ *@subject ◆DataKeyNames=""〔NT66 ObjectDataSource: p259〕 
+ *           DataKeyNames=""は SqlDataSourceの primary keyを表す。
+ *           これを設定しないと、WHERE句検索などができずコンパイルエラー。
+ *           SqlDataSourceで自動生成されるが、
+ *           ObjectDataSource時は自分で記述する必要がある。
+ *           MultiViewでも自己設定が必要なのかも。
  *
  *@subject <View> <FormView>
  *         FormViewAlbum.aspxをコピー
@@ -46,7 +46,7 @@
  *             mv.ActiveViewIndex = 1;
  *         }
  *         
- *@subject <Button> CommandName="PrevView"
+ *@subject <Button> CommandName="PrevView" 〔NT149〕
  *         MultiView特有のコマンド、ひとつ前のViewを表示
  *         (ここでは GridViewに戻る)
  *
