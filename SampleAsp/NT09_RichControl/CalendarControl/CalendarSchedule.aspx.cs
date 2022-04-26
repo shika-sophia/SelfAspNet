@@ -2,8 +2,8 @@
  *@title SelfAspNet / SampleAsp / NT09_RichControl / CalendarControl / CalendarSchedule.aspx.cs
  *@target CalendarSchedule.aspx
  *@source SelfAspDB / Schedule_tb
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第９章 9.4 Calendarコントロール / p465 / List 9-11
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第９章 9.4 Calendarコントロール / p465 / List 9-11
  *         9.4.2 Calendarと DB連携
  *         カレンダーに任意の情報を埋め込む
  *
