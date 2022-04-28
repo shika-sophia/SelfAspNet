@@ -1,0 +1,6 @@
+﻿/*
+ *
+ */
+
+ CustomControl
+ => 別プロジェクト〔NT08_AspNetIdentity〕
