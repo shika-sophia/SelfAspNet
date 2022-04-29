@@ -11,25 +11,25 @@ namespace SelfAspNet.SampleAsp.NT10_FlagmentObject.UserControl
 {
 
 
-    public partial class UserSchedule
+    public partial class UserControlSample
     {
 
         /// <summary>
-        /// formUserSchedule コントロール。
+        /// calenSche コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formUserSchedule;
+        protected global::System.Web.UI.WebControls.Calendar calenSche;
 
         /// <summary>
-        /// UserControlSample コントロール。
+        /// sds コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::SelfAspNet.SampleAsp.NT10_FlagmentObject.UserControl.UserControlSample UserControlSample;
+        protected global::System.Web.UI.WebControls.SqlDataSource sds;
     }
 }
