@@ -4,7 +4,7 @@
  *@target UserControlSample.ascx
  *@target UserSchedule.aspx
  *@source SelfAspDB / Schedule_tb
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content NT 第10章 10.1 Userコントロール / p484 
  *         ユーザーコントロールを利用して ASPページを部品化
  *         実行前に Uid="yamada" / Uid="kanata"を切替て表示が変わるかを確認
