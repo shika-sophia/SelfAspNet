@@ -1,4 +1,17 @@
-﻿
+﻿/**
+ *@title SelfAspNet / SampleAsp / NT09_RichControl / 
+ *       NavigationControl / TreeViewSitemap.aspx.cs
+ *@target TreeViewSitemap.aspx
+ *@source Web.Sitemap
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content 第９章 Rich / 9.1 Navigation / p426
+ *
+ *@subject Web.sitemapファイルの作成
+ *@subject TreeView (未完成) => 〔下記 サーバーエラー参照〕
+ *
+ *@author shika
+ *@date 2022-04-30
+ */
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +27,7 @@ namespace SelfAspNet.SampleAsp.NT09_RichControl.NavigationControl
         {
 
         }
-    }
+    }//class
 }
 
 /*
@@ -29,12 +42,13 @@ namespace SelfAspNet.SampleAsp.NT09_RichControl.NavigationControl
 行 277:    </siteMap>
 ソース ファイル: C:\Windows\Microsoft.NET\Framework\v4.0.30319\Config\machine.config    行: 275
 
-【考察】Windowsデフォルトの SiteMapProviderが 指定されているらしいので
+【考察】.NET Frameworkデフォルトの SiteMapProviderが 指定されているらしいので
 Machine.configを変更するのは避けておく。
 
 現アプリの Web.configに DefaultSiteMapProviderを指定
-◆Web.config
+◆Web.config 〔NT p435 /List 9-2〕
 <system.web>
+  ...
   <siteMap enabled="true" defaultProvider="DefaultSiteMapProvider">
 	<providers>
 		<add name="DefaultSiteMapProvider" 
@@ -42,6 +56,7 @@ Machine.configを変更するのは避けておく。
 			siteMapFile="Web.sitemap" />
 	</providers>
   </siteMap>
+  ...
 </system.web>
 
 HTTP Error 403.14 - Forbidden
@@ -50,5 +65,22 @@ The Web server is configured to not list the contents of this directory.
 【考察】サイトマップに記述したURLにそのページが存在しない。というエラーかも。
 デモデータでそのページを作るしかない。
 (サンプルコードには階層構造に対応したファイルが存在する)
+  ↓
+確認したが、サンプルコードは一部のファイルしか存在していない。
+それに、ファイルが見つからない場合は「404 Not Found」になるはず。
+「403 Forbidden」はサーバーによるアクセス拒否
+アクセス権限がないファイルからスタートした場合などが原因で起こる。
+  ↓
+Web.configからスタートしたらしい。
+「.aspx」からスタートすると「403 Forbidden」は起こらない。(これは解決)
 
+上記(未解決) Web.configに defaultProvider="DefaultSiteMapProvider"を追加しても、
+同じエラーが起きる。
+エラーメッセージ: 
+The connection string name is missing for the MySqlSiteMapProvider.
+〔connectionStringNameに指定されている「MySqlSiteMapProvider」は存在しない〕
+と言っている。
+
+ここは保留して、SelfAspDB/Sitemap_tbにサイトマップ情報を登録して
+TreeView, MenuView, SiteMapPathを作成する方法を練習しよう。〔9.1.9〕
  */
