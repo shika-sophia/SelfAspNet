@@ -26,6 +26,7 @@
   <system.web>
 	<siteMap enabled="true" defaultProvider="SqlSiteMapProvider">
 	  <providers>
+          <clear />
 		  <add name="SqlSiteMapProvider"
 			   type="SelfAspNet.SampleAsp.NT09_RichControl.NaviSqlProvider.SplSiteMapProviderSample"
 			   connectName="SelfAspDB" />

@@ -5,6 +5,7 @@
  *@source SelfAspDB / Sitemap_tb
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content 第９章 9.1.9 DBからTreeView/MenuViewを生成 / p441 / List 9-5
+ *
  *@subject ◆Sitemap Provider 〔NT143〕
  *           //サイトマップ情報を読み込むためのライブラリ
  *         SiteMapProvider           抽象クラス
@@ -15,19 +16,38 @@
  *             
  *@subject SiteMapProviderSample : StaticSiteMapProvider 〔NT144〕
  *         public override void Initialize(string name, NameValueCollection attributes)
+ *           サイトマップ情報を読み込むリソースの初期化
  *           引数 name:      プロバイダ表示名
  *                attributs: カスタム属性のコレクション
- *         public 
+ *         public override SiteMapNode BuildSiteMap()
+ *           データソースから SiteMapNodeを組み立て
+ *         protected override SiteMapNode GetRootNodeCore()
+ *           ルートノードを取得
+ *         
+ *         private void CreateNode(SiteMapNode) 
+ *           自己定義のメソッド。再帰的に自己メソッドを呼出て、
+ *           階層全てのノードを rootに Add()していくメソッド
+ *           
+ *         void this.Add(SiteMapNode node, [SiteMapNode parentNode])
+ *         
+ *@subject SiteMapNodeクラス
+ *         new SiteMapNode(SiteMapProvider, 
+ *           string key, 
+ *           string url, 
+ *           string title, 
+ *           string description)
  *
  *@subject Web.config <system.web>内
  *         <siteMap enabled="true" defaultProvider="SqlSiteMapProvider">
+ *           <clear />
  *           <providers>
  *             <add name="SqlSiteMapProvider"
  *                  type="SelfAspNet.SampleAsp.NT09_RichControl.NaviSqlProvider.SplSiteMapProviderSample
  *                  connectName="SelfAspDB" />
  *           </providers>
  *         </siteMap>
- *         
+ *
+ *@see Web_config_NT09NaviSplProvider.txt
  *@author shika
  *@date 2022-05-01
  * -->
@@ -112,7 +132,7 @@ namespace SelfAspNet.SampleAsp.NT09_RichControl.NaviSqlProvider
                     }
                     else
                     {                      
-                        this.AddNode(node, root);
+                        this.AddNode(node, parentNode);
                         this.CreateNode(node);
                     }
                 }//while
