@@ -9,6 +9,7 @@
  *@subject Web.sitemapファイルの作成
  *@subject TreeView (未完成) => 〔下記 サーバーエラー参照〕
  *
+ *@see ErrorSolved_Machine_congig.txt
  *@author shika
  *@date 2022-04-30
  */
@@ -81,6 +82,9 @@ The connection string name is missing for the MySqlSiteMapProvider.
 〔connectionStringNameに指定されている「MySqlSiteMapProvider」は存在しない〕
 と言っている。
 
-ここは保留して、SelfAspDB/Sitemap_tbにサイトマップ情報を登録して
-TreeView, MenuView, SiteMapPathを作成する方法を練習しよう。〔9.1.9〕
+◆解決 => [ErrorSolved_Machine_congig.txt]
+<providers>
+  <clear /> ← これを追加する
+  <add ...>
+</prividers>
  */

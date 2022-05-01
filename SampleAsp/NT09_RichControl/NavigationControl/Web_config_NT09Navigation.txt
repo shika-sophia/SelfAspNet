@@ -26,6 +26,7 @@
   <system.web>
     <siteMap enabled="true" defaultProvider="DefaultSiteMapProvider">
       <providers>
+        <clear />
         <add name="DefaultSiteMapProvider"
              type="System.Web.XmlSiteMapProvider"
              siteMapFile="Web.sitemap" />
