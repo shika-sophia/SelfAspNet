@@ -1,17 +1,58 @@
-﻿/**
+﻿/** <!--
  *@title SelfAspNet / SampleAsp / NT09_RichControl / 
  *       NavigationControl / TreeViewSitemap.aspx.cs
  *@target TreeViewSitemap.aspx
  *@source Web.Sitemap
  *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content 第９章 Rich / 9.1 Navigation / p426
+ *         TreeViewの表示
+ *         
+ *@subject [Web.sitemap]ファイルの作成 (XML形式)
+ *         <sitemap>
+ *           xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" (固定値)
+ *             └ <siteMapNode> 親ノード
+ *               url="" / title="" / description=""
+ *                 └ <siteMapNode> 子ノード
+ *              
+ *@subject [Web.config] に Sitemapファイルを登録
+ *         <system.web>
+ *           <siteMap enabled="true" defaultProvider="DefaultSiteMapProvider">
+ *             <providers>
+ *               <clear />  //【重要】.NET Frameworkのデフォルト設定を無効化〔下記〕
+ *               <add name="DefaultSiteMapProvider"
+ *                    type="System.Web.XmlSiteMapProvider"
+ *                    siteMapFile="Web.sitemap" />
+ *                    
+ *               //複数設定時
+ *               <add name="NextSiteMapProvider"
+ *                    type="System.Web.XmlSiteMapProvider"
+ *                    siteMapFile="Web2.sitemap" />
+ *             </providers>
+ *           </siteMap>
  *
- *@subject Web.sitemapファイルの作成
- *@subject TreeView (未完成) => 〔下記 サーバーエラー参照〕
+ *@subject ◆DB連携 [Web.config] <system.web>内
+ *         <siteMap enabled="true" defaultProvider="SqlSiteMapProvider">
+ *           <clear />
+ *           <providers>
+ *             <add name="SqlSiteMapProvider"
+ *                  type="SelfAspNet.SampleAsp.NT09_RichControl.NaviSqlProvider.SplSiteMapProviderSample
+ *                  connectName="SelfAspDB" />
+ *           </providers>
+ *         </siteMap>
+ *         
+ *@subject ◆TreeView 
+ *         string DataSourceID="smds" //SiteMapDataSourceのID
+ *         int    NodeIndent=""       //インデントの幅 px
+ *         bool   ShowLines=""        //階層ラインを表示するか
+ *         
+ *         ◆SiteMapDataSource ID="smds"
  *
+ *see Web_config_NT09Navigation.txt
+ *see Web_sitemap.txt
  *@see ErrorSolved_Machine_congig.txt
  *@author shika
- *@date 2022-04-30
+ *@date 2022-04-30, 05-02
+ * -->
  */
 using System;
 using System.Collections.Generic;
@@ -75,7 +116,7 @@ The Web server is configured to not list the contents of this directory.
 Web.configからスタートしたらしい。
 「.aspx」からスタートすると「403 Forbidden」は起こらない。(これは解決)
 
-上記(未解決) Web.configに defaultProvider="DefaultSiteMapProvider"を追加しても、
+上記 Web.configに defaultProvider="DefaultSiteMapProvider"を追加しても、
 同じエラーが起きる。
 エラーメッセージ: 
 The connection string name is missing for the MySqlSiteMapProvider.
@@ -87,4 +128,9 @@ The connection string name is missing for the MySqlSiteMapProvider.
   <clear /> ← これを追加する
   <add ...>
 </prividers>
+
+[machine.config] .NET Framework全体(他アプリも含む)のデフォルト設定を定義。
+(C:\Windows\Microsoft.NET\Framework\v4.0.30319\Config\machine.config)
+上記 <clear />でデフォルト設定を解除してからアプリ固有の設定をする。
+
  */
