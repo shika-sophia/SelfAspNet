@@ -36,6 +36,16 @@
       <siteMapNode url="~/Chap08/Auth/FormView.aspx" title="FormView"
                    description="FormViewについて" />
     </siteMapNode>
+	<siteMapNode url="NavigationControl.aspx" title="ナビゲーション"
+				 description="ナビゲーションコントロールについて">
+		<siteMapNode url="~/SampleAsp/NT09_RichControl/NavigationControl/TreeViewSiteMap.aspx" title="TreeViewSiteMap"
+					 description="TreeViewについて" />
+		<siteMapNode url="~/SampleAsp/NT09_RichControl/NavigationControl/MenuViewSample.aspx" title="MenuViewSample"
+					 description="MenuViewについて" />
+		<siteMapNode url="~/SampleAsp/NT09_RichControl/NavigationControl/SiteMapPathSample.aspx" title="SiteMapPathSample"
+					 description="SiteMapPathについて" />
+		<siteMapNode url="~/SampleAsp/NT09_RichControl/NavigationControl/SiteMapNodeSample.aspx" title="SiteMapNodeSample"
+					 description="SiteMapNodeについて" />
+	</siteMapNode>
   </siteMapNode>
 </siteMap>
-

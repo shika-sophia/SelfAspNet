@@ -13,7 +13,19 @@
  *             └ <siteMapNode> 親ノード
  *               url="" / title="" / description=""
  *                 └ <siteMapNode> 子ノード
- *              
+ *
+ *@subject 「Web.config」の要素と属性
+ *         <siteMap>
+ *           └ <providers>
+ *             └ <add>
+ *               string name=""        サイトマッププロバイダの名前
+ *               string type=""        サイトマッププロバイダの完全修飾クラス名
+ *               string description="" 説明
+ *               string siteMapFile="" 「~」=Application root からの相対パス
+ *               bool   securityTrimingEnabled="" 
+ *                 //セキュリティ・トリミングを有効にするか / デフォルト: false
+ *                 //権限を持たないユーザーには非表示にする機能
+ *                 
  *@subject [Web.config] に Sitemapファイルを登録
  *         <system.web>
  *           <siteMap enabled="true" defaultProvider="DefaultSiteMapProvider">
@@ -46,6 +58,11 @@
  *         bool   ShowLines=""        //階層ラインを表示するか
  *         
  *         ◆SiteMapDataSource ID="smds"
+ *         bool   ShowStartingNode=""     基点とするノードを表示するか
+ *         string SiteMapProvider=""      利用するSiteMapProvider
+ *         bool   StartFromCurrentNode="" 現在ページを表すノードを基点とするか
+ *         int    StartingNodeOffset=""   開始ノードから無視するノードの数
+ *         string StartingNodeUrl=""      基点となるノードのURL
  *
  *see Web_config_NT09Navigation.txt
  *see Web_sitemap.txt
