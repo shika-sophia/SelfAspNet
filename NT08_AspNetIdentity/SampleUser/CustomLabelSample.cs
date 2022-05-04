@@ -1,4 +1,4 @@
-﻿/**
+﻿/** <!--
  *@title NT08_SelfAspNetIdentity / SampleUser / CustomLabelSample
  *@target CustomAspSample.aspx
  *@inherits WebControl.Label
@@ -52,6 +52,13 @@
  *          NT08_AspNetIdentity コンポーネント 
  *            └ CustomLabelSample
  *            
+ *          <%@ Register assembly="NT08_AspNetIdentity" 
+ *                namespace="NT08_AspNetIdentity.SampleUser"
+ *                tagprefix="cc1" %>
+ *                
+ *          <cc1:CustomLabelSample ID="CustomLabelSample1" runat="server">
+ *          </cc1:CustomLabelSample>
+
  *NOTE【考察】8.6.1 Propertyをまだ完了していないので、
  *           「.aspx」動作確認は 未完成(p497)
  *
@@ -60,6 +67,7 @@
  *@copy SelfAspNet / SampleAsp / NT10_FlagmentObject / CustomControl.txt
  *@author shika
  *@date 2022-05-04
+ * -->
  */
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
