@@ -4,8 +4,8 @@
  *       / MasterPageDiv / MasterPageSample.master
  *@target MasterContentSample.aspx
  *@inherits System.Web.UI.MasterPage
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第10章 10.3 Master Page / p498
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第10章 10.3 Master Page / p498
  *         ◆マスターページ
  *         ・アプリケーション共通のレイアウトを定義
  *         ・開発生産性: 開発者がコンテンツ処理に集中できる
@@ -18,6 +18,8 @@
  *           コンテンツページ <asp: Content> ContentPlaceHolderID="" とが
  *           必ず １:１の対応関係にある。
  *           複数のプレースホルダーがある場合も同様
+ *         ・コンテンツページからマスターページの動的変更も可
+ *         ・マスターページのネストも可
  *
  *@subject「.master」
  *         [新しい項目の追加] -> Visual C#/Web/WebFormsマスターページ
