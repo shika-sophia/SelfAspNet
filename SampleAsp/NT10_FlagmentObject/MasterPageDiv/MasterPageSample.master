@@ -1,0 +1,25 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true"
+    CodeBehind="MasterPageSample.master.cs"
+    Inherits="SelfAspNet.SampleAsp.NT10_FlagmentObject.MasterPageDiv.MasterPageSample" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>MasterPageSample</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<form id="formMasterPageSample" runat="server">
+<div>
+    <asp:Image ID="image1" runat="server"
+        ImageUrl="~/Image/wings.jpg"/>
+    <asp:ContentPlaceHolder ID="content1" runat="server">
+    </asp:ContentPlaceHolder>
+    Copyright(c) 1998-2019, Yamada Yosihiro. All Right Reserved.
+</div>
+</form>
+</body>
+</html>
