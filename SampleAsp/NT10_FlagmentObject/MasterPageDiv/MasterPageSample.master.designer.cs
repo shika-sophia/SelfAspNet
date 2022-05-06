@@ -49,5 +49,14 @@ namespace SelfAspNet.SampleAsp.NT10_FlagmentObject.MasterPageDiv
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder content1;
+
+        /// <summary>
+        /// sds コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource sds;
     }
 }

@@ -19,6 +19,15 @@
     <asp:ContentPlaceHolder ID="content1" runat="server">
     </asp:ContentPlaceHolder>
     Copyright(c) 1998-2019, Yamada Yosihiro. All Right Reserved.
+
+    <asp:SqlDataSource ID="sds" runat="server"
+        ConnectionString="<%$ ConnectionStrings:SelfAspDB %>" 
+        SelectCommand="SELECT [title], [keywd], [description] FROM [Sitemap] WHERE ([url] = @url)"
+        DataSourceMode="DataReader">
+        <SelectParameters>
+            <asp:Parameter DefaultValue="@url" Name="url" Type="String" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 </div>
 </form>
 </body>

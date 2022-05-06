@@ -4,6 +4,7 @@
  *       / MasterPageDiv / MasterPageSample.master
  *@target MasterContentSample.aspx
  *@inherits System.Web.UI.MasterPage
+ *@datasource SelfAspDB / Album_tb, Sitemap_tb
  *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content NT 第10章 10.3 Master Page / p498
  *         ◆マスターページ
@@ -20,6 +21,7 @@
  *           複数のプレースホルダーがある場合も同様
  *         ・コンテンツページからマスターページの動的変更も可
  *         ・マスターページのネストも可
+ *         ・マスターページにDB連携して コンテンツに合わせた<meta><title>などを生成できる
  *
  *@subject「.master」
  *         [新しい項目の追加] -> Visual C#/Web/WebFormsマスターページ
@@ -54,6 +56,8 @@
  *             // <Grid PageSize="4 />, オートフォーマットOFF
  *          </asp:Content>
  *
+ *          => 〔see MasterPage_withContentSample.jpg〕
+ *          
  *@subject 「.aspx.cs」コンテンツページからマスターページの内容を変更する
  *          プログラムによる動的変更 => 「.aspx.cs」Page_Load()で定義
  *
@@ -65,14 +69,34 @@
  *            適切なクラス(利用しているクラス)にキャストして使う。
  *          string  Image.ImageUrl
  *          
+ *          => 〔see MasterPage_modifiedByContent.jpg〕
+ *
+ *@subject 「.master.cs」マスターページに DB連携し、<meta><title>を生成
+ *          Page.Header.Title       <title>を埋め込み
+ *          Page.Header.Keywords    <meta keywords="">を生成
+ *          Page.Header.Description <meta descritiom="">を生成
+ *          
+ *          sds.SelectParameters 〔NT49〕
+ *          sds.SelectParameters.Add("url",
+ *               Request.AppRelativeCurrentExecutionFilePath);
+ *          //現在ページのURLで Sitemapテーブルから検索
+ *          //Sitemap_tbに 現在ページ(コンテンツページ)は未登録のため
+ *          //sds.SelectParameters.Add("url", "~/Chap10/Content.aspx");に置換
+ *                 
+ *          IDataReader - SqlDataReaderクラス 〔NT59〕
+ *                 
+ *          => 〔see MasterPage_withMetaFromSqlData.jpg〕
+ *
  *@see MasterPage_withContentSample.jpg
  *@see MasterPage_modifiedByContent.jpg
+ *@see MasterPage_withMetaFromSqlData.jpg
  *@author shika
  *@date 2022-05-05
  * -->
  */
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -84,7 +108,25 @@ namespace SelfAspNet.SampleAsp.NT10_FlagmentObject.MasterPageDiv
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            sds.SelectParameters.Clear();
+            sds.SelectParameters.Add("url", "~/Chap10/Content.aspx");
 
-        }
-    }
+            using (var reader = (IDataReader)
+                sds.Select(DataSourceSelectArguments.Empty))
+            {
+                if (reader.Read())
+                {
+                    Page.Header.Title = reader["title"].ToString();
+                    Page.Header.Keywords = reader["keywd"].ToString();
+                    Page.Header.Description = reader["description"].ToString();
+                }
+                else
+                {
+                    Response.Write("MasterPage/reader.Read(): false");
+                }
+
+                reader.Close();
+            }//using
+        }//Page_Load()
+    }//class
 }
