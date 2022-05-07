@@ -1,5 +1,5 @@
 /** <!--
- *@title NT08_AspNetIdentity / SmapleUser / ProfileSetting.txt
+ *@title NT08_AspNetIdentity / SampleUser / ProfileSetting.txt
  *@target Account / Register.aspx. .aspx.cs
  *@target Models / ModelsIdentity.cs
  *@source   DefaultDB_AspNet / Users_tb
