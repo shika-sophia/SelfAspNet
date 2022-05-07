@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ *@modifiid 8.6 Profile 
+ *@see ~/SampleUser/ProfileSetting.txt
+ */
+
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,6 +18,8 @@ namespace NT08_AspNetIdentity.Models
     // User クラスにさらにプロパティを追加すると、ユーザーの User データを追加できます。詳細については、https://go.microsoft.com/fwlink/?LinkID=317594 を参照してください。
     public class ApplicationUser : IdentityUser
     {
+        public string Url { get; set; }
+
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
         {
             // authenticationType は、CookieAuthenticationOptions.AuthenticationType に定義されている種類と一致する必要があります
