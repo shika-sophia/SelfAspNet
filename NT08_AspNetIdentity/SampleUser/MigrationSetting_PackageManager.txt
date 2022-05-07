@@ -1,0 +1,64 @@
+/*
+ *@content Migration Setting for PackageManagerConsole
+ *@subject 8.6 Profile機能
+ *@see SampleUser / ProfileSetting.txt
+ */
+
+■ Entity Framework / Migration機能
+  [英] migration: マイグレーション, 移行
+  ・モデル(クラス)の変更をDBに半自動的に反映する機能
+  ・開発途上の変更が多発する場合でも、モデルとDBの同期を省力化
+  ・実装手順 パッケージマネージャーコンソール 〔下記〕
+
+■ パッケージ マネージャー コンソール ホストのバージョン 5.11.1.5
+◆コマンド概要 (コピペ用)
+PM> Enable-Migrations -ContextTypeName NT08_AspNetIdentity.Models.ApplicationDbContext
+PM> Add-Migration UrlToUsers
+PM> Update-Database
+
+◆マイグレーション機能を有効化
+PM> Enable-Migrations -ContextTypeName NT08_AspNetIdentity.Models.ApplicationDbContext
+コンテキスト型 'NT08_AspNetIdentity.Models.ApplicationDbContext' が、アセンブリ 'SelfAspNet' に見つかりませんでした。
+
+=> パッケージマネージャーコンソール / パッケージソース欄 / SelfAspNet になっているときと
+   SelfAspNetプロジェクトで検索して、見つからないと言われる。
+
+=> NT08_AspNetIdentityプロジェクトに変更して再実行
+   (/Models内に ApplicationDbContextがなくても実行可)
+   ( => ASP.NET Identityプロジェクトのテンプレートであらかじめ用意されているとのこと p408)
+   
+PM> Enable-Migrations -ContextTypeName NT08_AspNetIdentity.Models.ApplicationDbContext
+コンテキストが既存のデータベースを対象にしているかをチェックしています...
+データベース初期化子で作成されたデータベースが検出されました。
+既存のデータベースに対応する移行 '202202100610042_InitialCreate' がスキャフォールディングされました。
+代わりに自動移行を使用するには、Migrations フォルダーを削除し、
+-EnableAutomaticMigrations パラメーターを指定して Enable-Migrations を再実行します。
+Code First Migrations がプロジェクト NT08_AspNetIdentity で有効になりました。
+
+=> ~/Migration フォルダ自動生成
+  Configuration.cs 自動生成
+  202202100610042_InitialCreate.cs 自動生成
+  
+◆マイグレーション・スクリプトを生成
+PM> Add-Migration UrlToUsers
+移行 'UrlToUsers' をスキャフォールディングしています。
+この移行ファイルのデザイン コードには、現在の Code First モデルのスナップショットが含まれています。
+このスナップショットは次の移行をスキャフォールディングする際、モデルに対する変更の計算に使用されます。
+モデルに追加の変更を行い、この移行に含める場合は、
+'Add-Migration UrlToUsers' を再実行して再度スキャフォールディングできます。
+
+=> ~/Migration フォルダ内
+   202205070416445_UrlToUsers.cs 自動生成
+   
+◆DBを更新し、変更を反映
+PM> Update-Database
+ターゲット データベースに適用されている SQL ステートメントを表示するには、'-Verbose' フラグを指定します。
+明示的な移行を適用しています: [202205070416445_UrlToUsers]。
+明示的な移行を適用しています: 202205070416445_UrlToUsers。
+Seed メソッドを実行しています。
+
+=> ApplicationUser_tbに Url列が追加される。
+   〔SampleUser/DefaultDB_AspNetUsers_tb.sql〕
+
+PM> 
+

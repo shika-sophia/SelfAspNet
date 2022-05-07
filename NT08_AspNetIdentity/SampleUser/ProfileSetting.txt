@@ -1,0 +1,54 @@
+/** <!--
+ *@title NT08_AspNetIdentity / SmapleUser / ProfileSetting.txt
+ *@target Account / Register.aspx. .aspx.cs
+ *@target Models / ModelsIdentity.cs
+ *@source   DefaultDB_AspNet / Users_tb
+ *
+ *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content 第８章 ASP.NET Identity / 8.6 Profile / p406
+ *         Profile: ユーザー単位の情報のこと
+ *         ここでは Register.aspxに、URLを登録できる機能を追加
+ *           
+ *@prepare Entity Framework / Migration機能
+ *         [英] migration: マイグレーション, 移行
+ *         ・モデル(クラス)の変更をDBに半自動的に反映する機能
+ *         ・開発途上の変更が多発する場合でも、モデルとDBの同期を省力化
+ *         ・実装手順 パッケージマネージャーコンソール
+ *           => 〔~/Migration/ MigrationSetting_PackageManager.txt〕
+ *
+ *@subject 「Models / ModelsIdentity.cs」
+ *          class ApplicationUser : IdentityUser
+ *            public string Url { get; set; } を追加
+ *        
+ *@subject 「Account/Register.aspx」<Content>内 Buttonの前
+ *         <div class="form-group">
+ *            <asp:Label runat="server" 
+ *               AssociatedControlID="Url"
+ *               CssClass="col-md-2 control-label">URL</asp:Label>
+ *            <div class="col-md-10">
+ *               <asp:TextBox ID="Url" runat="server"
+ *                   TextMode="Url"
+ *                   CssClass="form-control"></asp:TextBox>
+ *               <asp:RequiredFieldValidator ID="reqUrl" runat="server"
+ *                   ControlToValidate="Url"
+ *                   Display="Dynamic"
+ *                   CssClass="text-danger"
+ *                   ErrorMessage="URLは必須です。"></asp:RequiredFieldValidator>
+ *           </div>
+ *       </div>
+ *
+ *@subject 「Account / Register.aspx.cs」CreateUser_Click()
+ *         var user = new ApplicationUser()
+ *              { UserName = Email.Text,
+ *                 Email = Email.Text,
+ *                 Url = Url.Text };   <- 追加
+ *
+ *@see ~/Models/ModelsIdentity.cs
+ *@see ~/Account/Register.aspx, .aspx.cs
+ *@see ~/SampleUser/MigrationSetting_PackageManager.txt
+ *@see ~/SampleUser/DefaultDB_AspNetUsers_tb.sql
+ *@see ~/SampleUser / ProfileRegister.jpg
+ *@author shika
+ *@date 2022-05-07
+ * -->
+ */

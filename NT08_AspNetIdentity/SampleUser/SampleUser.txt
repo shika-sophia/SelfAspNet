@@ -2,3 +2,6 @@
 Email: dammy@sample.jp
 pass:  sampleSAMPLE_2022
 
+◆Registered User with Url
+Email: profile@sample.jp
+pass:  Profile999-
