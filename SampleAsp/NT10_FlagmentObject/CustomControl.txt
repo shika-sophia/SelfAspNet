@@ -1,11 +1,6 @@
-﻿/*
- *@copy from below
- *@see CustomLabelSample.cs
- * => 別プロジェクト〔NT08_AspNetIdentity / SampleUser / 〕
- */
-
- /** <!--
- *@title NT08_SelfAspNetIdentity / SampleUser / CustomLabelSample
+﻿/** <!--
+ *@title NT08_SelfAspNetIdentity / SampleUser /
+ *       CustomControlDiv / CustomLabelSample.cs
  *@target CustomAspSample.aspx
  *@inherits WebControl.Label
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
@@ -58,21 +53,52 @@
  *          NT08_AspNetIdentity コンポーネント 
  *            └ CustomLabelSample
  *            
- *          <%@ Register assembly="NT08_AspNetIdentity" 
- *                namespace="NT08_AspNetIdentity.SampleUser"
- *                tagprefix="cc1" %>
+ *          <%@ Register assembly="NT08_AspNetIdentity"
+ *               namespace="NT08_AspNetIdentity.SampleUser.CustomControlDiv"
+ *               tagprefix="cc1" %>
  *                
- *          <cc1:CustomLabelSample ID="CustomLabelSample1" runat="server">
+ *          <cc1:CustomLabelSample ID="CustomLabelSample1" runat="server"
+ *              ProfileName="Url"> //〔8.6 Profile〕
  *          </cc1:CustomLabelSample>
 
- *NOTE【考察】8.6.1 Propertyをまだ完了していないので、
- *           「.aspx」動作確認は 未完成(p497)
+ *@subject 「Web.config」 /CustomControlDiv内
+ *         〔8.3.3 アクセス可否 Web.config | p382〕
+ *          <authorization>
+ *            └ <allow> アクセスを許可
+ *            └ <deny>  アクセスを禁止
+ *                └string user="" ユーザー名
+ *                  「?」匿名(未ログイン)
+ *                  「*」すべてのユーザー
+ *         
+ *         <?xml version="1.0" encoding="utf-8"?>
+ *         <configuration>
+ *           <location path="CustomAspSample.aspx">
+ *             <system.web>
+ *               <authorization>
+ *                 <deny users="?"/>
+ *               </authorization>
+ *             </system.web>
+ *           </location>
+ *         </configuration>
+ *         
+ *@subject 「~/App_Start/Startup.Auth.cs」
+ *          初期化ファイルでアクセス拒否された場合、Loginページにリダイレクトする設定
+ *          
+ *          app.UseCookieAuthentication(new CookieAuthenticationOptions
+ *          {   ...
+ *              LoginPath = new PathString("/Account/Login"),
  *
+ *@subject  【実行】CustomAspSample.aspx -> リダイレクト「Login.aspx」
+ *           -> Login.aspxでログインする。
+ *                Email: profile@sample.jp
+ *                pass:  Profile999-
+ *                
  *@see CustomLabelSample.jpg
- *@see CustomAspSample.aspx (未完成)
+ *@see CustomAspSample.jpg
+ *@see CustomAspSample.aspx
  *@copy SelfAspNet / SampleAsp / NT10_FlagmentObject / CustomControl.txt
  *@author shika
- *@date 2022-05-04
+ *@date 2022-05-04, 05-08
  * -->
  */
 using Microsoft.AspNet.Identity;
@@ -84,7 +110,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace NT08_AspNetIdentity.SampleUser
+namespace NT08_AspNetIdentity.SampleUser.CustomControlDiv
 {
     [Designer(typeof(System.Web.UI.Design.ControlDesigner))]
     [DefaultProperty("ProfileName")]
@@ -129,10 +155,10 @@ namespace NT08_AspNetIdentity.SampleUser
                 ApplicationUser user = manager.FindByName(
                     Context.User.Identity.Name);
 
-                writer.Write(
+                writer.Write(String.Format("あなたのサイトは [{0}] です。",
                     typeof(ApplicationUser)
                     .GetProperty(ProfileName)
-                    .GetValue(user));
+                    .GetValue(user)));
             }
             else
             {
