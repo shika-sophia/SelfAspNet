@@ -1,0 +1,112 @@
+﻿/**
+ *@title NT08_AspNetIdentity / SampleUser / 
+ *       RoleAuthorizeDiv / RoleSetting.txt
+ *@target Models/IdentityModels.cs
+ *@target Migration/202205081708041_AddNewRole.cs
+ *@target App_Start/IdentityConfig.cs
+ *@target App_Start/StartupAuth.cs
+ *@target
+ *@target
+ *@source DefaultConnection (NT08_AspNetIdentity) / AspNetRoles_tb
+ *
+ *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content 第８章 ASP.NET Identity / 8.7 Role / p410 / 〔NT132〕
+ *         Role ・ユーザーを権限単位にまとめるグループ
+ *              ・Role単位でのアクセス規則を設定できる。
+ *              ・新規ユーザーの参加も、ユーザーに Roleを割り当てるだけで済む。
+ *               (アクセス規則を変更する必要がない。)
+ *              ・ユーザー単位のアクセス規則も可能だが、
+ *                新規ユーザーごとに設定ファイルを変更しなければならなくなる。
+ *              ・デフォルトのプロジェクト・テンプレートには含まれていないので、
+ *                実装するには変更箇所が多い(定型的な手順なので練習する)
+ *
+ *@author shika
+ *@date 2022-05-09
+ */
+/*
+ *@subject Models/IdentityModels.cs
+ *         ユーザーの ApplicationUserに相当する ApplicationRoleクラスを追加。
+ *         IdentityRoleを継承: 基本的なRole機能
+ *         Roleで独自の情報を保持する場合に classの中身が必要になる。
+ *         (基本的機能だけなら、上記を継承した、空のclassでよい)
+ *
+ *         public class ApplicationRole : IdentityRole
+ *         {
+ *         }//class ApplicationRole
+ *
+ *@subject 「PackageManagerConsole」Migration 
+ *          Modelsの変更〔上記〕を先にしておく
+ *
+ *          ◆Command Summary
+ *           PM> Add-Migration AddNewRole
+ *           PM> Update-Database
+ */
+
+◆パッケージ マネージャー コンソール ホストのバージョン 5.11.1.5
+＊マイグレーション・スクリプトを生成
+PM> Add-Migration AddNewRole
+
+移行 'AddNewRole' をスキャフォールディングしています。
+この移行ファイルのデザイン コードには、
+現在の Code First モデルのスナップショットが含まれています。
+このスナップショットは次の移行をスキャフォールディングする際、
+モデルに対する変更の計算に使用されます。
+モデルに追加の変更を行い、この移行に含める場合は、
+'Add-Migration AddNewRole' を再実行して再度スキャフォールディングできます。
+
+(Models/IdentityModels.cs を変更。本来は Modelsの変更を先にしておく)
+
+PM> Add-Migration AddNewRole
+移行 'AddNewRole' を再度スキャフォールディングしています。
+移行 'AddNewRole' のデザイン コードのみが再度スキャフォールディングされました。
+移行全体を再度スキャフォールディングするには、-Force パラメーターを使用します。
+
+=> 「~/Migration/202205081708041_AddNewRole.cs」を生成
+
+＊DBに反映
+PM> Update-Database
+ターゲット データベースに適用されている SQL ステートメントを表示するには、
+'-Verbose' フラグを指定します。
+明示的な移行を適用しています: [202205081708041_AddNewRole]。
+明示的な移行を適用しています: 202205081708041_AddNewRole。
+Seed メソッドを実行しています。
+
+/*
+ *@subject 「~/App_Start/IdentityConfig.cs」
+ *          ApplicationRoleManager: Role管理するためのクラス
+ *          (ApplicationUserManagerに相当。構成も ほぼ同様)
+ *          RoleManager<ApplicationRole, string>を継承
+ *
+ *          ◆コンストラクタ
+ *          ApplicationRoleManager(
+ *            IRoleStore<ApplicationRole, string> store) : base(store) { }
+ *
+ *          ◆メンバー
+ *          bool           manager.RoleExists(string role)
+ *          IdentityResult manager.Create(ApplicationRole)は
+ */
+
+ ◆「~/App_Start/IdentityConfig.cs」
+public class ApplicationRoleManager : RoleManager<ApplicationRole, string>
+{
+    public ApplicationRoleManager(
+        IRoleStore<ApplicationRole, string> store) : base(store) { }
+
+    public static ApplicationRoleManager Create(
+        IdentityFactoryOptions<ApplicationRoleManager> options, 
+        IOwinContext context)
+    {
+        var manager = new ApplicationRoleManager(
+            new RoleStore<ApplicationRole>(
+                context.Get<ApplicationDbContext>() 
+            )
+        );
+
+        if (!manager.RoleExists("Admin"))
+        {
+            manager.Create(new ApplicationRole { Name = "Admin" });
+        }
+
+        return manager;
+    }//Create()
+}//class ApplicationRoleManager
