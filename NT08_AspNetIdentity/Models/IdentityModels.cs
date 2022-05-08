@@ -1,6 +1,9 @@
 ﻿/*
  *@modifiid 8.6 Profile 
  *@see ~/SampleUser/ProfileSetting.txt
+ *
+ *@modified 8.7 Role
+ *@see ~/SampleUser/RoleAuthorizeDiv/RoleSetting.txt
  */
 
 using System;
@@ -32,7 +35,7 @@ namespace NT08_AspNetIdentity.Models
         {
             return Task.FromResult(GenerateUserIdentity(manager));
         }
-    }
+    }//class ApplicationUser
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -45,7 +48,12 @@ namespace NT08_AspNetIdentity.Models
         {
             return new ApplicationDbContext();
         }
-    }
+    }//class ApplicationDbContext
+
+    public class ApplicationRole : IdentityRole
+    {
+
+    }//class ApplicationRole
 }
 
 #region ヘルパー
