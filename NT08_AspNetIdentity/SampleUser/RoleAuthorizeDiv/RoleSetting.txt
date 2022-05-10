@@ -1,12 +1,14 @@
 ﻿/**
  *@title NT08_AspNetIdentity / SampleUser / 
  *       RoleAuthorizeDiv / RoleSetting.txt
+ *
  *@target Models/IdentityModels.cs
  *@target Migration/202205081708041_AddNewRole.cs
  *@target App_Start/IdentityConfig.cs
  *@target App_Start/StartupAuth.cs
- *@target
- *@target
+ *@target Account/Confirm.aspx.cs
+ *@target ./Auth/AdminOnly.aspx, Web.config
+ *
  *@source DefaultConnection (NT08_AspNetIdentity) / AspNetRoles_tb
  *
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
@@ -110,3 +112,55 @@ public class ApplicationRoleManager : RoleManager<ApplicationRole, string>
         return manager;
     }//Create()
 }//class ApplicationRoleManager
+
+/*
+ *@subject ApplicationRoleManagerをアプリケーションに登録
+ *         「Startup.Auth.cs」はアプリケーション起動時に初期化するファイル
+ */
+◆「~/App-Start/Startup.Auth.cs」
+public partial class Startup {
+    public void ConfigureAuth(IAppBuilder app)
+    {       
+        app.CreatePerOwinContext(ApplicationDbContext.Create);
+        app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+        app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+        app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
+        ...
+
+/*
+ *@subject ユーザー登録の確認時に Adminロールを付与
+ *         IdentityResult manager.AddToRole(string userId, string role);
+ */
+ ◆「~/Account/Confirm.aspx.cs」
+ protected void Page_Load(object sender, EventArgs e)
+ {
+    ...
+    if (result.Succeeded)
+    {
+        manager.AddToRole(userId, "Admin"); //modified above
+        successPanel.Visible = true;
+        ...
+
+/*
+ *@subject 【実行】ユーザー登録 -> メール確認 -> Confirm画面表示
+ *          これにより DB/AspNetUsers_tb, AspNetRoles_tb に
+ *          userIdと roledの関連付けが行われていることを確認。
+ *NOTE (未完成) Mail機能は未完成により未確認
+ */
+/*
+ *@subject「/Auth/Admin.aspx」Admin専用フォルダ/ファイルを作成
+ *        「Web.config」RoleAuthorizeDiv/Auth 内に作成
+ *         Adminロールのみ許可する設定をする。
+ */
+◆「Web.config」RoleAuthorizeDiv/Auth 内
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.web>
+	  <authorization>
+		  <allow roles="Admin" />
+		  <deny users="*" />
+	  </authorization>
+  </system.web>
+</configuration>
+
+[EOF]
