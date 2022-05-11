@@ -1,0 +1,67 @@
+﻿/*
+ *@title Global_asax_cs_Event.txt
+ *@see Global.asax.cs
+ *@content 第10章 10.4 Global.asax / p512 
+ *         イベントハンドラー集
+ */
+/*
+ *■ Global.asax.cs
+ *◆条件付きイベント
+ *Application_Start アプリケーション起動時 １回のみ
+ *                  アプリケーション共通のリソースを初期化
+ *                  BeginRequestより先に発生
+ *Session_Start     ユーザーSession起動時 １回のみ
+ *                  Session変数の初期化
+ *Session_End       Sessionクローズ時
+ *                  Session変数を DBなどに保存する時に利用                 
+ *Application_End   Application破棄時
+ *                  Application変数を DBなどに保存する時に利用    
+ *Application_Error 例外発生時。エラーログの記録/通知/ページ生成/表示
+ *
+ *
+ *◆Requestイベント
+ *   ┌ クライアント
+ *BeginRequest              HTTPハンドラーが Request処理を開始する前に発生
+ *AuthenticateRequest       認証準備時に発生
+ *                          独自の認証処理を構築する場合に利用
+ *PostAutenticateRequest    ユーザー認証完了時
+ *AuthorizeRequest          ユーザーが認定される時に発生
+ *PostAuthorizeRequest      ユーザー認定完了時
+ *ResolveRequestCache       Requestをキャッシュ処理時
+ *                          キャッシュ処理の成否に関わらず認証終了時に発生
+ *PostResolveRequestCache   ASP.NETが キャッシュからの処理を許可した場合に発生
+ *                          イベントハンドラーの実行をスキップ
+ *PostMapRequestHandler     Requestが適切なイベントハンドラーにMapされた時に発生
+ *AcquireRequestState       Requestに関連付いた状態(Sessionなど)を取得時
+ *                          独自の Session管理を行う場合に利用
+ *PostAcquireRequestState   Requestに関連付いた状態を取得完了時
+ *PreRequestHandlerExecute  HTTPハンドラーがページの処理を開始する直前
+ *   | 
+ *   |  (WebServer内) ASP.NETのイベントハンドラー処理
+ *   |
+ *PostRequestHandlerExecute HTTPハンドラーがページの処理を完了した直後
+ *ReleaseRequestState       Requestに関連付いた状態を破棄時
+ *                          Sessionなどの状態を Store(ストア)に保存
+ *PostReleaseRequestState   Sessionなどの状態を Store(ストア)に保存完了時
+ *                          出力フィルター処理も行う
+ *UpdateRequestCache        出力キャッシュを更新
+ *PostUpdateRequestCache    出力キャッシュを更新完了時
+ *LogRequest                Requestに対するログの記録処理前
+ *PostLogRequest            Requestに対するログの記録処理完了時
+ *EndRequest                全ての Request処理が完了時
+ *(PreSendRequestHeaders    HTTPヘッダーをクライアントに送信する直前)
+ *(PreSendRequestContent    HTTPコンテンツをクライアントに送信する直前)
+ *   └ クライアント
+ *
+ *◆バッファー処理 
+ *<% @Page buffet="" %>で切替 / デフォルト true(有効)
+ *
+ *ASP.NETによる処理結果をいったんサーバーのメモリ上に蓄積し、
+ *処理が完了(EndRequest)時にまとめてクライアントに送信する機能
+ *有効にすることで出力処理に関するサーバーのオーバーヘッドを軽減できる。
+ *(EndRequest後に PreSendRequestHeaders, PreSendRequestContentが発生)
+ *無効にすると、各イベント発生時点で、そのたびに送信
+ *(PreSendRequestHeaders, PreSendRequestContent が任意に発生)
+ *
+ */
+ [EOF]
