@@ -1,4 +1,4 @@
-﻿/** 
+﻿/** <!--
  *@title SelfAspNet / SampleAsp / NT03_ServerControl / ValidSample.aspx.cs
  *@target ValidSample.aspx 
  *@target ValidSample_Style.css
@@ -7,16 +7,50 @@
  *         fig 3-18, List 3-7, 3-8
  *@subject 検証コントロールの実装例
  *
- *@prepare ◆jQuery
+ *@subject 3.4.1 検証コントロールのための「jQuery」準備 〔p100〕
+ *         ◆jQuery
  *         ＊ValidControlは内部的に jQueryを利用しているので、
  *         ここを動作させるには、事前にインストールが必要。
+ *         
  *         ＊[Global.asax]も編集して、
  *         jQueryを Startupで loadする設定にする。
+ *
+ *@subject CDN: Contents Delivery Network
+ *         JavaScript, CSS, 画像などコンテンツの配信に最適化されたネットワークのこと
  *         
+ *@subject ScriptManagerコントロール〔11.2.1〕
+ *         bool EnableCdn=""
+ *         string CdnPath=""
+ *         string CdnDebugPath=""
+ *         
+ *         ScriptResourceMapping 
+ *              ScriptManager.ScriptResourceMapping
+ *         void ScriptManager.ScriptResourceMapping.
+ *                AddDefinition(
+ *                  string name,
+ *                  bool 〔System.Reflection.Assembly,
+ *                  ScriptResourceDefinition)
+ *         
+ *@subject ScriptResourceDefinitionクラス System.Web.UI
+ *         new ScriptResourceDefinition() 
+ *         {
+ *           string this.Path         ローカルパス
+ *           string this.DebugPath    ローカルパス(デバッグモード)
+ *           string this.CdnPath      CDNのURL
+ *           string this.CdnDebugPath CDNのURL(デバッグモード) 
+ *         }
+ *
+ *@subject 「Web.config」デバッグモードを変更する場合のみ修正 / デフォルト true
+ *          <compilation debug="true" targetFramework="4.8" /> 
+ *             ↓
+ *          <compilation debug="false" targetFramework="4.8" />
+ *          
+ *@see ~/Global.asax.cs
  *@see ResultFile / ValidSample.jpg
  *@see ResultFile / ValidSample_Summary.jpg
  *@author shika
- *@date 2021-11-19
+ *@date 2021-11-19, 2022-05-11
+ * -->
 */
 using System;
 using System.Collections.Generic;
