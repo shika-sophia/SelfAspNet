@@ -1,0 +1,123 @@
+﻿/**
+ *@title SelfAspNet / Global.asax.cs 
+ *@target Global.asax
+ *@Source SelfAspDB / AccessLog_tb
+ *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content 第10章 10.4 Global.asax / p512 
+ *        「Global.asax」= Global Application File
+ *         ・アプリケーション全体のイベント処理
+ *         ・ファイル名は固定
+ *         ・必ずアプリケーション・ルート直下に配置
+ *          (サブフォルダへの配置不可)
+ *         ・イベントハンドラー集 
+ *          =>〔SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_cs_Event.txt〕
+ *          
+ *@subject 3.4.1 検証コントロールのための「jQuery」準備 〔p100〕
+ *         =>〔SampleAsp / NT03_ServerControl / ValidSample.aspx.cs〕
+ *         
+ *         ◆jQuery
+ *         ＊ValidControlは内部的に jQueryを利用しているので、
+ *         ここを動作させるには、事前にインストールが必要。
+ *         
+ *         ＊[Global.asax]も編集して、
+ *         jQueryを Startupで loadする設定にする。
+ *
+ *@subject Application_Startイベント
+ *         アプリ起動時に１回だけ発生。アプリ共通のリソースを初期化。
+ *         => 〔SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_cs_Event.txt〕
+ *         
+ *@subject CDN: Contents Delivery Network
+ *         JavaScript, CSS, 画像などコンテンツの配信に最適化されたネットワークのこと
+ *         
+ *@subject ScriptManagerコントロール〔11.2.1〕
+ *         bool EnableCdn=""
+ *         string CdnPath=""
+ *         string CdnDebugPath=""
+ *         
+ *         ScriptResourceMapping 
+ *              ScriptManager.ScriptResourceMapping
+ *         void ScriptManager.ScriptResourceMapping.
+ *                AddDefinition(
+ *                  string name,
+ *                  bool 〔System.Reflection.Assembly,
+ *                  ScriptResourceDefinition)
+ *         
+ *@subject ScriptResourceDefinitionクラス System.Web.UI
+ *         new ScriptResourceDefinition() 
+ *         {
+ *           string this.Path         ローカルパス
+ *           string this.DebugPath    ローカルパス(デバッグモード)
+ *           string this.CdnPath      CDNのURL
+ *           string this.CdnDebugPath CDNのURL(デバッグモード) 
+ *         }
+ *
+ *@subject 10.4.2 アクセスログを DBに記録する
+ *         ◆EndRequestイベント: すべてのRequest処理が完了時に発生
+ *         => 〔SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_cs_Event.txt〕
+ *         
+ *         ◆接続型DBアクセス 〔NT58 | List 5-7〕
+ *         SqlConnection, SqlCommand 
+ *
+ *@NOTE 【実行】プロジェクト内の任意の「.aspx」を実行し、
+ *       SelfAspDB / AccessLog_tbの データを確認
+ *       => 〔Global_asax_AccessLog.jpg〕
+ *       
+ *@NOTE 【註】ページ更新ごとにログが記録されるので
+ *       動作確認時以外は EndRequestイベントをコメントアウト
+ *
+ *@see SampleSql / AccessLog_tb.sql
+ *@see SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_cs_Event.txt
+ *@see SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_AccessLog.jpg
+ *@author shika
+ *@date 2022-05-11
+ */
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Web;
+using System.Web.UI;
+
+namespace SelfAspNet
+{
+    public class Global : System.Web.HttpApplication
+    {
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            ScriptManager.ScriptResourceMapping.AddDefinition(
+                "jquery", null,
+                new ScriptResourceDefinition()
+                {
+                    Path = "~/Scripts/jquery-3.6.0.min.js",
+                    DebugPath = "~/Scripts/jquery-3.6.0.js",
+                    CdnPath = "https://ajax.microsoft.com/ajax/jQuery/jquery-3.6.0.min.js",
+                    CdnDebugPath = "https://ajax.microsoft.com/ajax/jQuery/jquery-3.6.0.js",
+                }
+            );
+        }//Application_Start()
+
+        //protected void Application_EndRequest(object sender, EventArgs e)
+        //{
+        //    HttpRequest req = Context.Request;
+        //    ConnectionStringSettings setting = ConfigurationManager.ConnectionStrings["SelfAspDB"];
+
+        //    using (var db = new SqlConnection(setting.ConnectionString))
+        //    {
+        //        var sql = new SqlCommand(
+        //            "INSERT INTO AccessLog" + 
+        //            " (url, userAgent, referrer, accessTime)" + 
+        //            " VALUES(@url, @userAgent, @referrer, @accessTime)"
+        //            , db);
+
+        //        sql.Parameters.AddWithValue("@url", req.Url.ToString());
+        //        sql.Parameters.AddWithValue("@userAgent", req.UserAgent.ToString());
+        //        sql.Parameters.AddWithValue("@referrer",
+        //            req.UrlReferrer != null ? req.UrlReferrer.ToString() : "");
+        //        sql.Parameters.AddWithValue("@accessTime", DateTime.Now.ToString());
+
+        //        db.Open();
+        //        sql.ExecuteNonQuery();
+        //        db.Close();
+        //    }//using
+        //}//Application_EndRequest()
+    }//class
+}
