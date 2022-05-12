@@ -1,0 +1,139 @@
+/** <!--
+ *@title SelfAspNet / Global.asax.cs 
+ *@target Global.asax
+ *@Source SelfAspDB / AccessLog_tb
+ *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content 第10章 10.4 Global.asax / p512 
+ *        「Global.asax」= Global Application File
+ *         ・アプリケーション全体のイベント処理
+ *         ・ファイル名は固定
+ *         ・必ずアプリケーション・ルート直下に配置
+ *          (サブフォルダへの配置不可)
+ *         ・イベントハンドラー集 
+ *          =>〔SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_cs_Event.txt〕
+ *          
+ *@subject 10.4.3 エラーページ
+ *         ◆開発者用のエラーページ
+ *         ・「localhost」接続はデバッグ目的とみなし、常に詳細な例外メッセージを表示
+ *         ・実行トレース(=クラス・メソッドの呼出履歴), 
+ *           DBパスワード, サーバー内部の階層構造などが露出する。
+ *         ・一般ユーザー向けには表示すべきではない
+ *        
+ *         ◆一般的なエラーページ (=ユーザー向けエラーページのデフォルト)
+ *         ・リモート接続(=ネット経由)のユーザーにデフォルトで表示
+ *         ・「Web.config」の設定情報を表示。実行トレース等は非表示
+ *         ・一般ユーザーには理解困難。どうすればいいか解りづらい
+ *         
+ *         ◆自己定義のエラーページ(=エラーページをカスタム設定)
+ *         「Global.asax.cs」Application_Errorイベントハンドラーで自己定義
+ *           └ errorLog.log             開発社向け
+ *           └ errorMessageForUser.html 一般ユーザー向け 〔下記 Web.config〕
+ *           
+ *         「Web.config」 アプリ直下/ <system.web>内 </page>の次行
+ *          <customErrors>
+ *           |└  mode="" (必須)
+ *           ||      On: カスタムエラー有効。
+ *           ||         defaultRedirect=""省略時は一般用デフォルトエラーページ
+ *           ||      Off:カスタムエラー無効。
+ *           ||          常に開発者用エラーページ
+ *           ||      RemoteOnly: (デフォルト) リモート接続時のみカスタムエラー有効
+ *           ||          「ローカルでは開発者用だったが、リモートでは一般用しかでなくなった」
+ *           ||           という問題の原因はこれ。 => On / Offに調整すると解決
+ *           ||
+ *           |└ [defaultRedirect="" ] アプリ共通のエラーページpath
+ *           |
+ *           └[ <error> ] 省略可 /  HTTPエラーステータスごとのリダイレクト先を指定可
+ *               └ [statusCode="" ] HTTPステータスコード 100-500s 〔NT90, DS6 詳細〕
+ *               └ [redirect="" ]   リダイレクト先 path。絶対パス/相対パスどちらも可
+ *                                  エラー発生ページからの相対パスではなく
+ *                                  Web.configを配置したフォルダからの相対パスに注意
+ *                                                 
+ *@subject 10.4.3 Application_Error()
+ *         using() { }
+ *         new StreamWriter(string path, bool append, Encoding) 〔CS32〕
+ *         void writer.Write(string)
+ *         
+ *         string   Server.MapPath(string path) 引数の相対パスを絶対パスに変換 〔NT97〕
+ *         
+ *         Exception Server.GetLastError()      最新の Exceptionを取得
+ *           => System.Web.HttpUnhandledException が常に最新となるので下記
+ *         Exception exception.InnerException   原因となった Exceptionを取得
+ *           => nullになることがあるので、if文で分岐
+ *         string    exception.Source  原因となったオブジェクト〔CS69〕
+ *         string    exception.Message 例外メッセージ
+ *         
+ *         new StringBuilder(int size)
+ *         StringBuilder bld.Append(string)
+ *         int           bld.Length
+ *         string        bld.ToString()
+ *
+ *NOTE 【実行 ApplicationError】ErrorSample.aspx
+ *      ConnectionString="<%$ ConnectionStrings:SelfAspError %>"
+ *      正しくは "<%$ ConnectionStrings:SelfAspDB %>"
+ *      意図的に例外発生するようにしてある。
+ *      画面表示は 「errorMessageForUser.html」
+ *      エラーログ 「errorLog.log」には開発者用のエラー表示
+ *      
+ *@NOTE【註】エラーのたびに、ログが記録されるので
+ *      動作確認以外は Application_Error()を コメントアウト
+ *
+ *@see SampleSql / AccessLog_tb.sql
+ *@see SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_cs_Event.txt
+ *@see SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_AccessLog.jpg
+ *
+ *@see ErrorSample.aspx
+ *@see errorLog.log
+ *@see errorMessageForUser.html
+ *@see Global_asax_Div / Web.config (Application_Error用)
+ *
+ *@author shika
+ *@date 2022-05-11
+ * -->
+ */
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.IO;
+using System.Text;
+using System.Web;
+using System.Web.UI;
+
+namespace SelfAspNet
+{
+    public class Global : System.Web.HttpApplication
+    {
+        //==== 10.4.3 Error Page for Deveroper ====
+        //protected void Application_Error(object sender, EventArgs e)
+        //{
+        //    using (var writer = new StreamWriter(
+        //        Server.MapPath(
+        //            "~/SampleAsp/NT10_FlagmentObject/Global_asax_Div/errorLog.log"),
+        //        append: true,
+        //        Encoding.UTF8))
+        //    {
+        //        var err = Server.GetLastError();
+        //        if (err.InnerException != null)
+        //        {
+        //            err = err.InnerException;
+        //        }
+
+        //        if (err != null)
+        //        {
+        //            var bld = new StringBuilder(2000);
+        //            bld.Append(err.Source).Append("\n");
+        //            bld.Append(err.Message).Append("\n");
+        //            bld.Append(err.StackTrace).Append("\n");
+        //            bld.Append(DateTime.Now.ToString()).Append("\n");
+        //            bld.Append($"Length: {bld.Length}\n");
+
+        //            writer.WriteLine(bld.ToString());
+        //        }
+
+        //        writer.Close();
+        //    }//using
+        //}//Application_Error()
+    }//class
+}
+
+//---- errorLog.log ----
+

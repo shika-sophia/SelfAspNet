@@ -1,0 +1,19 @@
+﻿
+System.Web
+接続名 'SelfAspError' をアプリケーション構成内に見つけられなかったか、または接続文字列が空です。
+   場所 System.Web.Compilation.ConnectionStringsExpressionBuilder.GetConnectionString(String connectionStringName)
+   場所 ASP.sampleasp_nt10_flagmentobject_global_asax_div_errorsample_aspx.__BuildControlsdsError() 場所 C:\Users\xxxx\source\repos\SelfAspNet\SelfAspNet\SampleAsp\NT10_FlagmentObject\Global_asax_Div\ErrorSample.aspx:行 16
+   場所 ASP.sampleasp_nt10_flagmentobject_global_asax_div_errorsample_aspx.__BuildControlformErrorSample() 場所 C:\Users\xxxx\source\repos\SelfAspNet\SelfAspNet\SampleAsp\NT10_FlagmentObject\Global_asax_Div\ErrorSample.aspx:行 13
+   場所 ASP.sampleasp_nt10_flagmentobject_global_asax_div_errorsample_aspx.__BuildControlTree(sampleasp_nt10_flagmentobject_global_asax_div_errorsample_aspx __ctrl) 場所 C:\Users\xxxx\source\repos\SelfAspNet\SelfAspNet\SampleAsp\NT10_FlagmentObject\Global_asax_Div\ErrorSample.aspx:行 1
+   場所 ASP.sampleasp_nt10_flagmentobject_global_asax_div_errorsample_aspx.FrameworkInitialize()
+   場所 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   場所 System.Web.UI.Page.ProcessRequest()
+   場所 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   場所 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   場所 ASP.sampleasp_nt10_flagmentobject_global_asax_div_errorsample_aspx.ProcessRequest(HttpContext context)
+   場所 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   場所 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   場所 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2022/05/12 16:26:47
+Length: 1720
+
