@@ -135,5 +135,4 @@ namespace SelfAspNet
     }//class
 }
 
-//---- errorLog.log ----
 
