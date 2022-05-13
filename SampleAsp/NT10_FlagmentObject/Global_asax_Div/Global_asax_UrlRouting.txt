@@ -1,0 +1,117 @@
+/** <!--
+ *@title SelfAspNet / Global.asax.cs 
+ *@target Global.asax
+ *@Source SelfAspDB / AccessLog_tb
+ *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content 第10章 10.4 Global.asax / p512 
+ *        「Global.asax」= Global Application File
+ *         ・アプリケーション全体のイベント処理
+ *         ・ファイル名は固定
+ *         ・必ずアプリケーション・ルート直下に配置
+ *          (サブフォルダへの配置不可)
+ *         ・イベントハンドラー集 
+ *          =>〔SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_cs_Event.txt〕
+ */
+#region  => 【subjects】jQuery / AccessLog / ErrorPage / UrlRouting
+/*
+ *@subject 10.4.4 UrlRouting
+ *         ・RequestURLをあらかじめ決められた条件設定(= route)に従って、
+ *           実際の処理を行うべきページを振り分ける機能
+ *         
+ *         ◆RouteTableクラス System.Web.Routing.
+ *         RouteCollection RouteTable.Routes
+ *         Route RouteTable.Routes.MapPageRoute(
+ *             string routeName, //route名
+ *             string url,       //URLパターン {xxxx} プレースホルダ
+ *             string path,      //物理path
+ *             [bool checkPhysicalUrlAccess,]
+ *               //ユーザーが物理URLにアクセスする権限があるかをチェックするか
+ *             [RouteValueDictionary defaults]
+ *               //デフォルト値 or 正規表現制限
+ *         )
+ *         
+ *         new RouteValueDictionary(object)
+ *             引数 new { }: 匿名型(匿名クラス)〔CS59〕
+ *                      
+ *@subject 「.aspx」UrlRoutingSample.aspx
+ *          <%$ ... %> 式構文
+ *          <%$ RouteValue:year %> ルートパラメータの値を取得
+ *            ||
+ *@subject 「.aspx.cs」UrlRoutingSample.aspx
+ *          RouteValueDictionary RouteData.Values
+ *          object RouteData.Values["xxxx"] 
+ *             上記で定義したルートパラメータを取得
+ *             戻り値 objectのため適切にキャストして利用
+ *             //ltr.Text = (string) RouteData.Values["year"];
+ *          
+ *@NOTE 【実行 UrlRouting】(未解決)
+ *      「https://localhost:44377/blog/24/12/2019」で start
+ *        => このサイトにアクセスできません
+ *           localhost で接続が拒否されました。
+ *          
+ *      「UrlRouting.aspx」で start
+ *        => 「年 月 日」とだけ表示。デフォルト値が入っていない。
+ *        
+ */
+#endregion
+/*     //==== 10.4.2 AccessLog insert into DB ====
+ *@see SampleSql / AccessLog_tb.sql
+ *@see SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_cs_Event.txt
+ *@see SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_AccessLog.jpg
+ *     
+ *     //==== 10.4.3 Error Page for Developer ====
+ *@see ErrorSample.aspx
+ *@see errorLog.log
+ *@see errorMessageForUser.html
+ *@see Global_asax_Div / Web.config (Application_Error用)
+ *
+ *     //==== 10.4.4 UrlRouting ====
+ *@see UrlRoutingSample.aspx
+ *@see Global_asax_UrlRouting.txt
+ *
+ *@author shika
+ *@date 2022-05-11, 05-12, 05-13
+ * -->
+ */
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.IO;
+using System.Text;
+using System.Web;
+using System.Web.Routing;
+using System.Web.UI;
+
+namespace SelfAspNet
+{
+    public class Global : System.Web.HttpApplication
+    {
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            //==== 10.4.4 UrlRouting ====
+            var now = DateTime.Now;
+            RouteTable.Routes.MapPageRoute(
+                "blog",
+                "blog/{day}/{month}/{year}",
+                "~/SampleAsp/NT10_FlagmentObject/Global_asax_Div/UrlRoutingSample.aspx",
+                false,
+                new RouteValueDictionary(
+                    new
+                    {
+                        year = now.Year,
+                        month = now.Month,
+                        day = now.Day
+                    }
+                )
+            );
+            
+            //---- Regex version ----
+            //, new RouteValueDictionary(new
+            //{
+            //    year = @"\d{4}",
+            //    month = @"\d{1,2}",
+            //    day = @"\d{1,2}"
+            //});
+        }//Application_Start()
+    }//class
+}
