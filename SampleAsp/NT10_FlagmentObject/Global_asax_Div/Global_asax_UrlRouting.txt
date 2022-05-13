@@ -2,8 +2,8 @@
  *@title SelfAspNet / Global.asax.cs 
  *@target Global.asax
  *@Source SelfAspDB / AccessLog_tb
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第10章 10.4 Global.asax / p512 
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第10章 10.4 Global.asax / p512 
  *        「Global.asax」= Global Application File
  *         ・アプリケーション全体のイベント処理
  *         ・ファイル名は固定
