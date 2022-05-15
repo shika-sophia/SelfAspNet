@@ -21,5 +21,5 @@ namespace SelfAspNet.SampleAsp.NT10_FlagmentObject.Global_asax_Div
             //ltrMonth.Text = (string) RouteData.Values["month"];
             //ltrDay.Text = (string) RouteData.Values["day"];
         }
-    }
+    }//class
 }
