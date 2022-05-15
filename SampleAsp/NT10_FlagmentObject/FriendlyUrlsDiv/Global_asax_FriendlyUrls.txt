@@ -1,0 +1,60 @@
+ /** <!--
+ *@title SelfAspNet / Global.asax.cs 
+ *@target Global.asax
+ *@Source SelfAspDB / AccessLog_tb
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第10章 10.4 Global.asax / p512 
+ *        「Global.asax」= Global Application File
+ *         ・アプリケーション全体のイベント処理
+ *         ・ファイル名は固定
+ *         ・必ずアプリケーション・ルート直下に配置
+ *          (サブフォルダへの配置不可)
+ *         ・イベントハンドラー集 
+ *          =>〔SampleAsp/NT10_FlagmentObject/Global_asax_Div/Global_asax_cs_Event.txt〕
+ */
+#region  => 【subjects】jQuery / AccessLog / ErrorPage / UrlRouting
+/* 
+ *@prerare PM> Install-Package Microsoft.AspNet.FriendlyUrls
+ *         =>〔FriendlyUrlsSetting_withReadMe.txt〕
+ *         
+ *@subject 10.4.6 FriendlyUrls
+ *         ◆Application_Start()
+ *         RouteTable.Routes.EnableFriendlyUrls();
+ *           || or
+ *         RouteConfig.RegisterRoutes(RouteTable.Routes);
+ *         =>〔~/App_Start/RouteConfig.cs〕
+ *         
+ *         ◆「.aspx.cs」
+ *         =>〔~/SampleAsp/NT10_FlagmentObject/FriendlyUrlsDiv/FriendlyUrlsSample.aspx.cs〕
+ */
+#endregion
+/*  
+ *     //==== 10.4.7 FriendlyUrls ====
+ *@see ~/App_Start/RouteConfig.cs
+ *@see ~/SampleAsp/NT10_FlagmentObject/FriendlyUrlsDiv/FriendlyUrlsSample.aspx.cs
+ *@see ~/SampleAsp/NT10_FlagmentObject/FriendlyUrlsDiv/FriendlyUrlsSetting_withReadMe.txt
+ *
+ *@author shika
+ *@date 2022-05-11 ～ 05-16
+ * -->
+ */
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.IO;
+using System.Text;
+using System.Web;
+using System.Web.Routing;
+using System.Web.UI;
+
+namespace SelfAspNet
+{
+    public class Global : System.Web.HttpApplication
+    {
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            //==== 10.4.7 FriendlyUrls ====
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }//Application_Start()
+    }//class
+}
