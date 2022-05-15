@@ -44,14 +44,33 @@
  *             戻り値 objectのため適切にキャストして利用
  *             //ltr.Text = (string) RouteData.Values["year"];
  *          
- *@NOTE 【実行 UrlRouting】(未解決)
+ *@NOTE 【実行 UrlRouting】(解決)
  *      「https://localhost:44377/blog/24/12/2019」で start
  *        => このサイトにアクセスできません
  *           localhost で接続が拒否されました。
- *          
+ *           ERR_CONNECTION_REFUSED (接続が拒否されました)
+ *           
  *      「UrlRouting.aspx」で start
  *        => 「年 月 日」とだけ表示。デフォルト値が入っていない。
  *        
+ *       => VS -> Menu -> Project -> [SelfAspNetのプロパティ]
+ *         (別手順: IIS Express 右▼ボタン -> [SelfAspNetのデバッグ プロパティ] )
+ *           -> 開始動作 ラジオボタン「・URLの開始 https://localhost:44377/blog/24/12/2019」
+ *           -> ファイル保存
+ *           -> IIS Expressの デバッグボタンで開始
+ *           => 〔UrlRoutingSample_withDefault.jpg〕
+ *           
+ *           (次回以降、他の実行のために)
+ *           同 -> 開始動作「・現在のページ」に戻しておく。上記 URLを削除。
+ *           
+ *        
+ *@subject RouteUrl「.aspx」UrlRoutingSample.aspx
+ *         <%$ RouteUrl: ... %>
+ *         NavigateUrl=
+ *           "<%$ RouteUrl:RouteName=blog, year=2019, month=11, day=24 %>"
+ *           
+ *         => 「blog/24/11/2019」上記から生成
+ *         => 〔UrlRoutingSample_withRouteUrl.jpg〕
  */
 #endregion
 /*     //==== 10.4.2 AccessLog insert into DB ====
@@ -67,6 +86,8 @@
  *
  *     //==== 10.4.4 UrlRouting ====
  *@see UrlRoutingSample.aspx
+ *@see UrlRoutingSample_withDefault.jpg
+ *@see UrlRoutingSample_withRouteUrl.jpg
  *@see Global_asax_UrlRouting.txt
  *
  *@author shika
