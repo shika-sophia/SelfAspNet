@@ -2,8 +2,8 @@
  *@title SelfAspNet / SampleAsp /NT10_FlagmentObject/
  *       FriendlyUrlsDiv/FriendlyUrlsSample.aspx.cs
  *@target FriendlyUrlsSample.aspx.
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第10章 部品化 / 10.4.6 FriendlyUrlsモジュール / p529
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第10章 部品化 / 10.4.6 FriendlyUrlsモジュール / p529
  *         ■ FriendlyUrlsモジュール
  *         ・MapPageRoute()の簡易版
  *         ・RouteTableを定義せずに利用できる
@@ -37,22 +37,29 @@
  *             }
  *         }//class
  *         
- *@subject「.aspx」〔ListView: NT45 | Itemtype="": NT85〕
+ *@subject ◆URLセグメントを表示
+ *          URLセグメント: FriendlyUrlsで取得したパラメータ
+ *            URL「https:// ... /<「.aspx」ファイル名>/<パラメータ１>/<パラメータ２>/ ...」
+ *            ASPページのファイル名: https:// ... /<「.aspx」ファイル名>
+ *            URLセグメント:        <パラメータ１>/<パラメータ２>/ ...
+ *          
+ *        「.aspx」〔ListView: NT45 | Itemtype="": NT85〕
  *         <asp:ListView ... ItemType="String"> 
  *           <ItemTemplate>
  *             ・<%#: Item %><br />
  *           </ItemTemplate>
  *         
- *@subject ◆URLセグメントを表示
- *         URLセグメント: FriendlyUrlsで取得したパラメータ
- *         
- *         「.aspx.cs」Page_Load() 〔DataSource, DataBind: NT42〕
+ *@subject「.aspx.cs」Page_Load() 〔DataSource, DataBind: NT42〕
  *          object BaseDataBoundControl.DataSource 
  *          void   BaseDataBoundControl.DataBind();
  *          IList<string> Request.GetFriendlyUrlSegments()
+ *          
  *@NOTE 【実行】SelfAspNetプロパティ 開始動作「URLから実行」
  *       [https://localhost:44377/SampleAsp/NT10_FlagmentObject/FriendlyUrlsDiv/FriendlyUrlsSample/Yamada/Hobby/Tennis]
  *
+ *       => 結果 〔FriendlyUrls_Segments.jpg〕
+ *       Yamada, Hobby, Tennisを箇条書で表示
+ *       
  *@see ~/App_Start/RouteConfig.cs
  *@see Global_asax_FriendlyUrls.txt
  *@see FriendlyUrls_Segments.jpg
