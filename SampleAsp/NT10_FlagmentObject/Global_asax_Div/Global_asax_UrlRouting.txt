@@ -70,6 +70,7 @@
  *           "<%$ RouteUrl:RouteName=blog, year=2019, month=11, day=24 %>"
  *           
  *         => 「blog/24/11/2019」上記から生成
+ *             リンクをクリック -> 「2019年 11月 24日」となる。
  *         => 〔UrlRoutingSample_withRouteUrl.jpg〕
  */
 #endregion
