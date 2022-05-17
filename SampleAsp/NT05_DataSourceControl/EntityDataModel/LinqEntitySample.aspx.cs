@@ -42,7 +42,7 @@
  *https://localhost:44377/SampleAsp/NT05_DataSourceControl/EntityDataModel/LinqEntitySample.aspx?priceMin=3000
  *
  *          ＊「.aspx.cs」 GetBooksByPrice([QueryString] int? priceMin)
- *          ◆Value Provider: ユーザー入力値から値を取得する仕組み
+ *          ◆Value Provider: ユーザー入力値から値を取得する仕組み〔NT81〕
  *          ◆Value Provider Attribute []属性
  *          [QueryString([string key])]
  *          [Control(string id, [string propertyName])]
