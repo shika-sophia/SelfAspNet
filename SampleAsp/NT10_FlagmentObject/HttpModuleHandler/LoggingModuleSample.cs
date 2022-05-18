@@ -3,8 +3,8 @@
  *       HttpModuleHandler / LoggingModuleSample.cs
  *@inherits IHttpModule
  *@source SelfAspDB / AccessLog_tb
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第10章 部品化 / 10.4.7 HTTP Module / p533
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第10章 部品化 / 10.4.7 HTTP Module / p533
  *@subject ◆HTTP Module
  *         ・ASPページを処理するイベントハンドラーを自己定義して割り込ませる機能
  *         ・「Global.asax」はアプリケーション全体のイベントハンドラーを定義。
