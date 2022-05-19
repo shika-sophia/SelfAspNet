@@ -3,8 +3,8 @@
  *       HttpModuleHandler / SourceOutputHandler.cs 
  *@inherits IHttpHandler
  *@source LoggingModule.cs
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第10章 部品化 / 10.5 HTTP Handler / p538
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第10章 部品化 / 10.5 HTTP Handler / p538
  *         10.5.2 自己定義 HTTP Handlerを作成し登録する
  *         
  *@subject ◆HTTP Handler
