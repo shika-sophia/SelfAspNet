@@ -37,7 +37,16 @@
  *              ・【前提】ErrorMessageには、
  *                 各項目の文字列が事前に代入されていることが前提
  *                 => 「.aspx」ErrorMessage=""
+ *                 
+ *          ＊メンバー
+ *           ValidatorCollection Page.Validators 〔NT86〕
+ *              // ページ内に配置された全検証コントロールのコレクション
+ *              // 要素は BaseValidator 
+ *              // 各検証コントロールのパラメタにアクセスする場合はキャストして利用する。
  *              
+ *           valid.EeeorMessage / Display / SetFocusOnError / Text 〔NT24〕 
+ *           valid.Operator 〔ComapereValidator NT26〕
+ *            
  *@subject 「ValidPageSample.aspx.cs」ValidateMessagePageを継承
  *          public partial class ValidPageSample : ValidateMessagePage { }
  *          
@@ -90,7 +99,7 @@ namespace SelfAspNet.SampleAsp.NT10_FlagmentObject.PageSubClassDiv
                 {
                     switch (valid.GetType().Name)
                     {
-                        case "RequiredValidator":
+                        case "RequiredFieldValidator":
                             valid.ErrorMessage =
                                 String.Format(REQUIRE_MSG, valid.ErrorMessage);
                             break;
