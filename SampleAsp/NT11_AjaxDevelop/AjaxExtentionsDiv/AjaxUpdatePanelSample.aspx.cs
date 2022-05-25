@@ -4,8 +4,8 @@
  *@target AjaxUpdatePanelSample.aspx
  *@based  NT04_DataBindControl / GridViewSample.aspx
  *source  SelfAspDB / Album_tb
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第11章 Ajax開発 / 11.2 AJAX Extentions / p572
+ *@reference  NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第11章 Ajax開発 / 11.2 AJAX Extentions / p572
  *         ■ ASP.NET AJAX Extentions 
  *         ・Ajaxの定型的な基本機能を ASP.NETに導入するためのコントロール
  *         ・ASP.NET プロジェクトは、デフォルトで 
@@ -50,6 +50,7 @@
  *
  *@see NT04_DataBindControl / GridViewSample.aspx
  *@see AjaxUpdatePanel_withSorted.jpg
+ *@copy AjaxDevelop_analysis.txt
  *@author shika
  *@date 2022-05-25
  */
