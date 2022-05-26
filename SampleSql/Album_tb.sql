@@ -84,3 +84,11 @@ Other	ピアノ部屋。毎日練習しています。	2020-01-24
 Other	ウミガメのぬいぐるみ。PCの前に置いています。	2020-03-01
 Other	クマとネズミのぬいぐるみ。いつも一緒で仲良しです。	2020-03-26
 */
+
+-- NT11_AjaxDevelop / AjaxExtentions / AjaxUpdatePanel.aspx
+-- Timer更新のテストのため、データを変更
+/*
+UPDATE Album 
+  SET comment=N'ピアノ部屋。毎日練習しています。バッハが好きです。'
+  WHERE Id='S0003';
+*/
