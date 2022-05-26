@@ -42,6 +42,24 @@ namespace SelfAspNet.SampleAsp.NT11_AjaxDevelop.AjaxExtentionsDiv
         protected global::System.Web.UI.WebControls.Label lbl;
 
         /// <summary>
+        /// upProgress コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress upProgress;
+
+        /// <summary>
+        /// timer コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.Timer timer;
+
+        /// <summary>
         /// upPanel コントロール。
         /// </summary>
         /// <remarks>

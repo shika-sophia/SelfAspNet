@@ -15,7 +15,23 @@
 <asp:ScriptManager ID="ScriptManager1" runat="server">
 </asp:ScriptManager>
     <asp:Label ID="lbl" runat="server" Text=""></asp:Label>
+<asp:UpdateProgress ID="upProgress" runat="server"
+    AssociatedUpdatePanelID="upPanel"
+    DisplayAfter="1000" 
+    DynamicLayout="false">
+    <ProgressTemplate>
+        通信中: 
+        <asp:Image ID="Image1" runat="server"
+            ImageUrl="~/Image/ajax-loader.gif" />        
+    </ProgressTemplate>
+</asp:UpdateProgress>
+<asp:Timer ID="timer" runat="server"
+    Interval="10000">
+</asp:Timer>
 <asp:UpdatePanel ID="upPanel" runat="server">
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="timer" EventName="Tick" />
+    </Triggers>
     <ContentTemplate>
     <%-- 4.3.1 GridViewSample.aspx (Copy) --%>
     <asp:GridView ID="grid" runat="server" 
