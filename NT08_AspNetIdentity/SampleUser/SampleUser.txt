@@ -5,3 +5,14 @@ pass:  sampleSAMPLE_2022
 ◆Registered User with Url
 Email: profile@sample.jp
 pass:  Profile999-
+
+
+◆ASP.NET Identity の特徴 
+・Twitter/Facebook/MicrosoftAccount などのソーシャルアカウントと連携可
+・２段階認証/アカウント確認に対応。
+・ASP.NET MVC, ASP.NET Web API でも同じコードで利用可
+・インターフェイスで構成され、スタブ／モックによる差し替えも可
+・Entity Frameworkに対応していれば、SQL Server以外のDB, DataStoreも利用可
+・データモデルの修正だけで、プロファイル情報を拡張可
+
+=> COPY from〔CsharpBegin/Exercise/SelfAspNet/NT08_AspNetIdentity.cs〕
