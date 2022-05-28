@@ -12,6 +12,10 @@
  *         ＊ValidControlは内部的に jQueryを利用しているので、
  *         ここを動作させるには、事前にインストールが必要。
  *         
+ *         ＊jQueryをインストール〔p99 | NT20〕
+ *         PM> Install jquery
+ *         => 「~/Scripts」に jquery-x.x.x.xxx.js 
+ *         
  *         ＊[Global.asax]も編集して、
  *         jQueryを Startupで loadする設定にする。
  *
