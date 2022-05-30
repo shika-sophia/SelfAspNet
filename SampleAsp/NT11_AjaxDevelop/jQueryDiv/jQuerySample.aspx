@@ -21,7 +21,14 @@
     </asp:ScriptManager>
     <script>
         $(function () {
-            $('#menu img.other').fadeOut(5000);
+            $('#menu img.other')
+                .fadeOut(5000)
+                .fadeIn(5000)
+                .slideUp(5000);
+
+            $('img').click(function () {
+                $(this).fadeToggle(5000);
+            });
         });
     </script>
     <div id="menu">
