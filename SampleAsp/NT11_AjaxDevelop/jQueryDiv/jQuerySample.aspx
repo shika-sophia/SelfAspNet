@@ -29,6 +29,8 @@
             $('img').click(function () {
                 $(this).fadeToggle(5000);
             });
+
+            $(document.body).css("background-color", "lavender");
         });
     </script>
     <div id="menu">

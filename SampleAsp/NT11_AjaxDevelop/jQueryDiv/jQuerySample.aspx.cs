@@ -47,13 +47,16 @@
  *         
  *@subject セレクター記法
  *         $('xxxx')        HTML要素
- *         $(document.body) JavaScript標準オブジェクト。「'」なし
  *         $('#id')         id="id"
  *         $('.clazz')      class="clazz"
  *         $('A B')         要素A 配下の すべての要素B
  *         $('A > B')       要素A 直下の すべての要素B
  *         $('[key = value]')     属性 key 値 valueのすべての要素
  *         $('xxx [key = value]') 属性 key 値 valueのすべてのxxx要素
+ *         $('<li>リスト項目</li>').appendTo('ul')
+ *                          HTML文字列をセレクタにすることも可
+ *         $(document.body) JavaScript標準オブジェクト。「'」なし
+ *           例: $(document.body).css("background-color", "lavender");
  *         
  *@subject 匿名関数
  *         ・jQueryの構文はすべてこの function内に記述
@@ -164,6 +167,8 @@
  *         unload   ページをアンロードしたとき
  *         
  *@see jQuerySample_withFadeout.jpg
+ *@see jQuerySample_withSlideDown.jpg
+ *@copyTo AjaxDevelop_analysis.txt
  *@author shika
  *@date 2022-05-29, 05-30
  * -->
