@@ -30,7 +30,6 @@ namespace SelfAspNet.SampleAsp.NT09_RichControl.CalendarControl
         protected void Page_Load(object sender, EventArgs e)
         {
             SelectStone(DateTime.Now.Month);
-            calen.
         }
 
         protected void calen_VisibleMonthChanged(object sender, MonthChangedEventArgs e)
