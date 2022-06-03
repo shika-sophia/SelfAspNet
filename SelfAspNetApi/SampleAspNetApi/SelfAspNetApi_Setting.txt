@@ -1,7 +1,7 @@
 ﻿/**
  *@title SelfAspNetApi / SampleAspNetApi / SelfAspNetApi_Setting.txt
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第11章 Ajax / 11.4 ASP.NET Web API / p588
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第11章 Ajax / 11.4 ASP.NET Web API / p588
  *         ASP.NET Web API 新規プロジェクト 作成手順
  *
  *@subject 新規プロジェクト
