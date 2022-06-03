@@ -7,10 +7,16 @@
  *         9.4.2 Calendarと DB連携
  *         カレンダーに任意の情報を埋め込む
  *
+ *@subject ---- CalendarSchdule.aspx ----
+ *@subject ◆CalendarControl <asp:Calendar>
+ *         DateTime calen.SelectionDate  選択した日付
+ *         DateTime calen.VisibleDate    デフォルトの表示月    
+ *         string   calen.Caption        キャプション (=テキストエリア)
+ *         
  *@subject 「.aspx」
- *          <Calendar> ID="calenSche"
+ *          <asp:Calendar> ID="calenSche"
  *            OnDayRender="calenSche_DayRender" イベントハンドラー呼出
- *            VisibleDate="2019-12-01"          デフォルトの表示月
+ *            VisibleDate="2019-12-01"          
  *            
  *          <SqlDataSource> ID="sds"
  *            //SELECT文で表示用に整形、@uid: ここでは固定値 yamada
@@ -68,10 +74,21 @@
  *         [プロパティ・ウィンドウ] 雷アイコン(イベント) ->
  *         DayRender Wクリック -> 下記メソッド自動生成
  *
+ *@subject ---- CalendarStone.aspx ----
+ *         <asp:Calendar>
+ *         OnVisibleMonthChanged="calen_VisibleMonthChanged"
+ *         
+ *@subject calen_VisibleMonthChanged(object sender, MonthChangedEventArgs e)        
+ *         ◆MonthChangedEventArgs e
+ *         DateTime e.NewDate      現在の表示月の日付
+ *         DateTime e.PreviousDate 直前の表示月の日付
+ *
  *@see SampleSql / Schedule_tb.sql
  *@see CalendarSchedule.jpg
+ *@see CalendarStone.aspx.cs
+ *@see CalendarStone.jpg
  *@author shika
- *@date 2022-04-25, 04-26
+ *@date 2022-04-25, 04-26, 06-03
  * -->
  */
 using System;
