@@ -64,7 +64,7 @@
  *          -> URLで実行 「https://localhost:44378/api/book/987-4-7981-5112-0」
  *
  *          => トップページがないと「404 Forbidden」
- *       
+ *
  *@author shika
  *@date 2022-06-04
  */

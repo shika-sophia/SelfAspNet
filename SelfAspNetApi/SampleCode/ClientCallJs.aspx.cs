@@ -1,7 +1,8 @@
 ﻿/** <!--
  *@title SelfAspNetApi / SampleCode / ClientCallJs.aspx.cs
  *@target ClientCallJs.aspx
- *@source BookSearch.js
+ *@source ~/ SampleCode / BookSearch.js
+ *@source SelfAspDB / Book_tb
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content 第11章 Ajax / 11.4.3 ASP.NET Web API + jQuery / p597
  *         Web API 呼出のクライアントページ + jQuery
@@ -9,7 +10,7 @@
  *@subject jQueryの導入
  *         => SelfAspNetWebApi_Setting.txt
  *         
- *@subject BookSearch.js
+ *@subject JavaScriptファイル「BookSearch.js」 
  *         ◆jQueryメソッド
  *         $.getJSON(string URL, コールバック関数)
  *         $( ).val() セレクタの値を取得
@@ -27,24 +28,24 @@
  *           サーバーコントロールの機能を利用しないなら、なるべく HTMLコードを利用すべき。
  *           
  *         <asp:ScriptManager ID="ScriptManager1" runat="server"
-                 EnableCdn="true"
-                 AjaxFrameworkMode="Disabled">
-               <Scripts>
-                  <asp:ScriptReference Name="jquery" />
-                  <asp:ScriptReference Path="~/SampleCode/BookSearch.js" />
-               </Scripts>
-           </asp:ScriptManager>
-           <input id="txtIsbn" type="text" />&nbsp;
-           <input id="btnSearch" type="button" value="Search" /><br />
-           <div id="result">
-           </div>
-
+ *               EnableCdn="true"
+ *               AjaxFrameworkMode="Disabled">
+ *             <Scripts>
+ *                <asp:ScriptReference Name="jquery" />
+ *                <asp:ScriptReference Path="~/SampleCode/BookSearch.js" />
+ *             </Scripts>
+ *         </asp:ScriptManager>
+ *         <input id="txtIsbn" type="text" />&nbsp;
+ *         <input id="btnSearch" type="button" value="Search" /><br />
+ *         <div id="result">
+ *         </div>
+ *
  *@author shika
  *@date 2022-06-05
  * -->
  */
 /* <!-- 
- *@NOTE Error Search」ボタンを押しても何も表示されない。
+ *@NOTE Error「Search」ボタンを押しても何も表示されない。
  *      ブラウザ(Google Chrome)の「検証」で ErrorMessageを確認し原因を探す。
  *      
  *@Error Uncaught ReferenceError: $ is not defined at BookSearch.js:1:1
@@ -57,7 +58,7 @@
  *        new SelAspNetDB() を new SelAspDB()に変更で解決
  *       「~/App_Data/SelfAspDB.mdf」を入れているので読み込めなかった様子。
  *      
- *Error jquery-3.6.0.js:10109  GET https://localhost:44378/SampleCode/api/book/978-4-7981-5112-0 404
+ *@Error jquery-3.6.0.js:10109  GET https://localhost:44378/SampleCode/api/book/978-4-7981-5112-0 404
  *    => 「https://localhost:44378/」と「api/book/978-4-7981-5112-0」の間に
  *       「/SampleCode」が挿入されている。
  *       「.aspx」ページのあるカレントフォルダ名が自動的に挿入されるようなので、
@@ -75,7 +76,8 @@
  *             <ScriptReference Path="~/SampleCode/BookSearch.js" />
  *          に変更。
  *
- *@NOTE【結果】
+ *@NOTE【実行】テキストボックスに「978-4-7981-5112-0」を入力、[Search]ボタンを押す。
+ *@NOTE【結果】Book_tbのレコードが表示されることを確認。
  *      => ClientCallJs_withBookSearch_js.jpg
  * -->
  */
