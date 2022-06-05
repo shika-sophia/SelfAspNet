@@ -1,0 +1,70 @@
+﻿/**
+ *@title SelfAspNetApi / SampleAspNetApi / SelfAspNetApi_Setting.txt
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第11章 Ajax / 11.4 ASP.NET Web API / p588
+ *         ASP.NET Web API 新規プロジェクト 作成手順
+ *
+ *@subject 新規プロジェクト
+ *         VS[ソリューションエクスプローラ] 右クリック
+ *         -> 新規プロジェクト [ASP.NET Web Application (.Net Framework)] 
+ *         -> 「SelfAspNetApi」-> [追加]
+ *         -> [新しいASP.NETプロジェクト]ダイアログ
+ *         -> 「空」 / フォルダおよびコア参照: Webフォーム, Web API にチェック
+ *         -> [作成]
+ *
+ *@subject データベースの準備
+ *         ~/App_Dataフォルダ 右クリック -> [既存の項目]
+ *         -> SelfAsp/App_Data/ SelfAspDB.mdf, SelfAspDB_log.ldf を選択
+ *         -> [追加]
+ *
+ *@subject データモデルの作成〔5.4.1 | p281〕
+ *         ~/Modelsフォルダに、[Book.cs]を作成
+ *         =>〔SelfAspNet / SampleAsp / NT05_DataSourceControl
+ *             / EntityDataModel / LinqEntitySample.aspx.cs〕
+ *
+ *@subject コントローラーの作成
+ *         ~/Controllersフォルダ 右クリック -> [追加] -> [コントローラー]
+ *         (【註】[追加] -> [新しい項目]にすると、出てこないので注意)
+ *         -> [新規スキャフォールディングの追加]ダイアログ
+ *            ・Web API2 - 空 or
+ *            ・Entity Framework を使用したアクションがある Web API2 - 空
+ *         -> 「BookController」入力 -> [追加]
+ *         ->  GetBook(string id)を記述
+ *         => 〔~/Controllers/BookController.cs〕
+ *
+ *@subject デフォルト設定の URLルーティング
+ *         ◆「~/App_Start/WebApiConfig.cs」
+ *         // Web API ルート
+ *         config.MapHttpAttributeRoutes();
+ *         config.Routes.MapHttpRoute(
+ *               name: "DefaultApi",
+ *               routeTemplate: "api/{controller}/{id}",
+ *               defaults: new { id = RouteParameter.Optional }
+ *
+ *@subject jQueryの参照追加 / 登録 〔3.4.1 | p99〕
+ *         ◆パッケージマネージャーコンソール
+ *         既存のプロジェクト: SelfAspNetApi に変更
+ *         PM> Install-Package jquery
+ *
+ *         ◆「Global.asax」Application_Start()〔3.4.1 | p99〕
+ *         ScriptManager.ScriptResourceMapping.AddDefinition(
+ *              "jquery", null,
+ *              new ScriptResourceDefinition()
+ *              {
+ *                  Path = "~/Scripts/jquery-3.6.0.js",
+ *                  DebugPath = "~/Scripts/jquery-3.6.0.js",
+ *                  CdnPath = "http://ajax.microsoft.com/ajax/jQuery/jquery-3.6.0.min.js",
+ *                  CdnDebugPath = "http://ajax.microsoft.com/ajax/jQuery/jquery-3.6.0.js"
+ *              });
+ *
+ *@subject 実行設定
+ *         ・VS[ソリューションエクスプローラ] 右クリック
+ *           -> スタートアップ・プロジェクト -> [SelfAspNetApi]
+ *         ・IIS ▼ -> デバッグ プロパティ -> 開始動作 
+ *          -> URLで実行 「https://localhost:44378/api/book/987-4-7981-5112-0」
+ *
+ *          => トップページがないと「404 Forbidden」
+ *       
+ *@author shika
+ *@date 2022-06-04
+ */
