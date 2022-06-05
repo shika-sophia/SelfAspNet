@@ -1,5 +1,6 @@
 ﻿/*
  *@see SampleAspNetApi / SelfAspNetApi_Setting.txt
+ *@see SampleAspNetApi / ClientCallJs.aspx.cs
  *
  */
 
@@ -13,7 +14,7 @@ namespace SelfAspNetApi.Controllers
     {
         public Book GetBook(string id)
         {
-            var db = new SelfAspNetApiDB();
+            var db = new SelfAspDB();
             Book book = db.Book.Find(id);
 
             if(book == null)
