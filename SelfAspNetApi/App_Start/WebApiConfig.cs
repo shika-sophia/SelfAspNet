@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ *@modified SampleCode/ClientCallJs.aspx.cs 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -16,7 +20,7 @@ namespace SelfAspNetApi
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "SampleCode/api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }
