@@ -5,8 +5,8 @@
  *@source SelfAspDB / Book_tb
  *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
  *@content 第11章 Ajax / 11.4.4 Bundle, Minification / p599
- *         「BookSearch.js」への参照登録を
- *          各ページの ScriptManagerから「Global.asax」に登録に変更
+ *         「BookSearch.js」の参照登録を
+ *          各ページの ScriptManagerから「Global.asax」への登録に変更
  *          
  *@subject Bundle, Minification / バンドル, ミニフィケーション
  *         ・バンドル: 複数の「.js」「.css」への参照を束ねる(=bundle)こと
