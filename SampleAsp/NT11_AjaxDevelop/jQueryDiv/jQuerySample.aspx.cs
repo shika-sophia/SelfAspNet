@@ -113,6 +113,10 @@
  *             .fadeIn(dur)     フェイドイン  (=だんだん濃くなる)
  *             .fadeOut(dur)    フェイドアウト(=だんだん薄くなる)
  *             
+ *         ＊その他 =>〔SelfAspNetApi/SampleCode/ClientCallJs.aspx〕
+ *         $.getJSON(string URL, コールバック関数)
+ *         $( ).val() セレクタの値を取得
+ *             
  *@subject メソッドチェーン
  *         ・メソッドの戻り値は ほぼ jQueryオブジェクトなので、
  *           メソッドを連結して処理可能
