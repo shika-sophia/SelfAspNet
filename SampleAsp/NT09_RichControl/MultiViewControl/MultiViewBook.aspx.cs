@@ -3,8 +3,8 @@
  *       MultiViewControl / MultiViewBook.aspx.cs
  *@target MultiViewBook.aspx
  *@source SelfAspDB / Book_tb
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第９章 / 9.3 MultiView / 章末問題４ / p461, p482
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第９章 / 9.3 MultiView / 章末問題４ / p461, p482
  *         MultiView (GridView, FormView) を Bookで作成
  *         
  *@subject MultiView =>〔MultiViewSample.aspx.cs〕
