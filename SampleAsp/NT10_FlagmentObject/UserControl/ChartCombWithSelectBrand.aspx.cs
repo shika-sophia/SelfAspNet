@@ -3,8 +3,8 @@
  *       UserControl / ChartCombWithSelectBrand.aspx.cs
  *@target ChartCombWithSelectBrand.aspx
  *@source SelfAspDB / Stock_tb
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第10章 / 10.1 UserControl / 練習問題 10-1 / p491
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第10章 / 10.1 UserControl / 練習問題 10-1 / p491
  *         9.5.1 Chart2.aspxを 
  *           =>〔NT09_RichControl / ChartGraph / ChartCombinationGraph.aspx〕
  *        ・ユーザーコントロール化。
