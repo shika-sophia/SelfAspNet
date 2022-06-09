@@ -11,34 +11,25 @@ namespace SelfAspNet.SampleAsp.NT10_FlagmentObject.UserControl
 {
 
 
-    public partial class ChartCombWithSelectBrand
+    public partial class UserChartCombination
     {
 
         /// <summary>
-        /// formChartCombWithSelectBrand コントロール。
+        /// chartComb コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formChartCombWithSelectBrand;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chartComb;
 
         /// <summary>
-        /// listBrand コントロール。
+        /// sds コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox listBrand;
-
-        /// <summary>
-        /// userChartComb コントロール。
-        /// </summary>
-        /// <remarks>
-        /// 自動生成されたフィールド。
-        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
-        /// </remarks>
-        protected global::SelfAspNet.SampleAsp.NT10_FlagmentObject.UserControl.UserChartCombination userChartComb;
+        protected global::System.Web.UI.WebControls.SqlDataSource sds;
     }
 }

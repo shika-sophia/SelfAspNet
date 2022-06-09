@@ -2,8 +2,11 @@
     CodeBehind="ChartCombWithSelectBrand.aspx.cs"
     Inherits="SelfAspNet.SampleAsp.NT10_FlagmentObject.UserControl.ChartCombWithSelectBrand" %>
 
-<!DOCTYPE html>
+<%@ Register Src="~/SampleAsp/NT10_FlagmentObject/UserControl/UserChartCombination.ascx"
+    TagPrefix="uc1" TagName="UserChartCombination" %>
 
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -14,10 +17,13 @@
 <div>
     Select Brand:<br />
     <asp:ListBox ID="listBrand" runat="server"
-        SelectionMode="Single">
-        <%-- ListItem created in Page_Load() --%>
+        SelectionMode="Single" AutoPostBack="True" >
     </asp:ListBox>
     <%-- DataBind() in Page_Load() --%>
+</div>
+<div>
+    <uc1:UserChartCombination runat="server" ID="userChartComb" 
+        Bland="" />
 </div>
 </form>
 </body>
