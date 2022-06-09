@@ -8,7 +8,8 @@
  *         9.5.1 Chart2.aspxを 
  *           =>〔NT09_RichControl / ChartGraph / ChartCombinationGraph.aspx〕
  *        ・ユーザーコントロール化。     
- *        ・brandで選択できるようにする。//Brand="28710" | Brand ="34259"
+ *        ・brandで選択できるようにする。
+ *        //Brand="28710" | Brand ="34259"
  *        (ListBoxは完成 -> UserControlに値を渡せない不具合あり)
  *         
  *@subject brand選択できる機能
@@ -60,7 +61,7 @@
  *      
  *      if文を使わずに Brand="<%= listBrand.SelectedItem.Value %>" で値を
  *      ユーザーコントロールに渡すには、コードビハインドではなく、
- *      「.aspx」ページに <Items><asp:ListItem>を記述しないといけないのかも。
+ *      「.aspx」ページに <asp:ListItem>を記述しないといけないのかも。
  *      
  *      ただし、コードビハインドでも listBrand.SelectedIndexは機能しているので、
  *      この値で if分岐して切り替えた。(あまりいい方法でない理由は下記【考察】)
@@ -68,7 +69,7 @@
  *@see NT09_RichControl / ChartGraph / ChartCombinationGraph.aspx.cs
  *@see UserChartCombination.ascx     //ユーザーコントロール
  *@see ChartCombWithSelectBrand.jpg  //ListBoxに brand値を表示
- *@see ChartCombWithSelectBrand34259.jpg  
+ *@see ChartCombWithSelectBrand34259.jpg  //ListBox選択で切替可
  *
  *@author shika
  *@date 2022-06-08, 06-09, 06-10
