@@ -40,5 +40,14 @@ namespace SelfAspNet.SampleAsp.NT10_FlagmentObject.UserControl
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::SelfAspNet.SampleAsp.NT10_FlagmentObject.UserControl.UserChartCombination userChartComb;
+
+        /// <summary>
+        /// UserChartCombination1 コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::SelfAspNet.SampleAsp.NT10_FlagmentObject.UserControl.UserChartCombination UserChartCombination1;
     }
 }
