@@ -65,13 +65,12 @@
  *               ・Brand='<%# Bind("brand") %>' これだと、
  *               Page_Load()時の DefaultValueを渡すことになり、やはり機能しない。
  *               
- *               
  *@see NT09_RichControl / ChartGraph / ChartCombinationGraph.aspx.cs
  *@see UserChartCombination.ascx //ユーザーコントロール
  *@see ChartCombWithSelectBrand.jpg
  *
  *@author shika
- *@date 2022-06-08
+ *@date 2022-06-08, 06-09
  * -->
  */
 /* <!--
