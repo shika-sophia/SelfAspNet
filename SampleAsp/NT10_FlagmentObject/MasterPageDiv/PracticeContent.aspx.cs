@@ -4,8 +4,8 @@
  *@target PracticeContent.aspx
  *@master MasterPageSample.master
  *@source SelfAspDB / Book_tb
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
- *@content 第10章 10.3 Master Page / 練習問題 10-2 / p511
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020
+ *@content NT 第10章 10.3 Master Page / 練習問題 10-2 / p511
  *         マスターページのコンテンツページを作成
  *        【設計】
  *         ・Wingsサイトの画像一覧を表示
