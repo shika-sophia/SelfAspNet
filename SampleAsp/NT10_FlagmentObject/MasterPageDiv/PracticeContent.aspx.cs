@@ -31,6 +31,13 @@
  *         結果画像のTitleが「SqlDataSource」となっているのは、
  *         MasterPageで、Web.sitemapから読み込んだ Titleが反映されているから。
  *         
+ *@subject <asp:Image> AlteringText=""
+ *         Eval値を 5文字以内に整形し左寄せしたかったのだが、
+ *         String.Format(string format)のように、alignなどはできない様子。
+ *         [×] <%# Eval("title", "{0,-5}") %>
+ *         
+ *         値の整形については今後の課題とす。
+ *         
  *@NOTE【エラー】
  *     「.aspx」で <asp:ListView>, <asp:Image>を認識してくれない問題
  *      エラーメッセージ:「xxxxは不明な要素です。
