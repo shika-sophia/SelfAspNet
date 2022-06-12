@@ -31,7 +31,7 @@
  *         結果画像のTitleが「SqlDataSource」となっているのは、
  *         MasterPageで、Web.sitemapから読み込んだ Titleが反映されているから。
  *         
- *@subject <asp:Image> AlteringText=""
+ *@subject <asp:Image> AlternateText=""
  *         Eval値を 5文字以内に整形し左寄せしたかったのだが、
  *         String.Format(string format)のように、alignなどはできない様子。
  *         [×] <%# Eval("title", "{0,-5}") %>
